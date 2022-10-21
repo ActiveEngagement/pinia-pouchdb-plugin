@@ -9,7 +9,7 @@ interface PouchePluginOptions {
     initialized: (context:any) => void
 }
 
-export const usePouchePlugin = (options: PouchePluginOptions) => {
+export const usePouchPlugin = (options: PouchePluginOptions) => {
     if(!options.database) {
         throw new Error('The database name must be defined.');
     }

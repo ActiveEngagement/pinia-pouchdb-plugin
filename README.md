@@ -13,10 +13,10 @@ This is a plugin for [Pinia](https://pinia.vuejs.org) that uses PouchDB to persi
 import { createApp } from 'vue'
 import { createPinia } from 'pinia';
 import App from './App.vue'
-import { usePouchePlugin } from './PouchPlugin';
+import { usePouchPlugin } from './PouchPlugin';
 
 const pinia = createPinia().use(
-    usePouchePlugin({
+    usePouchPlugin({
         database: 'pinia-demo'
     })
 );

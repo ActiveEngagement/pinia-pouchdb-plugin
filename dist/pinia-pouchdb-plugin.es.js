@@ -8444,5 +8444,5 @@ export {
   Ml as purge,
   Ul as removeCache,
   zl as removeConfig,
-  Kl as usePouchePlugin
+  Kl as usePouchPlugin
 };

@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia';
 import App from './App.vue'
-import { usePouchePlugin } from './PouchPlugin';
+import { usePouchPlugin } from './PouchPlugin';
 
 const pinia = createPinia().use(
-    usePouchePlugin({
+    usePouchPlugin({
         database: 'pinia-demo'
     })
 );
