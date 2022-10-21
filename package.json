@@ -1,0 +1,31 @@
+{
+  "name": "pinia-pouchdb-plugin",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/pouchdb": "^6.4.0",
+    "deep-object-diff": "^1.1.0",
+    "lodash.debounce": "^4.0.8",
+    "pinia": "^2.0.23",
+    "pouchdb": "^7.3.0",
+    "pouchdb-browser": "^7.3.0",
+    "pouchdb-find": "^7.2.1"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "events": "^3.3.0",
+    "process": "^0.11.10",
+    "rollup-plugin-polyfill-node": "^0.10.2",
+    "vite": "^3.1.0",
+    "vite-plugin-commonjs-externals": "^0.1.1",
+    "vue": "^3.2.37"
+  }
+}
