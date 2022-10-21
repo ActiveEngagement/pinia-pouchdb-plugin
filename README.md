@@ -73,16 +73,21 @@ Config's are key/value pairs. This a helper method to return the config data fro
 ```js
 import { config, removeConfig } from 'pinia-pouchdb-plugin';
 
-// Set a config key with a literal value
-config('main.first', true);
+// Set a config "key" with a literal value
+config('main.key', true);
 
-// Get the config key value.
-config('main.first').then(docs => {
+// Set a config "key" using a promise.
+cache('main.key', () => Promise.resolve(true), 10).then(data => {
+    console.log(data) // true
+});
+
+// Get the config "key" value.
+config('main.key').then(docs => {
     console.log(docs) // true
 });
 
-// Remove the key from the database
-removeConfig('main.first')
+// Remove the "key" from the database
+removeConfig('main.key')
 ```
 
 ### Cache
@@ -91,20 +96,20 @@ Cache's extend the config methods, but track when the values should be purged.
 Config values are saved forever, cache values can expire. 
 
 ```js
-import { cache } from 'pinia-pouchdb-plugin';
+import { cache, purge } from 'pinia-pouchdb-plugin';
 
 // Cache "key" for 10 seconds using a literal value
-cache('key', true, 10).then(data => {
+cache('main.key', true, 10).then(data => {
     console.log(data) // true
 });
 
 // Cache "key" for 10 seconds using a promise.
-cache('key', () => Promise.resolve(true), 10).then(data => {
+cache('main.key', () => Promise.resolve(true), 10).then(data => {
     console.log(data) // true
 });
 
 // Purge "key" from the cache.
-purge('key').then(docs => {
+purge('main.key').then(docs => {
     console.log(docs) // array of docs that were removed.
 });
 ```
