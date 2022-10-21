@@ -2,7 +2,7 @@
 
 This is a plugin for [Pinia](https://pinia.vuejs.org) that uses PouchDB to persist data on the browser using PouchDB.
 
-#### Installation
+## Installation
 
     npm i pinia-pouchdb-plugin
 
