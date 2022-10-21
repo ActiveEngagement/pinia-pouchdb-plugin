@@ -2,7 +2,7 @@
   "name": "pinia-pouchdb-plugin",
   "description": "A simple plugin for Pinia to persist your stores using PouchDB.",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.0",
   "type": "module",
   "main": "dist/pinia-pouchdb-plugin.umd.js",
   "module": "dist/pinia-pouchdb-plugin.es.js",
@@ -15,10 +15,13 @@
     "@types/pouchdb": "^6.4.0",
     "deep-object-diff": "^1.1.0",
     "lodash.debounce": "^4.0.8",
-    "pinia": "^2.0.23",
     "pouchdb": "^7.3.0",
     "pouchdb-browser": "^7.3.0",
     "pouchdb-find": "^7.2.1"
+  },
+  "peerDependencies": {
+    "pinia": "^2.0.0",
+    "vue": "^3.2.0"
   },
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
