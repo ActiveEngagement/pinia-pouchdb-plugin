@@ -86,7 +86,12 @@ Config values are saved forever, cache values can expire.
 ```js
 import { cache } from 'pinia-pouchdb-plugin';
 
-// Cache "key" for 10 seconds.
+// Cache "key" for 10 seconds using a literal value
+cache('key', true, 10).then(data => {
+    console.log(data) // true
+});
+
+// Cache "key" for 10 seconds using a promise.
 cache('key', () => Promise.resolve(true), 10).then(data => {
     console.log(data) // true
 });
