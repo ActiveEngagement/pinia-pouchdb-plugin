@@ -1,7 +1,7 @@
 {
   "name": "pinia-pouchdb-plugin",
   "description": "A simple plugin for Pinia to persist your stores using PouchDB.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "main": "dist/pinia-pouchdb-plugin.umd.js",
   "module": "dist/pinia-pouchdb-plugin.es.js",
