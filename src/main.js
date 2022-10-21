@@ -1,11 +1,14 @@
-import { createApp } from 'vue'
+import { createApp, defineComponent, h, Suspense } from 'vue'
 import { createPinia } from 'pinia';
 import App from './App.vue'
-import { usePouchPlugin } from './PouchPlugin';
+import { createPouchApp, usePouchPlugin, load } from './PouchPlugin';
+import { init } from './Storage';
+
+const database = init('pinia-demo');
 
 const pinia = createPinia().use(
     usePouchPlugin({
-        database: 'pinia-demo'
+        database
     })
 );
 

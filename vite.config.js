@@ -62,7 +62,7 @@ export default defineConfig({
     //   externals: ['path', /^pouch-db(\/.+)?$/],
     // }),
   ],
-  // define: {
-  //   global: {},
-  // }
+  define: {
+    global: {},
+  }
 })

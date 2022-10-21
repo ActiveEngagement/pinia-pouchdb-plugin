@@ -1,42 +1,79 @@
 import { diff } from 'deep-object-diff';
 import debounce from 'lodash.debounce';
-import { StateTree } from 'pinia';
-import { watch } from 'vue';
+import { Pinia } from 'pinia';
+import { h, Suspense, watch } from 'vue';
+import App from './App.vue';
 import { init } from './Storage';
 
 interface PouchePluginOptions {
+    component?: string,
     database?: string,
     wait?: number
+}
+
+export function createPouchApp(database: PouchDB.Database, pinia: Pinia) {
+    return {
+        render() {
+            return h(Suspense, h({
+                async setup() {
+                    await load(database, pinia);
+
+                    console.log('test', database, pinia.state.value);
+
+                    return 
+                },
+                render() {
+                    console.log('render')
+                    return h(App)
+                }
+            }));
+        }
+    }
+}
+
+// The db state loader.
+export async function load(db: PouchDB.Database, pinia: Pinia) {
+    // Loop through the context.pinia.state keys and get the saved values.
+    for(const [key, store] of Object.entries(pinia.state.value)) {
+        for(const prop of Object.keys(store)) {            
+            const value = await db.config(`${key}.${prop}`);
+
+            if(value !== undefined) {
+                store[prop] = JSON.parse(JSON.stringify(value));
+            }
+        }
+    }
 }
 
 export const usePouchPlugin = (options: PouchePluginOptions) => {
     // Initialize the database.
     const db = init(options.database || 'pinia-pouchdb-plugin');
 
-    // The db state loader.
-    async function load(state: StateTree) {
-        // Loop through the app.pinia.state keys and get the saved values.
-        for(const [key, store] of Object.entries(state.value)) {
-            for(const prop of Object.keys(store)) {            
-                const value = await db.config(`${key}.${prop}`);
-    
-                if(value !== undefined) {
-                    store[prop] = JSON.parse(JSON.stringify(value));
-                }
-            }
-        }
-    }
-
     // Define the Pinia plugin with an async function so we can await promises.
-    return (app) => {
+    return (context) => {
+        // Create an runtime component to asynchronously load the database into
+        // the state.
+        context.app.component(options.component || 'PouchDB', {
+            render(app) {
+                return h(Suspense, h({
+                    async setup() {
+                        await load(db, context.pinia);
+                    },
+                    render() {
+                        return app.$slots.default(context);
+                    }
+                }));
+            }
+        });
+        
         // Define the previous state by converting it to a plain object.
         // This allows us to deef diff the objects later and only save the
         // changes that we need, instead of saving the entire state every time.
-        let prevState = JSON.parse(JSON.stringify(app.pinia.state)) || {};
+        let prevState = JSON.parse(JSON.stringify(context.pinia.state)) || {};
 
         // Create the watcher using the debounce function.
-        watch(app.pinia.state, debounce(async() => {
-            for(const [key, store] of Object.entries<[string,any]>(app.pinia.state.value)) {
+        watch(context.pinia.state, debounce(async() => {
+            for(const [key, store] of Object.entries<[string,any]>(context.pinia.state.value)) {
                 const parsed = JSON.parse(JSON.stringify(store));
 
                 // Calculate the differences between the prev/current states
@@ -56,8 +93,5 @@ export const usePouchPlugin = (options: PouchePluginOptions) => {
             // Use deep so we can track changes within nested objects/arrays.
             deep: true
         });
-
-        // Provide some functions to load the PouchDB at runtime.
-        app.provide('PouchDB', { load, prevState });
     };
 }
