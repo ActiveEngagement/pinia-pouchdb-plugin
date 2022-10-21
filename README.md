@@ -27,7 +27,7 @@ createApp(App)
 ```
 
 ```js
-// store.s
+// store.js
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
@@ -40,6 +40,7 @@ export const useStore = defineStore('main', () => {
 ```
 
 ```html
+<!-- App.vue -->
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 import { useStore } from './store';
