@@ -60,7 +60,7 @@ Pinia stores are defined by specificy a key and a state of key/value pairs. Pini
 
 ## PouchDB Helpers
 
-Not only does this repo provide a simple plugin for interacting with Pinia stores and it just magically work, we also provide helpers to get that data directly from the PouchDB, should you need to.
+Not only does this repo provide a simple plugin for interacting with Pinia stores that just magically works, it also provide helpers to get and set that data directly from the PouchDB. *All functions are asynchronous.*
 
 This plugin provides two types of stores: config and cache. Both stores are key value pairs, however the cache will expire after a specific period of time and config persist until they are destroyed.
 
@@ -81,7 +81,7 @@ config('main.first').then(docs => {
 ### Cache
 
 Cache's extend the config methods, but track when the values should be purged.
-Config values are saved forever, cache values can expire.
+Config values are saved forever, cache values can expire. 
 
 ```js
 import { cache } from 'pinia-pouchdb-plugin';
