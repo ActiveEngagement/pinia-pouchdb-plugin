@@ -56,26 +56,33 @@ const { first, last } = storeToRefs(useStore())
 
 ## Storage Paths
 
-Pinia stores are defined by specificy a key and a state of key/value pairs. Pinia stores are saved in PouchDB using the following format: `storeName.propName`. So if had a store had a key of `main` with `first` and `last` properties, `main.first` and `main.last` would the two valid storage paths. You only need these paths should you want to use the PouchDB helpers.
+Pinia stores are defined by specificy a key and a state of key/value pairs. Pinia stores are saved in PouchDB using the following format: `storeName.propName`. So if a store was defined with a key of `main` and the state had `first` and `last` properties, `main.first` and `main.last` would the two valid storage paths. You only need these paths should you want to interact with the PouchDB database.
 
 ## PouchDB Helpers
 
-Not only does this repo provide a simple plugin for interacting with Pinia stores that just magically works, it also provide helpers to get and set that data directly from the PouchDB. *All functions are asynchronous.*
+Not only does this repo provide a simple plugin for interacting with Pinia stores that just magically works, it also provide helpers to get and set that data directly from the PouchDB.
 
 This plugin provides two types of stores: config and cache. Both stores are key value pairs, however the cache will expire after a specific period of time and config persist until they are destroyed.
+
+*All functions are asynchronous.*
 
 ### Config
 
 Config's are key/value pairs. This a helper method to return the config data from the stored doc.
 
 ```js
-import { config } from 'pinia-pouchdb-plugin';
+import { config, removeConfig } from 'pinia-pouchdb-plugin';
 
+// Set a config key with a literal value
 config('main.first', true);
 
+// Get the config key value.
 config('main.first').then(docs => {
     console.log(docs) // true
 });
+
+// Remove the key from the database
+removeConfig('main.first')
 ```
 
 ### Cache
@@ -96,6 +103,7 @@ cache('key', () => Promise.resolve(true), 10).then(data => {
     console.log(data) // true
 });
 
+// Purge "key" from the cache.
 purge('key').then(docs => {
     console.log(docs) // array of docs that were removed.
 });
