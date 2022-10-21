@@ -11,26 +11,6 @@ interface PouchePluginOptions {
     wait?: number
 }
 
-export function createPouchApp(database: PouchDB.Database, pinia: Pinia) {
-    return {
-        render() {
-            return h(Suspense, h({
-                async setup() {
-                    await load(database, pinia);
-
-                    console.log('test', database, pinia.state.value);
-
-                    return 
-                },
-                render() {
-                    console.log('render')
-                    return h(App)
-                }
-            }));
-        }
-    }
-}
-
 // The db state loader.
 export async function load(db: PouchDB.Database, pinia: Pinia) {
     // Loop through the context.pinia.state keys and get the saved values.
