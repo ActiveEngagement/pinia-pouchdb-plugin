@@ -56,7 +56,7 @@ const { first, last } = storeToRefs(useStore())
 
 ## Storage Paths
 
-Pinia stores are defined by specificy a key and a state of key/value pairs. Pinia stores are saved in PouchDB using the following format: `storeName.propName`. So if had a store had a key of `main` with a `first` and `last`, `main.first` and `main.last` would the two valid storage paths. You only need these paths should you want to use the PouchDB helpers.
+Pinia stores are defined by specificy a key and a state of key/value pairs. Pinia stores are saved in PouchDB using the following format: `storeName.propName`. So if had a store had a key of `main` with `first` and `last` properties, `main.first` and `main.last` would the two valid storage paths. You only need these paths should you want to use the PouchDB helpers.
 
 ## PouchDB Helpers
 
