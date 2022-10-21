@@ -68,26 +68,30 @@ This plugin provides two types of stores: config and cache. Both stores are key 
 
 Config's are key/value pairs. This a helper method to return the config data from the stored doc.
 
-    import { config } from 'pinia-pouchdb-plugin';
+```js
+import { config } from 'pinia-pouchdb-plugin';
 
-    config('main.first', true);
+config('main.first', true);
 
-    config('main.first').then(docs => {
-        console.log(docs) // true
-    });
+config('main.first').then(docs => {
+    console.log(docs) // true
+});
+```
 
 ### Cache
 
 Cache's extend the config methods, but track when the values should be purged.
 Config values are saved forever, cache values can expire.
 
-    import { cache } from 'pinia-pouchdb-plugin';
+```js
+import { cache } from 'pinia-pouchdb-plugin';
 
-    // Cache "key" for 10 seconds.
-    cache('key', () => Promise.resolve(true), 10).then(data => {
-        console.log(data) // true
-    });
+// Cache "key" for 10 seconds.
+cache('key', () => Promise.resolve(true), 10).then(data => {
+    console.log(data) // true
+});
 
-    purge('key').then(docs => {
-        console.log(docs) // array of docs that were removed.
-    });
+purge('key').then(docs => {
+    console.log(docs) // array of docs that were removed.
+});
+```
