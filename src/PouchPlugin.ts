@@ -27,12 +27,14 @@ export async function load(db: PouchDB.Database, pinia: Pinia) {
 
 export const usePouchPlugin = (options: PouchePluginOptions) => {
     console.log('pouch plugin');
-    
+
     // Initialize the database.
     const db = init(options.database || 'pinia-pouchdb-plugin');
 
     // Define the Pinia plugin with an async function so we can await promises.
     return (context) => {
+        console.log('install callback');
+
         // Create an runtime component to asynchronously load the database into
         // the state.
         context.app.component(options.component || 'PouchDB', {

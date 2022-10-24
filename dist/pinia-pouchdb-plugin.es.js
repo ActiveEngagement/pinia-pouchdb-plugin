@@ -8411,7 +8411,7 @@ const Jl = (e) => {
   console.log("pouch plugin");
   const t = gl(e.database || "pinia-pouchdb-plugin");
   return (n) => {
-    n.app.component(e.component || "PouchDB", {
+    console.log("install callback"), n.app.component(e.component || "PouchDB", {
       render(i) {
         return Br(Wa, Br({
           async setup() {
