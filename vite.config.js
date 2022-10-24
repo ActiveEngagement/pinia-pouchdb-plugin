@@ -7,29 +7,14 @@ import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { babel } from '@rollup/plugin-babel';
 import dts from 'vite-plugin-dts';
 
-// import nodePolyfills from 'rollup-plugin-polyfill-node';
-// import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
-// import commonjsExternals from 'vite-plugin-commonjs-externals';
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => !console.log(mode) && ({
   
   optimizeDeps: {
-      allowNodeBuiltins: ['pouchdb', 'pouchdb-utils'],
-      // esbuildOptions: {
-      //     // Node.js global to browser globalThis
-      //     define: {
-      //         global: 'globalThis',
-      //     },
-      //     // Enable esbuild polyfill plugins
-      //     plugins: [
-      //         NodeGlobalsPolyfillPlugin({
-      //             buffer: true,
-      //         }),
-      //     ],
-      // },
+      allowNodeBuiltins: ['pouchdb', 'pouchdb-utils']
   },
   build: {
+    target: 'es2015',
     lib: {
         entry: path.resolve(__dirname, 'index.js'),
         name: pascalCase(name),
