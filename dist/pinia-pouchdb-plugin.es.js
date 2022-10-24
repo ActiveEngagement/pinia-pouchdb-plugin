@@ -1,5 +1,4 @@
-import { watch as Ha } from "vue";
-var pe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+import { h as Br, Suspense as Wa, watch as Ha } from "vue";
 function Ya(e) {
   var t = e.default;
   if (typeof t == "function") {
@@ -23,77 +22,77 @@ const Xa = {}, Za = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   __proto__: null,
   default: Xa
 }, Symbol.toStringTag, { value: "Module" })), Va = /* @__PURE__ */ Ya(Za);
-var ar = {};
-ar.test = function() {
-  return typeof pe.queueMicrotask == "function";
+var rr = {};
+rr.test = function() {
+  return typeof (!1).queueMicrotask == "function";
 };
-ar.install = function(e) {
+rr.install = function(e) {
   return function() {
-    pe.queueMicrotask(e);
+    (!1).queueMicrotask(e);
   };
 };
-var ur = {}, Ei = pe.MutationObserver || pe.WebKitMutationObserver;
-ur.test = function() {
+var ir = {}, Ei = (!1).MutationObserver || (!1).WebKitMutationObserver;
+ir.test = function() {
   return Ei;
 };
-ur.install = function(e) {
-  var t = 0, n = new Ei(e), r = pe.document.createTextNode("");
+ir.install = function(e) {
+  var t = 0, n = new Ei(e), r = (!1).document.createTextNode("");
   return n.observe(r, {
     characterData: !0
   }), function() {
     r.data = t = ++t % 2;
   };
 };
-var or = {};
-or.test = function() {
-  return pe.setImmediate ? !1 : typeof pe.MessageChannel < "u";
+var ar = {};
+ar.test = function() {
+  return (!1).setImmediate ? !1 : typeof (!1).MessageChannel < "u";
 };
-or.install = function(e) {
-  var t = new pe.MessageChannel();
+ar.install = function(e) {
+  var t = new (!1).MessageChannel();
   return t.port1.onmessage = e, function() {
     t.port2.postMessage(0);
   };
 };
-var fr = {};
-fr.test = function() {
-  return "document" in pe && "onreadystatechange" in pe.document.createElement("script");
+var ur = {};
+ur.test = function() {
+  return "document" in !1 && "onreadystatechange" in (!1).document.createElement("script");
 };
-fr.install = function(e) {
+ur.install = function(e) {
   return function() {
-    var t = pe.document.createElement("script");
+    var t = (!1).document.createElement("script");
     return t.onreadystatechange = function() {
       e(), t.onreadystatechange = null, t.parentNode.removeChild(t), t = null;
-    }, pe.document.documentElement.appendChild(t), e;
+    }, (!1).document.documentElement.appendChild(t), e;
   };
 };
-var sr = {};
-sr.test = function() {
+var or = {};
+or.test = function() {
   return !0;
 };
-sr.install = function(e) {
+or.install = function(e) {
   return function() {
     setTimeout(e, 0);
   };
 };
-var bt = [Va, ar, ur, or, fr, sr], at, Qe, $t = -1, De = [], In = !1;
+var mt = [Va, rr, ir, ar, ur, or], it, Je, wt = -1, Le = [], jn = !1;
 function eu() {
-  !at || !Qe || (at = !1, Qe.length ? De = Qe.concat(De) : $t = -1, De.length && ki());
+  !it || !Je || (it = !1, Je.length ? Le = Je.concat(Le) : wt = -1, Le.length && ki());
 }
 function ki() {
-  if (!at) {
-    In = !1, at = !0;
-    for (var e = De.length, t = setTimeout(eu); e; ) {
-      for (Qe = De, De = []; Qe && ++$t < e; )
-        Qe[$t].run();
-      $t = -1, e = De.length;
+  if (!it) {
+    jn = !1, it = !0;
+    for (var e = Le.length, t = setTimeout(eu); e; ) {
+      for (Je = Le, Le = []; Je && ++wt < e; )
+        Je[wt].run();
+      wt = -1, e = Le.length;
     }
-    Qe = null, $t = -1, at = !1, clearTimeout(t);
+    Je = null, wt = -1, it = !1, clearTimeout(t);
   }
 }
-var Ci, _t = -1, tu = bt.length;
-for (; ++_t < tu; )
-  if (bt[_t] && bt[_t].test && bt[_t].test()) {
-    Ci = bt[_t].install(ki);
+var Ci, gt = -1, tu = mt.length;
+for (; ++gt < tu; )
+  if (mt[gt] && mt[gt].test && mt[gt].test()) {
+    Ci = mt[gt].install(ki);
     break;
   }
 function ji(e, t) {
@@ -114,27 +113,27 @@ ji.prototype.run = function() {
       return e.apply(null, t);
   }
 };
-var _e = nu;
+var pe = nu;
 function nu(e) {
   var t = new Array(arguments.length - 1);
   if (arguments.length > 1)
     for (var n = 1; n < arguments.length; n++)
       t[n - 1] = arguments[n];
-  De.push(new ji(e, t)), !In && !at && (In = !0, Ci());
+  Le.push(new ji(e, t)), !jn && !it && (jn = !0, Ci());
 }
-var Mt, ru = new Uint8Array(16);
+var Ft, ru = new Uint8Array(16);
 function iu() {
-  if (!Mt && (Mt = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto < "u" && typeof msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto), !Mt))
+  if (!Ft && (Ft = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto < "u" && typeof msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto), !Ft))
     throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-  return Mt(ru);
+  return Ft(ru);
 }
 const au = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
 function uu(e) {
   return typeof e == "string" && au.test(e);
 }
 var ye = [];
-for (var gn = 0; gn < 256; ++gn)
-  ye.push((gn + 256).toString(16).substr(1));
+for (var yn = 0; yn < 256; ++yn)
+  ye.push((yn + 256).toString(16).substr(1));
 function ou(e) {
   var t = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, n = (ye[e[t + 0]] + ye[e[t + 1]] + ye[e[t + 2]] + ye[e[t + 3]] + "-" + ye[e[t + 4]] + ye[e[t + 5]] + "-" + ye[e[t + 6]] + ye[e[t + 7]] + "-" + ye[e[t + 8]] + ye[e[t + 9]] + "-" + ye[e[t + 10]] + ye[e[t + 11]] + ye[e[t + 12]] + ye[e[t + 13]] + ye[e[t + 14]] + ye[e[t + 15]]).toLowerCase();
   if (!uu(n))
@@ -303,9 +302,9 @@ var Pi = { exports: {} };
     }, A;
   });
 })(Pi);
-const Gt = Pi.exports;
-var tn = {};
-tn.stringify = function(t) {
+const Qt = Pi.exports;
+var en = {};
+en.stringify = function(t) {
   var n = [];
   n.push({
     obj: t
@@ -345,7 +344,7 @@ tn.stringify = function(t) {
     }
   return r;
 };
-function nt(e, t, n) {
+function tt(e, t, n) {
   var r = n[n.length - 1];
   e === r.element && (n.pop(), r = n[n.length - 1]);
   var i = r.element, a = r.index;
@@ -357,12 +356,12 @@ function nt(e, t, n) {
   } else
     t.push(e);
 }
-tn.parse = function(e) {
+en.parse = function(e) {
   for (var t = [], n = [], r = 0, i, a, u, o, c, _, b, s, m; ; ) {
     if (i = e[r++], i === "}" || i === "]" || typeof i > "u") {
       if (t.length === 1)
         return t.pop();
-      nt(t.pop(), t, n);
+      tt(t.pop(), t, n);
       continue;
     }
     switch (i) {
@@ -374,13 +373,13 @@ tn.parse = function(e) {
       case ",":
         break;
       case "n":
-        r += 3, nt(null, t, n);
+        r += 3, tt(null, t, n);
         break;
       case "t":
-        r += 3, nt(!0, t, n);
+        r += 3, tt(!0, t, n);
         break;
       case "f":
-        r += 4, nt(!1, t, n);
+        r += 4, tt(!1, t, n);
         break;
       case "0":
       case "1":
@@ -400,12 +399,12 @@ tn.parse = function(e) {
             r--;
             break;
           }
-        nt(parseFloat(a), t, n);
+        tt(parseFloat(a), t, n);
         break;
       case '"':
         for (o = "", c = void 0, _ = 0; b = e[r++], b !== '"' || c === "\\" && _ % 2 === 1; )
           o += b, c = b, c === "\\" ? _++ : _ = 0;
-        nt(JSON.parse('"' + o + '"'), t, n);
+        tt(JSON.parse('"' + o + '"'), t, n);
         break;
       case "[":
         s = {
@@ -424,7 +423,7 @@ tn.parse = function(e) {
     }
   }
 };
-var Be = fu;
+var Te = fu;
 function fu(e) {
   return function() {
     var t = arguments.length;
@@ -454,18 +453,18 @@ typeof Object.create == "function" ? ve.exports = function(t, n) {
     r.prototype = n.prototype, t.prototype = new r(), t.prototype.constructor = t;
   }
 };
-var de = { exports: {} }, ut = typeof Reflect == "object" ? Reflect : null, Lr = ut && typeof ut.apply == "function" ? ut.apply : function(t, n, r) {
+var de = { exports: {} }, at = typeof Reflect == "object" ? Reflect : null, Rr = at && typeof at.apply == "function" ? at.apply : function(t, n, r) {
   return Function.prototype.apply.call(t, n, r);
-}, Kt;
-ut && typeof ut.ownKeys == "function" ? Kt = ut.ownKeys : Object.getOwnPropertySymbols ? Kt = function(t) {
+}, zt;
+at && typeof at.ownKeys == "function" ? zt = at.ownKeys : Object.getOwnPropertySymbols ? zt = function(t) {
   return Object.getOwnPropertyNames(t).concat(Object.getOwnPropertySymbols(t));
-} : Kt = function(t) {
+} : zt = function(t) {
   return Object.getOwnPropertyNames(t);
 };
 function su(e) {
   console && console.warn && console.warn(e);
 }
-var Ti = Number.isNaN || function(t) {
+var qi = Number.isNaN || function(t) {
   return t !== t;
 };
 function ne() {
@@ -477,35 +476,35 @@ ne.EventEmitter = ne;
 ne.prototype._events = void 0;
 ne.prototype._eventsCount = 0;
 ne.prototype._maxListeners = void 0;
-var Dr = 10;
-function nn(e) {
+var Lr = 10;
+function tn(e) {
   if (typeof e != "function")
     throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof e);
 }
 Object.defineProperty(ne, "defaultMaxListeners", {
   enumerable: !0,
   get: function() {
-    return Dr;
+    return Lr;
   },
   set: function(e) {
-    if (typeof e != "number" || e < 0 || Ti(e))
+    if (typeof e != "number" || e < 0 || qi(e))
       throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + e + ".");
-    Dr = e;
+    Lr = e;
   }
 });
 ne.init = function() {
   (this._events === void 0 || this._events === Object.getPrototypeOf(this)._events) && (this._events = /* @__PURE__ */ Object.create(null), this._eventsCount = 0), this._maxListeners = this._maxListeners || void 0;
 };
 ne.prototype.setMaxListeners = function(t) {
-  if (typeof t != "number" || t < 0 || Ti(t))
+  if (typeof t != "number" || t < 0 || qi(t))
     throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + t + ".");
   return this._maxListeners = t, this;
 };
-function qi(e) {
+function Ti(e) {
   return e._maxListeners === void 0 ? ne.defaultMaxListeners : e._maxListeners;
 }
 ne.prototype.getMaxListeners = function() {
-  return qi(this);
+  return Ti(this);
 };
 ne.prototype.emit = function(t) {
   for (var n = [], r = 1; r < arguments.length; r++)
@@ -526,17 +525,17 @@ ne.prototype.emit = function(t) {
   if (c === void 0)
     return !1;
   if (typeof c == "function")
-    Lr(c, this, n);
+    Rr(c, this, n);
   else
     for (var _ = c.length, b = Ni(c, _), r = 0; r < _; ++r)
-      Lr(b[r], this, n);
+      Rr(b[r], this, n);
   return !0;
 };
 function Bi(e, t, n, r) {
   var i, a, u;
-  if (nn(n), a = e._events, a === void 0 ? (a = e._events = /* @__PURE__ */ Object.create(null), e._eventsCount = 0) : (a.newListener !== void 0 && (e.emit("newListener", t, n.listener ? n.listener : n), a = e._events), u = a[t]), u === void 0)
+  if (tn(n), a = e._events, a === void 0 ? (a = e._events = /* @__PURE__ */ Object.create(null), e._eventsCount = 0) : (a.newListener !== void 0 && (e.emit("newListener", t, n.listener ? n.listener : n), a = e._events), u = a[t]), u === void 0)
     u = a[t] = n, ++e._eventsCount;
-  else if (typeof u == "function" ? u = a[t] = r ? [n, u] : [u, n] : r ? u.unshift(n) : u.push(n), i = qi(e), i > 0 && u.length > i && !u.warned) {
+  else if (typeof u == "function" ? u = a[t] = r ? [n, u] : [u, n] : r ? u.unshift(n) : u.push(n), i = Ti(e), i > 0 && u.length > i && !u.warned) {
     u.warned = !0;
     var o = new Error("Possible EventEmitter memory leak detected. " + u.length + " " + String(t) + " listeners added. Use emitter.setMaxListeners() to increase limit");
     o.name = "MaxListenersExceededWarning", o.emitter = e, o.type = t, o.count = u.length, su(o);
@@ -565,14 +564,14 @@ function Ri(e, t, n) {
   return i.listener = n, r.wrapFn = i, i;
 }
 ne.prototype.once = function(t, n) {
-  return nn(n), this.on(t, Ri(this, t, n)), this;
+  return tn(n), this.on(t, Ri(this, t, n)), this;
 };
 ne.prototype.prependOnceListener = function(t, n) {
-  return nn(n), this.prependListener(t, Ri(this, t, n)), this;
+  return tn(n), this.prependListener(t, Ri(this, t, n)), this;
 };
 ne.prototype.removeListener = function(t, n) {
   var r, i, a, u, o;
-  if (nn(n), i = this._events, i === void 0)
+  if (tn(n), i = this._events, i === void 0)
     return this;
   if (r = i[t], r === void 0)
     return this;
@@ -639,7 +638,7 @@ function Di(e) {
   return 0;
 }
 ne.prototype.eventNames = function() {
-  return this._eventsCount > 0 ? Kt(this._events) : [];
+  return this._eventsCount > 0 ? zt(this._events) : [];
 };
 function Ni(e, t) {
   for (var n = new Array(t), r = 0; r < t; ++r)
@@ -684,62 +683,62 @@ function Fi(e, t, n, r) {
   else
     throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type ' + typeof e);
 }
-function rn(e) {
+function nn(e) {
   return "$" + e;
 }
 function Mi(e) {
   return e.substring(1);
 }
-function Re() {
+function Be() {
   this._store = {};
 }
-Re.prototype.get = function(e) {
-  var t = rn(e);
+Be.prototype.get = function(e) {
+  var t = nn(e);
   return this._store[t];
 };
-Re.prototype.set = function(e, t) {
-  var n = rn(e);
+Be.prototype.set = function(e, t) {
+  var n = nn(e);
   return this._store[n] = t, !0;
 };
-Re.prototype.has = function(e) {
-  var t = rn(e);
+Be.prototype.has = function(e) {
+  var t = nn(e);
   return t in this._store;
 };
-Re.prototype.keys = function() {
+Be.prototype.keys = function() {
   return Object.keys(this._store).map((e) => Mi(e));
 };
-Re.prototype.delete = function(e) {
-  var t = rn(e), n = t in this._store;
+Be.prototype.delete = function(e) {
+  var t = nn(e), n = t in this._store;
   return delete this._store[t], n;
 };
-Re.prototype.forEach = function(e) {
+Be.prototype.forEach = function(e) {
   for (var t = Object.keys(this._store), n = 0, r = t.length; n < r; n++) {
     var i = t[n], a = this._store[i];
     i = Mi(i), e(a, i);
   }
 };
-Object.defineProperty(Re.prototype, "size", {
+Object.defineProperty(Be.prototype, "size", {
   get: function() {
     return Object.keys(this._store).length;
   }
 });
-function jt(e) {
-  if (this._store = new Re(), e && Array.isArray(e))
+function Ct(e) {
+  if (this._store = new Be(), e && Array.isArray(e))
     for (var t = 0, n = e.length; t < n; t++)
       this.add(e[t]);
 }
-jt.prototype.add = function(e) {
+Ct.prototype.add = function(e) {
   return this._store.set(e, !0);
 };
-jt.prototype.has = function(e) {
+Ct.prototype.has = function(e) {
   return this._store.has(e);
 };
-jt.prototype.forEach = function(e) {
+Ct.prototype.forEach = function(e) {
   this._store.forEach(function(t, n) {
     e(n);
   });
 };
-Object.defineProperty(jt.prototype, "size", {
+Object.defineProperty(Ct.prototype, "size", {
   get: function() {
     return this._store.size;
   }
@@ -750,8 +749,8 @@ function yu() {
   var e = Object.getOwnPropertyDescriptor(Map, Symbol.species);
   return e && "get" in e && Map[Symbol.species] === Map;
 }
-var ct, we;
-yu() ? (ct = Set, we = Map) : (ct = jt, we = Re);
+var st, me;
+yu() ? (st = Set, me = Map) : (st = Ct, me = Be);
 function gu(e) {
   return typeof ArrayBuffer < "u" && e instanceof ArrayBuffer || typeof Blob < "u" && e instanceof Blob;
 }
@@ -800,14 +799,14 @@ function le(e) {
 }
 function zi(e) {
   var t = !1;
-  return Be(function(n) {
+  return Te(function(n) {
     if (t)
       throw new Error("once called more than once");
     t = !0, e.apply(this, n);
   });
 }
 function Ki(e) {
-  return Be(function(t) {
+  return Te(function(t) {
     t = le(t);
     var n = this, r = typeof t[t.length - 1] == "function" ? t.pop() : !1, i = new Promise(function(a, u) {
       var o;
@@ -838,7 +837,7 @@ function bu(e, t, n) {
   }
 }
 function se(e, t) {
-  return Ki(Be(function(n) {
+  return Ki(Te(function(n) {
     if (this._closed)
       return Promise.reject(new Error("database is closed"));
     if (this._destroyed)
@@ -851,7 +850,7 @@ function se(e, t) {
     });
   }));
 }
-function It(e, t) {
+function jt(e, t) {
   for (var n = {}, r = 0, i = t.length; r < i; r++) {
     var a = t[r];
     a in e && (n[a] = e[a]);
@@ -859,7 +858,7 @@ function It(e, t) {
   return n;
 }
 var $u = 6;
-function Nr(e) {
+function Dr(e) {
   return e;
 }
 function Au(e) {
@@ -868,7 +867,7 @@ function Au(e) {
   }];
 }
 function Ji(e, t, n) {
-  var r = t.docs, i = new we();
+  var r = t.docs, i = new me();
   r.forEach(function(S) {
     i.has(S.id) ? i.get(S.id).push(S) : i.set(S.id, [S]);
   });
@@ -908,11 +907,11 @@ function Ji(e, t, n) {
   }
   function $(S, A) {
     S.forEach(function(g, h) {
-      var f = A + h, l = i.get(g), d = It(l[0], ["atts_since", "attachments"]);
+      var f = A + h, l = i.get(g), d = jt(l[0], ["atts_since", "attachments"]);
       d.open_revs = l.map(function(j) {
         return j.rev;
-      }), d.open_revs = d.open_revs.filter(Nr);
-      var y = Nr;
+      }), d.open_revs = d.open_revs.filter(Dr);
+      var y = Dr;
       d.open_revs.length === 0 && (delete d.open_revs, y = Au), ["revs", "attachments", "binary", "ajax", "latest"].forEach(function(j) {
         j in t && (d[j] = t[j]);
       }), e.get(g, d, function(j, R) {
@@ -925,25 +924,25 @@ function Ji(e, t, n) {
   }
   O();
 }
-var Pn;
+var In;
 try {
-  localStorage.setItem("_pouch_check_localstorage", 1), Pn = !!localStorage.getItem("_pouch_check_localstorage");
+  localStorage.setItem("_pouch_check_localstorage", 1), In = !!localStorage.getItem("_pouch_check_localstorage");
 } catch {
-  Pn = !1;
+  In = !1;
 }
-function an() {
-  return Pn;
+function rn() {
+  return In;
 }
-ve.exports(ht, de.exports);
+ve.exports(dt, de.exports);
 function Ou(e) {
-  an() && addEventListener("storage", function(t) {
+  rn() && addEventListener("storage", function(t) {
     e.emit(t.key);
   });
 }
-function ht() {
+function dt() {
   de.exports.call(this), this._listeners = {}, Ou(this);
 }
-ht.prototype.addListener = function(e, t, n, r) {
+dt.prototype.addListener = function(e, t, n, r) {
   if (this._listeners[t])
     return;
   var i = this, a = !1;
@@ -955,28 +954,28 @@ ht.prototype.addListener = function(e, t, n, r) {
       return;
     }
     a = !0;
-    var o = It(r, ["style", "include_docs", "attachments", "conflicts", "filter", "doc_ids", "view", "since", "query_params", "binary", "return_docs"]);
+    var o = jt(r, ["style", "include_docs", "attachments", "conflicts", "filter", "doc_ids", "view", "since", "query_params", "binary", "return_docs"]);
     function c() {
       a = !1;
     }
     n.changes(o).on("change", function(_) {
       _.seq > r.since && !r.cancelled && (r.since = _.seq, r.onChange(_));
     }).on("complete", function() {
-      a === "waiting" && _e(u), a = !1;
+      a === "waiting" && pe(u), a = !1;
     }).on("error", c);
   }
   this._listeners[t] = u, this.on(e, u);
 };
-ht.prototype.removeListener = function(e, t) {
+dt.prototype.removeListener = function(e, t) {
   t in this._listeners && (de.exports.prototype.removeListener.call(this, e, this._listeners[t]), delete this._listeners[t]);
 };
-ht.prototype.notifyLocalWindows = function(e) {
-  an() && (localStorage[e] = localStorage[e] === "a" ? "b" : "a");
+dt.prototype.notifyLocalWindows = function(e) {
+  rn() && (localStorage[e] = localStorage[e] === "a" ? "b" : "a");
 };
-ht.prototype.notify = function(e) {
+dt.prototype.notify = function(e) {
   this.emit(e), this.notifyLocalWindows(e);
 };
-function Ae(e) {
+function $e(e) {
   if (typeof console < "u" && typeof console[e] == "function") {
     var t = Array.prototype.slice.call(arguments, 1);
     console[e].apply(console, t);
@@ -992,8 +991,8 @@ function xu(e) {
   var t = 0;
   return e || (t = 2e3), Su(e, t);
 }
-function Tn(e, t) {
-  Ae("info", "The above " + e + " is totally normal. " + t);
+function Pn(e, t) {
+  $e("info", "The above " + e + " is totally normal. " + t);
 }
 var qn;
 typeof Object.assign == "function" ? qn = Object.assign : qn = function(e) {
@@ -1005,7 +1004,7 @@ typeof Object.assign == "function" ? qn = Object.assign : qn = function(e) {
   }
   return t;
 };
-var He = qn;
+var We = qn;
 ve.exports(re, Error);
 function re(e, t, n) {
   Error.call(this, n), this.status = e, this.name = t, this.message = n, this.error = !0;
@@ -1019,13 +1018,13 @@ re.prototype.toString = function() {
   });
 };
 new re(401, "unauthorized", "Name or password is incorrect.");
-var Eu = new re(400, "bad_request", "Missing JSON list of 'docs'"), Ce = new re(404, "not_found", "missing"), lt = new re(409, "conflict", "Document update conflict"), Qi = new re(400, "bad_request", "_id field must contain a string"), ku = new re(412, "missing_id", "_id is required for puts"), Cu = new re(400, "bad_request", "Only reserved document ids may start with underscore.");
+var Eu = new re(400, "bad_request", "Missing JSON list of 'docs'"), ke = new re(404, "not_found", "missing"), ct = new re(409, "conflict", "Document update conflict"), Qi = new re(400, "bad_request", "_id field must contain a string"), ku = new re(412, "missing_id", "_id is required for puts"), Cu = new re(400, "bad_request", "Only reserved document ids may start with underscore.");
 new re(412, "precondition_failed", "Database not open");
 var Gi = new re(500, "unknown_error", "Database encountered an unknown error"), Wi = new re(500, "badarg", "Some query argument is invalid");
 new re(400, "invalid_request", "Request was invalid");
-var ju = new re(400, "query_parse_error", "Some query parameter is invalid"), Fr = new re(500, "doc_validation", "Bad special document member"), un = new re(400, "bad_request", "Something wrong with the request"), cr = new re(400, "bad_request", "Document must be a JSON object");
+var ju = new re(400, "query_parse_error", "Some query parameter is invalid"), Nr = new re(500, "doc_validation", "Bad special document member"), an = new re(400, "bad_request", "Something wrong with the request"), fr = new re(400, "bad_request", "Document must be a JSON object");
 new re(404, "not_found", "Database not found");
-var lr = new re(500, "indexed_db_went_bad", "unknown");
+var sr = new re(500, "indexed_db_went_bad", "unknown");
 new re(500, "web_sql_went_bad", "unknown");
 new re(500, "levelDB_went_went_bad", "unknown");
 new re(403, "forbidden", "Forbidden by design doc validate_doc_update function");
@@ -1041,7 +1040,7 @@ function V(e, t) {
   }
   return n.prototype = re.prototype, new n(t);
 }
-function dt(e) {
+function lt(e) {
   if (typeof e != "object") {
     var t = e;
     e = Gi, e.data = t;
@@ -1053,10 +1052,10 @@ function Pu(e, t, n) {
     return !e(t, n);
   } catch (i) {
     var r = "Filter function threw: " + i.toString();
-    return V(un, r);
+    return V(an, r);
   }
 }
-function dr(e) {
+function cr(e) {
   var t = {}, n = e.filter && typeof e.filter == "function";
   return t.query = e.query_params, function(i) {
     i.doc || (i.doc = {});
@@ -1073,7 +1072,7 @@ function dr(e) {
     return !0;
   };
 }
-function Wt(e) {
+function Gt(e) {
   for (var t = [], n = 0, r = e.length; n < r; n++)
     t = t.concat(e[n]);
   return t;
@@ -1083,39 +1082,39 @@ function Yi(e) {
   if (e ? typeof e != "string" ? t = V(Qi) : /^_/.test(e) && !/^_(design|local)/.test(e) && (t = V(Cu)) : t = V(ku), t)
     throw t;
 }
-function Te(e) {
-  return typeof e._remote == "boolean" ? e._remote : typeof e.type == "function" ? (Ae("warn", "db.type() is deprecated and will be removed in a future version of PouchDB"), e.type() === "http") : !1;
+function Pe(e) {
+  return typeof e._remote == "boolean" ? e._remote : typeof e.type == "function" ? ($e("warn", "db.type() is deprecated and will be removed in a future version of PouchDB"), e.type() === "http") : !1;
 }
-function Tu(e, t) {
+function qu(e, t) {
   return "listenerCount" in e ? e.listenerCount(t) : de.exports.listenerCount(e, t);
 }
-function Bn(e) {
+function Tn(e) {
   if (!e)
     return null;
   var t = e.split("/");
   return t.length === 2 ? t : t.length === 1 ? [e, e] : null;
 }
-function Mr(e) {
-  var t = Bn(e);
+function Fr(e) {
+  var t = Tn(e);
   return t ? t.join("/") : null;
 }
-var Ur = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"], zr = "queryKey", qu = /(?:^|&)([^&=]*)=?([^&]*)/g, Bu = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+var Mr = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"], Ur = "queryKey", Tu = /(?:^|&)([^&=]*)=?([^&]*)/g, Bu = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
 function Xi(e) {
   for (var t = Bu.exec(e), n = {}, r = 14; r--; ) {
-    var i = Ur[r], a = t[r] || "", u = ["user", "password"].indexOf(i) !== -1;
+    var i = Mr[r], a = t[r] || "", u = ["user", "password"].indexOf(i) !== -1;
     n[i] = u ? decodeURIComponent(a) : a;
   }
-  return n[zr] = {}, n[Ur[12]].replace(qu, function(o, c, _) {
-    c && (n[zr][c] = _);
+  return n[Ur] = {}, n[Mr[12]].replace(Tu, function(o, c, _) {
+    c && (n[Ur][c] = _);
   }), n;
 }
-function vr(e, t) {
+function lr(e, t) {
   var n = [], r = [];
   for (var i in t)
     Object.prototype.hasOwnProperty.call(t, i) && (n.push(i), r.push(t[i]));
   return n.push(e), Function.apply(null, n).apply(null, r);
 }
-function on(e, t, n) {
+function un(e, t, n) {
   return e.get(t).catch(function(r) {
     if (r.status !== 404)
       throw r;
@@ -1137,15 +1136,15 @@ function Ru(e, t, n) {
   }, function(r) {
     if (r.status !== 409)
       throw r;
-    return on(e, t._id, n);
+    return un(e, t._id, n);
   });
 }
-var hr = function(e) {
+var dr = function(e) {
   return atob(e);
-}, Pt = function(e) {
+}, It = function(e) {
   return btoa(e);
 };
-function yr(e, t) {
+function vr(e, t) {
   e = e || [], t = t || {};
   try {
     return new Blob(e, t);
@@ -1162,13 +1161,13 @@ function Lu(e) {
     r[i] = e.charCodeAt(i);
   return n;
 }
-function gr(e, t) {
-  return yr([Lu(e)], {
+function hr(e, t) {
+  return vr([Lu(e)], {
     type: t
   });
 }
-function pr(e, t) {
-  return gr(hr(e), t);
+function yr(e, t) {
+  return hr(dr(e), t);
 }
 function Du(e) {
   for (var t = "", n = new Uint8Array(e), r = n.byteLength, i = 0; i < r; i++)
@@ -1189,9 +1188,9 @@ function Vi(e, t) {
     t(n);
   });
 }
-function _r(e, t) {
+function gr(e, t) {
   Vi(e, function(n) {
-    t(Pt(n));
+    t(It(n));
   });
 }
 function Nu(e, t) {
@@ -1203,7 +1202,7 @@ function Nu(e, t) {
 }
 var Fu = self.setImmediate || self.setTimeout, Mu = 32768;
 function Uu(e) {
-  return Pt(e);
+  return It(e);
 }
 function zu(e, t, n) {
   return e.webkitSlice ? e.webkitSlice(t, n) : e.slice(t, n);
@@ -1216,8 +1215,8 @@ function Ku(e, t, n, r, i) {
 function Ju(e, t, n, r, i) {
   (n > 0 || r < t.length) && (t = t.substring(n, r)), e.appendBinary(t), i();
 }
-function mr(e, t) {
-  var n = typeof e == "string", r = n ? e.length : e.size, i = Math.min(Mu, r), a = Math.ceil(r / i), u = 0, o = n ? new Gt() : new Gt.ArrayBuffer(), c = n ? Ju : Ku;
+function pr(e, t) {
+  var n = typeof e == "string", r = n ? e.length : e.size, i = Math.min(Mu, r), a = Math.ceil(r / i), u = 0, o = n ? new Qt() : new Qt.ArrayBuffer(), c = n ? Ju : Ku;
   function _() {
     Fu(s);
   }
@@ -1232,16 +1231,16 @@ function mr(e, t) {
   s();
 }
 function ea(e) {
-  return Gt.hash(e);
+  return Qt.hash(e);
 }
 function ta(e, t) {
   if (!t)
     return Ii().replace(/-/g, "").toLowerCase();
-  var n = He({}, e);
+  var n = We({}, e);
   return delete n._rev_tree, ea(JSON.stringify(n));
 }
-var fn = Ii;
-function Ye(e) {
+var on = Ii;
+function He(e) {
   for (var t, n, r, i = e.rev_tree.slice(), a; a = i.pop(); ) {
     var u = a.ids, o = u[2], c = a.pos;
     if (o.length) {
@@ -1257,7 +1256,7 @@ function Ye(e) {
   }
   return n + "-" + t;
 }
-function tt(e, t) {
+function et(e, t) {
   for (var n = e.slice(), r; r = n.pop(); )
     for (var i = r.pos, a = r.ids, u = a[2], o = t(u.length === 0, i, a[0], r.ctx, a[1]), c = 0, _ = u.length; c < _; c++)
       n.push({
@@ -1269,9 +1268,9 @@ function tt(e, t) {
 function Qu(e, t) {
   return e.pos - t.pos;
 }
-function wr(e) {
+function _r(e) {
   var t = [];
-  tt(e, function(i, a, u, o, c) {
+  et(e, function(i, a, u, o, c) {
     i && t.push({
       rev: a + "-" + u,
       pos: a,
@@ -1282,8 +1281,8 @@ function wr(e) {
     delete t[n].pos;
   return t;
 }
-function br(e) {
-  for (var t = Ye(e), n = wr(e.rev_tree), r = [], i = 0, a = n.length; i < a; i++) {
+function mr(e) {
+  for (var t = He(e), n = _r(e.rev_tree), r = [], i = 0, a = n.length; i < a; i++) {
     var u = n[i];
     u.rev !== t && !u.opts.deleted && r.push(u.rev);
   }
@@ -1291,7 +1290,7 @@ function br(e) {
 }
 function Gu(e) {
   var t = [];
-  return tt(e.rev_tree, function(n, r, i, a, u) {
+  return et(e.rev_tree, function(n, r, i, a, u) {
     u.status === "available" && !n && (t.push(r + "-" + i), u.status = "missing");
   }), t;
 }
@@ -1326,7 +1325,7 @@ function Yu(e, t, n) {
   var r = Hu(e, t, n);
   e.splice(r, 0, t);
 }
-function Kr(e, t) {
+function zr(e, t) {
   for (var n, r, i = t, a = e.length; i < a; i++) {
     var u = e[i], o = [u.id, u.opts, []];
     r ? (r[2].push(o), r = o) : n = r = o;
@@ -1336,7 +1335,7 @@ function Kr(e, t) {
 function Xu(e, t) {
   return e[0] < t[0] ? -1 : 1;
 }
-function Jr(e, t) {
+function Kr(e, t) {
   for (var n = [{
     tree1: e,
     tree2: t
@@ -1371,7 +1370,7 @@ function ra(e, t, n) {
   for (var o = 0, c = e.length; o < c; o++) {
     var _ = e[o];
     if (_.pos === t.pos && _.ids[0] === t.ids[0])
-      u = Jr(_.ids, t.ids), r.push({
+      u = Kr(_.ids, t.ids), r.push({
         pos: _.pos,
         ids: u.tree
       }), i = i || u.conflicts, a = !0;
@@ -1397,7 +1396,7 @@ function ra(e, t, n) {
           });
       }
       var f = O[0];
-      f ? (u = Jr(f.ids, s.ids), f.parent[2][f.parentIdx] = u.tree, r.push({
+      f ? (u = Kr(f.ids, s.ids), f.parent[2][f.parentIdx] = u.tree, r.push({
         pos: b.pos,
         ids: b.ids
       }), i = i || u.conflicts, a = !0) : r.push(_);
@@ -1417,7 +1416,7 @@ function Zu(e, t) {
       var b = c.length - t;
       _ = {
         pos: o.pos + b,
-        ids: Kr(c, b)
+        ids: zr(c, b)
       };
       for (var s = 0; s < b; s++) {
         var m = o.pos + s + "-" + c[s].id;
@@ -1426,11 +1425,11 @@ function Zu(e, t) {
     } else
       _ = {
         pos: o.pos,
-        ids: Kr(c, 0)
+        ids: zr(c, 0)
       };
     i ? i = ra(i, _, !0).tree : i = [_];
   }
-  return r && tt(i, function(O, $, S) {
+  return r && et(i, function(O, $, S) {
     delete r[$ + "-" + S];
   }), {
     tree: i,
@@ -1461,14 +1460,14 @@ function eo(e) {
   return e.ids;
 }
 function qe(e, t) {
-  t || (t = Ye(e));
+  t || (t = He(e));
   for (var n = t.substring(t.indexOf("-") + 1), r = e.rev_tree.map(eo), i; i = r.pop(); ) {
     if (i[0] === n)
       return !!i[1].deleted;
     r = r.concat(i[2]);
   }
 }
-function Xe(e) {
+function Ye(e) {
   return /^_local/.test(e);
 }
 function to(e, t) {
@@ -1493,20 +1492,20 @@ function to(e, t) {
   }
   throw new Error("Unable to resolve latest revision for id " + t.id + ", rev " + e);
 }
-ve.exports(Tt, de.exports);
+ve.exports(Pt, de.exports);
 function no(e, t, n, r) {
   try {
     e.emit("change", t, n, r);
   } catch (i) {
-    Ae("error", 'Error in .on("change", function):', i);
+    $e("error", 'Error in .on("change", function):', i);
   }
 }
-function Tt(e, t, n) {
+function Pt(e, t, n) {
   de.exports.call(this);
   var r = this;
   this.db = e, t = t ? le(t) : {};
   var i = t.complete = zi(function(o, c) {
-    o ? Tu(r, "error") > 0 && r.emit("error", o) : r.emit("complete", c), r.removeAllListeners(), e.removeListener("destroyed", a);
+    o ? qu(r, "error") > 0 && r.emit("error", o) : r.emit("complete", c), r.removeAllListeners(), e.removeListener("destroyed", a);
   });
   n && (r.on("complete", function(o) {
     n(null, o);
@@ -1532,14 +1531,14 @@ function Tt(e, t, n) {
     o ? t.complete(o) : r.isCancelled ? r.emit("cancel") : r.validateChanges(t);
   });
 }
-Tt.prototype.cancel = function() {
+Pt.prototype.cancel = function() {
   this.isCancelled = !0, this.db.taskqueue.isReady && this.emit("cancel");
 };
 function ro(e, t, n) {
   var r = [{
     rev: e._rev
   }];
-  n.style === "all_docs" && (r = wr(t.rev_tree).map(function(a) {
+  n.style === "all_docs" && (r = _r(t.rev_tree).map(function(a) {
     return {
       rev: a.rev
     };
@@ -1549,9 +1548,9 @@ function ro(e, t, n) {
     changes: r,
     doc: e
   };
-  return qe(t, e._rev) && (i.deleted = !0), n.conflicts && (i.doc._conflicts = br(t), i.doc._conflicts.length || delete i.doc._conflicts), i;
+  return qe(t, e._rev) && (i.deleted = !0), n.conflicts && (i.doc._conflicts = mr(t), i.doc._conflicts.length || delete i.doc._conflicts), i;
 }
-Tt.prototype.validateChanges = function(e) {
+Pt.prototype.validateChanges = function(e) {
   var t = e.complete, n = this;
   H._changesFilterPlugin ? H._changesFilterPlugin.validate(e, function(r) {
     if (r)
@@ -1559,7 +1558,7 @@ Tt.prototype.validateChanges = function(e) {
     n.doChanges(e);
   }) : n.doChanges(e);
 };
-Tt.prototype.doChanges = function(e) {
+Pt.prototype.doChanges = function(e) {
   var t = this, n = e.complete;
   if (e = le(e), "live" in e && !("continuous" in e) && (e.continuous = e.live), e.processChange = ro, e.since === "latest" && (e.since = "now"), e.since || (e.since = 0), e.since === "now") {
     this.db.info().then(function(a) {
@@ -1578,21 +1577,21 @@ Tt.prototype.doChanges = function(e) {
       return H._changesFilterPlugin.filter(this, e);
   } else
     ["doc_ids", "filter", "selector", "view"].forEach(function(a) {
-      a in e && Ae("warn", 'The "' + a + '" option was passed in to changes/replicate, but pouchdb-changes-filter plugin is not installed, so it was ignored. Please install the plugin to enable filtering.');
+      a in e && $e("warn", 'The "' + a + '" option was passed in to changes/replicate, but pouchdb-changes-filter plugin is not installed, so it was ignored. Please install the plugin to enable filtering.');
     });
   "descending" in e || (e.descending = !1), e.limit = e.limit === 0 ? 1 : e.limit, e.complete = n;
   var r = this.db._changes(e);
   if (r && typeof r.cancel == "function") {
     var i = t.cancel;
-    t.cancel = Be(function(a) {
+    t.cancel = Te(function(a) {
       r.cancel(), i.apply(this, a);
     });
   }
 };
-function Qr(e, t) {
+function Jr(e, t) {
   return e < t ? -1 : e > t ? 1 : 0;
 }
-function $r(e, t) {
+function wr(e, t) {
   return function(n, r) {
     n || r[0] && r[0].error ? (n = n || r[0], n.docId = t, e(n)) : e(null, r.length ? r[0] : r);
   };
@@ -1605,20 +1604,20 @@ function io(e) {
     else if (n._attachments)
       for (var r = Object.keys(n._attachments), i = 0; i < r.length; i++) {
         var a = r[i];
-        n._attachments[a] = It(n._attachments[a], ["data", "digest", "content_type", "length", "revpos", "stub"]);
+        n._attachments[a] = jt(n._attachments[a], ["data", "digest", "content_type", "length", "revpos", "stub"]);
       }
   }
 }
 function ao(e, t) {
-  var n = Qr(e._id, t._id);
+  var n = Jr(e._id, t._id);
   if (n !== 0)
     return n;
   var r = e._revisions ? e._revisions.start : 0, i = t._revisions ? t._revisions.start : 0;
-  return Qr(r, i);
+  return Jr(r, i);
 }
 function uo(e) {
   var t = {}, n = [];
-  return tt(e, function(r, i, a, u) {
+  return et(e, function(r, i, a, u) {
     var o = i + "-" + a;
     return r && (t[o] = 0), u !== void 0 && n.push({
       from: u,
@@ -1638,7 +1637,7 @@ function aa(e) {
     return !1;
   }).then(function(i) {
     i && i.last_seq && (n.last_seq = i.last_seq), e._compact(n, function(a, u) {
-      a ? r(a) : r(null, u), _e(function() {
+      a ? r(a) : r(null, u), pe(function() {
         e._compactionQueue.shift(), e._compactionQueue.length && aa(e);
       });
     });
@@ -1655,15 +1654,15 @@ function ae() {
 }
 ae.prototype.post = se("post", function(e, t, n) {
   if (typeof t == "function" && (n = t, t = {}), typeof e != "object" || Array.isArray(e))
-    return n(V(cr));
+    return n(V(fr));
   this.bulkDocs({
     docs: [e]
-  }, t, $r(n, e._id));
+  }, t, wr(n, e._id));
 });
 ae.prototype.put = se("put", function(e, t, n) {
   if (typeof t == "function" && (n = t, t = {}), typeof e != "object" || Array.isArray(e))
-    return n(V(cr));
-  if (Yi(e._id), Xe(e._id) && typeof this._putLocal == "function")
+    return n(V(fr));
+  if (Yi(e._id), Ye(e._id) && typeof this._putLocal == "function")
     return e._deleted ? this._removeLocal(e, n) : this._putLocal(e, n);
   var r = this;
   t.force && e._rev ? (i(), a(function(u) {
@@ -1684,12 +1683,12 @@ ae.prototype.put = se("put", function(e, t, n) {
   function a(u) {
     typeof r._put == "function" && t.new_edits !== !1 ? r._put(e, t, u) : r.bulkDocs({
       docs: [e]
-    }, t, $r(u, e._id));
+    }, t, wr(u, e._id));
   }
 });
 ae.prototype.putAttachment = se("putAttachment", function(e, t, n, r, i) {
   var a = this;
-  typeof i == "function" && (i = r, r = n, n = null), typeof i > "u" && (i = r, r = n, n = null), i || Ae("warn", "Attachment", t, "on document", e, "is missing content_type");
+  typeof i == "function" && (i = r, r = n, n = null), typeof i > "u" && (i = r, r = n, n = null), i || $e("warn", "Attachment", t, "on document", e, "is missing content_type");
   function u(o) {
     var c = "_rev" in o ? parseInt(o._rev, 10) : 0;
     return o._attachments = o._attachments || {}, o._attachments[t] = {
@@ -1700,10 +1699,10 @@ ae.prototype.putAttachment = se("putAttachment", function(e, t, n, r, i) {
   }
   return a.get(e).then(function(o) {
     if (o._rev !== n)
-      throw V(lt);
+      throw V(ct);
     return u(o);
   }, function(o) {
-    if (o.reason === Ce.message)
+    if (o.reason === ke.message)
       return u({
         _id: e
       });
@@ -1718,7 +1717,7 @@ ae.prototype.removeAttachment = se("removeAttachment", function(e, t, n, r) {
       return;
     }
     if (u._rev !== n) {
-      r(V(lt));
+      r(V(ct));
       return;
     }
     if (!u._attachments)
@@ -1736,18 +1735,18 @@ ae.prototype.remove = se("remove", function(e, t, n, r) {
     _id: i._id,
     _rev: i._rev || n.rev
   };
-  if (a._deleted = !0, Xe(a._id) && typeof this._removeLocal == "function")
+  if (a._deleted = !0, Ye(a._id) && typeof this._removeLocal == "function")
     return this._removeLocal(i, r);
   this.bulkDocs({
     docs: [a]
-  }, n, $r(r, a._id));
+  }, n, wr(r, a._id));
 });
 ae.prototype.revsDiff = se("revsDiff", function(e, t, n) {
   typeof t == "function" && (n = t, t = {});
   var r = Object.keys(e);
   if (!r.length)
     return n(null, {});
-  var i = 0, a = new we();
+  var i = 0, a = new me();
   function u(c, _) {
     a.has(c) || a.set(c, {
       missing: []
@@ -1755,7 +1754,7 @@ ae.prototype.revsDiff = se("revsDiff", function(e, t, n) {
   }
   function o(c, _) {
     var b = e[c].slice(0);
-    tt(_, function(s, m, O, $, S) {
+    et(_, function(s, m, O, $, S) {
       var A = m + "-" + O, g = b.indexOf(A);
       g !== -1 && (b.splice(g, 1), S.status !== "available" && u(c, A));
     }), b.forEach(function(s) {
@@ -1793,7 +1792,7 @@ ae.prototype.compactDocument = se("compactDocument", function(e, t, n) {
     var u = uo(a), o = [], c = [];
     Object.keys(u).forEach(function(_) {
       u[_] > t && o.push(_);
-    }), tt(a, function(_, b, s, m, O) {
+    }), et(a, function(_, b, s, m, O) {
       var $ = b + "-" + s;
       O.status === "available" && o.indexOf($) !== -1 && c.push($);
     }), r._doCompaction(e, c, n);
@@ -1818,7 +1817,7 @@ ae.prototype._compact = function(e, t) {
   function u(o) {
     var c = o.last_seq;
     Promise.all(i).then(function() {
-      return on(n, "_local/compaction", function(b) {
+      return un(n, "_local/compaction", function(b) {
         return !b.last_seq || b.last_seq < c ? (b.last_seq = c, b) : !1;
       });
     }).then(function() {
@@ -1832,7 +1831,7 @@ ae.prototype._compact = function(e, t) {
 ae.prototype.get = se("get", function(e, t, n) {
   if (typeof t == "function" && (n = t, t = {}), typeof e != "string")
     return n(V(Qi));
-  if (Xe(e) && typeof this._getLocal == "function")
+  if (Ye(e) && typeof this._getLocal == "function")
     return this._getLocal(e, n);
   var r = [], i = this;
   function a() {
@@ -1870,7 +1869,7 @@ ae.prototype.get = se("get", function(e, t, n) {
       this._getRevisionTree(e, function(c, _) {
         if (c)
           return n(c);
-        r = wr(_).map(function(b) {
+        r = _r(_).map(function(b) {
           return b.rev;
         }), a();
       });
@@ -1891,7 +1890,7 @@ ae.prototype.get = se("get", function(e, t, n) {
       return c.docId = e, n(c);
     var b = _.doc, s = _.metadata, m = _.ctx;
     if (t.conflicts) {
-      var O = br(s);
+      var O = mr(s);
       O.length && (b._conflicts = O);
     }
     if (qe(s, b._rev) && (b._deleted = !0), t.revs || t.revs_info) {
@@ -1951,7 +1950,7 @@ ae.prototype.getAttachment = se("getAttachment", function(e, t, n, r) {
     if (u.doc._attachments && u.doc._attachments[t])
       n.ctx = u.ctx, n.binary = !0, i._getAttachment(e, t, u.doc._attachments[t], n, r);
     else
-      return r(V(Ce));
+      return r(V(ke));
   });
 });
 ae.prototype.allDocs = se("allDocs", function(e, t) {
@@ -1965,7 +1964,7 @@ ae.prototype.allDocs = se("allDocs", function(e, t) {
       t(V(ju, "Query parameter `" + n + "` is not compatible with multi-get"));
       return;
     }
-    if (!Te(this) && (oo(e), e.keys.length === 0))
+    if (!Pe(this) && (oo(e), e.keys.length === 0))
       return this._allDocs({
         limit: 0
       }, t);
@@ -1973,7 +1972,7 @@ ae.prototype.allDocs = se("allDocs", function(e, t) {
   return this._allDocs(e, t);
 });
 ae.prototype.changes = function(e, t) {
-  return typeof e == "function" && (t = e, e = {}), e = e || {}, e.return_docs = "return_docs" in e ? e.return_docs : !e.live, new Tt(this, e, t);
+  return typeof e == "function" && (t = e, e = {}), e = e || {}, e.return_docs = "return_docs" in e ? e.return_docs : !e.live, new Pt(this, e, t);
 };
 ae.prototype.close = se("close", function(e) {
   return this._closed = !0, this.emit("closed"), this._close(e);
@@ -1983,7 +1982,7 @@ ae.prototype.info = se("info", function(e) {
   this._info(function(n, r) {
     if (n)
       return e(n);
-    r.db_name = r.db_name || t.name, r.auto_compaction = !!(t.auto_compaction && !Te(t)), r.adapter = t.adapter, e(null, r);
+    r.db_name = r.db_name || t.name, r.auto_compaction = !!(t.auto_compaction && !Pe(t)), r.adapter = t.adapter, e(null, r);
   });
 });
 ae.prototype.id = se("id", function(e) {
@@ -1999,17 +1998,17 @@ ae.prototype.bulkDocs = se("bulkDocs", function(e, t, n) {
     return n(V(Eu));
   for (var r = 0; r < e.docs.length; ++r)
     if (typeof e.docs[r] != "object" || Array.isArray(e.docs[r]))
-      return n(V(cr));
+      return n(V(fr));
   var i;
   if (e.docs.forEach(function(o) {
     o._attachments && Object.keys(o._attachments).forEach(function(c) {
-      i = i || fo(c), o._attachments[c].content_type || Ae("warn", "Attachment", c, "on document", o._id, "is missing content_type");
+      i = i || fo(c), o._attachments[c].content_type || $e("warn", "Attachment", c, "on document", o._id, "is missing content_type");
     });
   }), i)
-    return n(V(un, i));
+    return n(V(an, i));
   "new_edits" in t || ("new_edits" in e ? t.new_edits = e.new_edits : t.new_edits = !0);
   var a = this;
-  !t.new_edits && !Te(a) && e.docs.sort(ao), io(e.docs);
+  !t.new_edits && !Pe(a) && e.docs.sort(ao), io(e.docs);
   var u = e.docs.map(function(o) {
     return o._id;
   });
@@ -2018,7 +2017,7 @@ ae.prototype.bulkDocs = se("bulkDocs", function(e, t, n) {
       return n(o);
     if (t.new_edits || (c = c.filter(function(s) {
       return s.error;
-    })), !Te(a))
+    })), !Pe(a))
       for (var _ = 0, b = c.length; _ < b; _++)
         c[_].id = c[_].id || u[_];
     n(null, c);
@@ -2031,7 +2030,7 @@ ae.prototype.registerDependentDatabase = se("registerDependentDatabase", functio
   function i(a) {
     return a.dependentDbs = a.dependentDbs || {}, a.dependentDbs[e] ? !1 : (a.dependentDbs[e] = !0, a);
   }
-  on(this, "_local/_pouch_dependentDbs", i).then(function() {
+  un(this, "_local/_pouch_dependentDbs", i).then(function() {
     t(null, {
       db: r
     });
@@ -2049,7 +2048,7 @@ ae.prototype.destroy = se("destroy", function(e, t) {
       });
     });
   }
-  if (Te(n))
+  if (Pe(n))
     return i();
   n.get("_local/_pouch_dependentDbs", function(a, u) {
     if (a)
@@ -2092,8 +2091,8 @@ function so(e, t) {
   var r = H.adapters, i = H.preferredAdapters, a = H.prefix, u = t.adapter;
   if (!u)
     for (var o = 0; o < i.length; ++o) {
-      if (u = i[o], u === "idb" && "websql" in r && an() && localStorage["_pouch__websqldb_" + a + e]) {
-        Ae("log", 'PouchDB is downgrading "' + e + '" to WebSQL to avoid data loss, because it was already opened with WebSQL.');
+      if (u = i[o], u === "idb" && "websql" in r && rn() && localStorage["_pouch__websqldb_" + a + e]) {
+        $e("log", 'PouchDB is downgrading "' + e + '" to WebSQL to avoid data loss, because it was already opened with WebSQL.');
         continue;
       }
       break;
@@ -2136,16 +2135,16 @@ var lo = typeof AbortController < "u" ? AbortController : function() {
     abort: function() {
     }
   };
-}, ua = fetch, ot = Headers;
+}, ua = fetch, ut = Headers;
 H.adapters = {};
 H.preferredAdapters = [];
 H.prefix = "_pouch_";
-var Gr = new de.exports();
+var Qr = new de.exports();
 function vo(e) {
   Object.keys(de.exports.prototype).forEach(function(n) {
-    typeof de.exports.prototype[n] == "function" && (e[n] = Gr[n].bind(Gr));
+    typeof de.exports.prototype[n] == "function" && (e[n] = Qr[n].bind(Qr));
   });
-  var t = e._destructionListeners = new we();
+  var t = e._destructionListeners = new me();
   e.on("ref", function(r) {
     t.has(r.name) || t.set(r.name, []), t.get(r.name).push(r);
   }), e.on("unref", function(r) {
@@ -2176,23 +2175,23 @@ H.plugin = function(e) {
       H.prototype[t] = e[t];
     });
   }
-  return this.__defaults && (H.__defaults = He({}, this.__defaults)), H;
+  return this.__defaults && (H.__defaults = We({}, this.__defaults)), H;
 };
 H.defaults = function(e) {
   function t(n, r) {
     if (!(this instanceof t))
       return new t(n, r);
-    r = r || {}, n && typeof n == "object" && (r = n, n = r.name, delete r.name), r = He({}, t.__defaults, r), H.call(this, n, r);
+    r = r || {}, n && typeof n == "object" && (r = n, n = r.name, delete r.name), r = We({}, t.__defaults, r), H.call(this, n, r);
   }
   return ve.exports(t, H), t.preferredAdapters = H.preferredAdapters.slice(), Object.keys(H).forEach(function(n) {
     n in t || (t[n] = H[n]);
-  }), t.__defaults = He({}, this.__defaults, e), t;
+  }), t.__defaults = We({}, this.__defaults, e), t;
 };
 H.fetch = function(e, t) {
   return ua(e, t);
 };
 var ho = "7.3.0";
-function Ar(e, t) {
+function br(e, t) {
   for (var n = e, r = 0, i = t.length; r < i; r++) {
     var a = t[r];
     if (n = n[a], !n)
@@ -2203,7 +2202,7 @@ function Ar(e, t) {
 function yo(e, t) {
   return e < t ? -1 : e > t ? 1 : 0;
 }
-function Or(e) {
+function $r(e) {
   for (var t = [], n = "", r = 0, i = e.length; r < i; r++) {
     var a = e[r];
     r > 0 && e[r - 1] === "\\" && (a === "$" || a === ".") ? n = n.substring(0, n.length - 1) + a : a === "." ? (t.push(n), n = "") : n += a;
@@ -2220,7 +2219,7 @@ function fa(e) {
 function po(e) {
   return e[fa(e)];
 }
-function Ot(e) {
+function $t(e) {
   var t = {}, n = {
     $or: !0,
     $nor: !0
@@ -2239,12 +2238,12 @@ function Ot(e) {
           var u = [];
           t[i].forEach(function(c) {
             Object.keys(a).forEach(function(_) {
-              var b = a[_], s = Math.max(Object.keys(c).length, Object.keys(b).length), m = Ot([c, b]);
+              var b = a[_], s = Math.max(Object.keys(c).length, Object.keys(b).length), m = $t([c, b]);
               Object.keys(m).length <= s || u.push(m);
             });
           }), t[i] = u;
         } else
-          t[i] = Ot([a]);
+          t[i] = $t([a]);
       else {
         var o = t[i] = t[i] || {};
         Object.keys(a).forEach(function(c) {
@@ -2284,7 +2283,7 @@ function sa(e) {
   for (var t in e) {
     if (Array.isArray(e))
       for (var n in e)
-        e[n].$and && (e[n] = Ot(e[n].$and));
+        e[n].$and && (e[n] = $t(e[n].$and));
     var r = e[t];
     typeof r == "object" && sa(r);
   }
@@ -2300,7 +2299,7 @@ function ca(e, t) {
 }
 function Ao(e) {
   var t = le(e), n = !1;
-  ca(t, !1) && (t = sa(t), "$and" in t && (t = Ot(t.$and)), n = !0), ["$or", "$nor"].forEach(function(o) {
+  ca(t, !1) && (t = sa(t), "$and" in t && (t = $t(t.$and)), n = !0), ["$or", "$nor"].forEach(function(o) {
     o in t && t[o].forEach(function(c) {
       for (var _ = Object.keys(c), b = 0; b < _.length; b++) {
         var s = _[b], m = c[s];
@@ -2309,7 +2308,7 @@ function Ao(e) {
         });
       }
     });
-  }), "$not" in t && (t.$not = Ot([t.$not]));
+  }), "$not" in t && (t.$not = $t([t.$not]));
   for (var r = Object.keys(t), i = 0; i < r.length; i++) {
     var a = r[i], u = t[a];
     typeof u != "object" || u === null ? u = {
@@ -2327,12 +2326,12 @@ function So(e, t, n) {
   var r = Oo(e, t, n);
   return r + e;
 }
-var la = -324, Rn = 3, Ln = "";
+var la = -324, Bn = 3, Rn = "";
 function ue(e, t) {
   if (e === t)
     return 0;
-  e = Ze(e), t = Ze(t);
-  var n = Dn(e), r = Dn(t);
+  e = Xe(e), t = Xe(t);
+  var n = Ln(e), r = Ln(t);
   if (n - r !== 0)
     return n - r;
   switch (typeof e) {
@@ -2345,7 +2344,7 @@ function ue(e, t) {
   }
   return Array.isArray(e) ? jo(e, t) : Po(e, t);
 }
-function Ze(e) {
+function Xe(e) {
   switch (typeof e) {
     case "undefined":
       return null;
@@ -2357,7 +2356,7 @@ function Ze(e) {
         var n = e.length;
         e = new Array(n);
         for (var r = 0; r < n; r++)
-          e[r] = Ze(t[r]);
+          e[r] = Xe(t[r]);
       } else {
         if (e instanceof Date)
           return e.toJSON();
@@ -2366,7 +2365,7 @@ function Ze(e) {
           for (var i in t)
             if (Object.prototype.hasOwnProperty.call(t, i)) {
               var a = t[i];
-              typeof a < "u" && (e[i] = Ze(a));
+              typeof a < "u" && (e[i] = Xe(a));
             }
         }
       }
@@ -2379,26 +2378,26 @@ function xo(e) {
       case "boolean":
         return e ? 1 : 0;
       case "number":
-        return To(e);
+        return qo(e);
       case "string":
         return e.replace(/\u0002/g, "").replace(/\u0001/g, "").replace(/\u0000/g, "");
       case "object":
         var t = Array.isArray(e), n = t ? e : Object.keys(e), r = -1, i = n.length, a = "";
         if (t)
           for (; ++r < i; )
-            a += xe(n[r]);
+            a += Se(n[r]);
         else
           for (; ++r < i; ) {
             var u = n[r];
-            a += xe(u) + xe(e[u]);
+            a += Se(u) + Se(e[u]);
           }
         return a;
     }
   return "";
 }
-function xe(e) {
+function Se(e) {
   var t = "\0";
-  return e = Ze(e), Dn(e) + Ln + xo(e) + t;
+  return e = Xe(e), Ln(e) + Rn + xo(e) + t;
 }
 function Eo(e, t) {
   var n = t, r, i = e[t] === "1";
@@ -2407,8 +2406,8 @@ function Eo(e, t) {
   else {
     var a = e[t] === "0";
     t++;
-    var u = "", o = e.substring(t, t + Rn), c = parseInt(o, 10) + la;
-    for (a && (c = -c), t += Rn; ; ) {
+    var u = "", o = e.substring(t, t + Bn), c = parseInt(o, 10) + la;
+    for (a && (c = -c), t += Bn; ; ) {
       var _ = e[t];
       if (_ === "\0")
         break;
@@ -2503,27 +2502,27 @@ function Po(e, t) {
   }
   return n.length === r.length ? 0 : n.length > r.length ? 1 : -1;
 }
-function Dn(e) {
+function Ln(e) {
   var t = ["boolean", "number", "string", "object"], n = t.indexOf(typeof e);
   if (~n)
     return e === null ? 1 : Array.isArray(e) ? 5 : n < 3 ? n + 2 : n + 3;
   if (Array.isArray(e))
     return 5;
 }
-function To(e) {
+function qo(e) {
   if (e === 0)
     return "1";
-  var t = e.toExponential().split(/e\+?/), n = parseInt(t[1], 10), r = e < 0, i = r ? "0" : "2", a = (r ? -n : n) - la, u = So(a.toString(), "0", Rn);
-  i += Ln + u;
+  var t = e.toExponential().split(/e\+?/), n = parseInt(t[1], 10), r = e < 0, i = r ? "0" : "2", a = (r ? -n : n) - la, u = So(a.toString(), "0", Bn);
+  i += Rn + u;
   var o = Math.abs(parseFloat(t[0]));
   r && (o = 10 - o);
   var c = o.toFixed(20);
-  return c = c.replace(/\.?0+$/, ""), i += Ln + c, i;
+  return c = c.replace(/\.?0+$/, ""), i += Rn + c, i;
 }
-function qo(e) {
+function To(e) {
   function t(n) {
     return e.map(function(r) {
-      var i = fa(r), a = Or(i), u = Ar(n, a);
+      var i = fa(r), a = $r(i), u = br(n, a);
       return u;
     });
   }
@@ -2534,9 +2533,9 @@ function qo(e) {
 }
 function Bo(e, t, n) {
   if (e = e.filter(function(u) {
-    return ft(u.doc, t.selector, n);
+    return ot(u.doc, t.selector, n);
   }), t.sort) {
-    var r = qo(t.sort);
+    var r = To(t.sort);
     e = e.sort(r), typeof t.sort[0] != "string" && po(t.sort[0]) === "desc" && (e = e.reverse());
   }
   if ("limit" in t || "skip" in t) {
@@ -2545,40 +2544,40 @@ function Bo(e, t, n) {
   }
   return e;
 }
-function ft(e, t, n) {
+function ot(e, t, n) {
   return n.every(function(r) {
-    var i = t[r], a = Or(r), u = Ar(e, a);
-    return oa(r) ? Ro(r, i, e) : Ht(i, e, a, u);
+    var i = t[r], a = $r(r), u = br(e, a);
+    return oa(r) ? Ro(r, i, e) : Wt(i, e, a, u);
   });
 }
-function Ht(e, t, n, r) {
+function Wt(e, t, n, r) {
   return e ? typeof e == "object" ? Object.keys(e).every(function(i) {
     var a = e[i];
     if (i.indexOf("$") === 0)
-      return Wr(i, t, a, n, r);
-    var u = Or(i);
+      return Gr(i, t, a, n, r);
+    var u = $r(i);
     if (r === void 0 && typeof a != "object" && u.length > 0)
       return !1;
-    var o = Ar(r, u);
-    return typeof a == "object" ? Ht(a, t, n, o) : Wr("$eq", t, a, u, o);
+    var o = br(r, u);
+    return typeof a == "object" ? Wt(a, t, n, o) : Gr("$eq", t, a, u, o);
   }) : e === r : !0;
 }
 function Ro(e, t, n) {
   return e === "$or" ? t.some(function(r) {
-    return ft(n, r, Object.keys(r));
-  }) : e === "$not" ? !ft(n, t, Object.keys(t)) : !t.find(function(r) {
-    return ft(n, r, Object.keys(r));
+    return ot(n, r, Object.keys(r));
+  }) : e === "$not" ? !ot(n, t, Object.keys(t)) : !t.find(function(r) {
+    return ot(n, r, Object.keys(r));
   });
 }
-function Wr(e, t, n, r, i) {
-  if (!Yr[e])
+function Gr(e, t, n, r, i) {
+  if (!Hr[e])
     throw new Error('unknown operator "' + e + '" - should be one of $eq, $lte, $lt, $gt, $gte, $exists, $ne, $in, $nin, $size, $mod, $regex, $elemMatch, $type, $allMatch or $all');
-  return Yr[e](t, n, r, i);
+  return Hr[e](t, n, r, i);
 }
-function mt(e) {
+function pt(e) {
   return typeof e < "u" && e !== null;
 }
-function Me(e) {
+function Fe(e) {
   return typeof e < "u";
 }
 function Lo(e, t) {
@@ -2587,7 +2586,7 @@ function Lo(e, t) {
   var n = t[0], r = t[1];
   return e % n === r;
 }
-function Hr(e, t) {
+function Wr(e, t) {
   return t.some(function(n) {
     return e instanceof Array ? e.some(function(r) {
       return ue(n, r) === 0;
@@ -2624,41 +2623,41 @@ function Mo(e, t) {
       return {}.toString.call(e) === "[object Object]";
   }
 }
-var Yr = {
+var Hr = {
   $elemMatch: function(e, t, n, r) {
     return !Array.isArray(r) || r.length === 0 ? !1 : typeof r[0] == "object" ? r.some(function(i) {
-      return ft(i, t, Object.keys(t));
+      return ot(i, t, Object.keys(t));
     }) : r.some(function(i) {
-      return Ht(t, e, n, i);
+      return Wt(t, e, n, i);
     });
   },
   $allMatch: function(e, t, n, r) {
     return !Array.isArray(r) || r.length === 0 ? !1 : typeof r[0] == "object" ? r.every(function(i) {
-      return ft(i, t, Object.keys(t));
+      return ot(i, t, Object.keys(t));
     }) : r.every(function(i) {
-      return Ht(t, e, n, i);
+      return Wt(t, e, n, i);
     });
   },
   $eq: function(e, t, n, r) {
-    return Me(r) && ue(r, t) === 0;
+    return Fe(r) && ue(r, t) === 0;
   },
   $gte: function(e, t, n, r) {
-    return Me(r) && ue(r, t) >= 0;
+    return Fe(r) && ue(r, t) >= 0;
   },
   $gt: function(e, t, n, r) {
-    return Me(r) && ue(r, t) > 0;
+    return Fe(r) && ue(r, t) > 0;
   },
   $lte: function(e, t, n, r) {
-    return Me(r) && ue(r, t) <= 0;
+    return Fe(r) && ue(r, t) <= 0;
   },
   $lt: function(e, t, n, r) {
-    return Me(r) && ue(r, t) < 0;
+    return Fe(r) && ue(r, t) < 0;
   },
   $exists: function(e, t, n, r) {
-    return t ? Me(r) : !Me(r);
+    return t ? Fe(r) : !Fe(r);
   },
   $mod: function(e, t, n, r) {
-    return mt(r) && Lo(r, t);
+    return pt(r) && Lo(r, t);
   },
   $ne: function(e, t, n, r) {
     return t.every(function(i) {
@@ -2666,19 +2665,19 @@ var Yr = {
     });
   },
   $in: function(e, t, n, r) {
-    return mt(r) && Hr(r, t);
+    return pt(r) && Wr(r, t);
   },
   $nin: function(e, t, n, r) {
-    return mt(r) && !Hr(r, t);
+    return pt(r) && !Wr(r, t);
   },
   $size: function(e, t, n, r) {
-    return mt(r) && Array.isArray(r) && No(r, t);
+    return pt(r) && Array.isArray(r) && No(r, t);
   },
   $all: function(e, t, n, r) {
     return Array.isArray(r) && Do(r, t);
   },
   $regex: function(e, t, n, r) {
-    return mt(r) && typeof r == "string" && t.every(function(i) {
+    return pt(r) && typeof r == "string" && t.every(function(i) {
       return Fo(r, i);
     });
   },
@@ -2698,13 +2697,13 @@ function Uo(e, t) {
   return r && r.length === 1;
 }
 function zo(e) {
-  return vr(`"use strict";
+  return lr(`"use strict";
 return ` + e + ";", {});
 }
 function Ko(e) {
   var t = ["return function(doc) {", '  "use strict";', "  var emitted = false;", "  var emit = function (a, b) {", "    emitted = true;", "  };", "  var view = " + e + ";", "  view(doc);", "  if (emitted) {", "    return true;", "  }", "};"].join(`
 `);
-  return vr(t, {});
+  return lr(t, {});
 }
 function Jo(e, t) {
   if (e.selector && e.filter && e.filter !== "_selector") {
@@ -2714,29 +2713,29 @@ function Jo(e, t) {
   t();
 }
 function Qo(e) {
-  e.view && !e.filter && (e.filter = "_view"), e.selector && !e.filter && (e.filter = "_selector"), e.filter && typeof e.filter == "string" && (e.filter === "_view" ? e.view = Mr(e.view) : e.filter = Mr(e.filter));
+  e.view && !e.filter && (e.filter = "_view"), e.selector && !e.filter && (e.filter = "_selector"), e.filter && typeof e.filter == "string" && (e.filter === "_view" ? e.view = Fr(e.view) : e.filter = Fr(e.filter));
 }
 function Go(e, t) {
-  return t.filter && typeof t.filter == "string" && !t.doc_ids && !Te(e.db);
+  return t.filter && typeof t.filter == "string" && !t.doc_ids && !Pe(e.db);
 }
 function Wo(e, t) {
   var n = t.complete;
   if (t.filter === "_view") {
     if (!t.view || typeof t.view != "string") {
-      var r = V(un, "`view` filter parameter not found or invalid.");
+      var r = V(an, "`view` filter parameter not found or invalid.");
       return n(r);
     }
-    var i = Bn(t.view);
+    var i = Tn(t.view);
     e.db.get("_design/" + i[0], function(u, o) {
       if (e.isCancelled)
         return n(null, {
           status: "cancelled"
         });
       if (u)
-        return n(dt(u));
+        return n(lt(u));
       var c = o && o.views && o.views[i[1]] && o.views[i[1]].map;
       if (!c)
-        return n(V(Ce, o.views ? "missing json key: " + i[1] : "missing json key: views"));
+        return n(V(ke, o.views ? "missing json key: " + i[1] : "missing json key: views"));
       t.filter = Ko(c), e.doChanges(t);
     });
   } else if (t.selector)
@@ -2744,17 +2743,17 @@ function Wo(e, t) {
       return Uo(u, t.selector);
     }, e.doChanges(t);
   else {
-    var a = Bn(t.filter);
+    var a = Tn(t.filter);
     e.db.get("_design/" + a[0], function(u, o) {
       if (e.isCancelled)
         return n(null, {
           status: "cancelled"
         });
       if (u)
-        return n(dt(u));
+        return n(lt(u));
       var c = o && o.filters && o.filters[a[1]];
       if (!c)
-        return n(V(Ce, o && o.filters ? "missing json key: " + a[1] : "missing json key: filters"));
+        return n(V(ke, o && o.filters ? "missing json key: " + a[1] : "missing json key: filters"));
       t.filter = zo(c), e.doChanges(t);
     });
   }
@@ -2801,7 +2800,7 @@ var Yo = da([
   "_replication_state_reason",
   "_replication_stats"
 ]);
-function Xr(e) {
+function Yr(e) {
   if (!/^\d+-/.test(e))
     return V(Hi);
   var t = e.indexOf("-"), n = e.substring(0, t), r = e.substring(t + 1);
@@ -2828,8 +2827,8 @@ function va(e, t, n) {
     status: "available"
   };
   if (e._deleted && (u.deleted = !0), t)
-    if (e._id || (e._id = fn()), i = ta(e, n.deterministic_revs), e._rev) {
-      if (a = Xr(e._rev), a.error)
+    if (e._id || (e._id = on()), i = ta(e, n.deterministic_revs), e._rev) {
+      if (a = Yr(e._rev), a.error)
         return a;
       e._rev_tree = [{
         pos: a.prefix,
@@ -2843,7 +2842,7 @@ function va(e, t, n) {
         ids: [i, u, []]
       }], r = 1;
   else if (e._revisions && (e._rev_tree = Zo(e._revisions, u), r = e._revisions.start, i = e._revisions.ids[0]), !e._rev_tree) {
-    if (a = Xr(e._rev), a.error)
+    if (a = Yr(e._rev), a.error)
       return a;
     r = a.prefix, i = a.id, e._rev_tree = [{
       pos: r,
@@ -2859,8 +2858,8 @@ function va(e, t, n) {
     if (Object.prototype.hasOwnProperty.call(e, c)) {
       var _ = c[0] === "_";
       if (_ && !Yo[c]) {
-        var b = V(Fr, c);
-        throw b.message = Fr.message + ": " + c, b;
+        var b = V(Nr, c);
+        throw b.message = Nr.message + ": " + c, b;
       } else
         _ && !Xo[c] ? o.metadata[c.slice(1)] = e[c] : o.data[c] = e[c];
     }
@@ -2868,7 +2867,7 @@ function va(e, t, n) {
 }
 function Vo(e) {
   try {
-    return hr(e);
+    return dr(e);
   } catch {
     var t = V(Wi, "Attachment is not a valid base64 string");
     return {
@@ -2880,15 +2879,15 @@ function ef(e, t, n) {
   var r = Vo(e.data);
   if (r.error)
     return n(r.error);
-  e.length = r.length, t === "blob" ? e.data = gr(r, e.content_type) : t === "base64" ? e.data = Pt(r) : e.data = r, mr(r, function(i) {
+  e.length = r.length, t === "blob" ? e.data = hr(r, e.content_type) : t === "base64" ? e.data = It(r) : e.data = r, pr(r, function(i) {
     e.digest = "md5-" + i, n();
   });
 }
 function tf(e, t, n) {
-  mr(e.data, function(r) {
+  pr(e.data, function(r) {
     e.digest = "md5-" + r, e.length = e.data.size || e.data.length || 0, t === "binary" ? Vi(e.data, function(i) {
       e.data = i, n();
-    }) : t === "base64" ? _r(e.data, function(i) {
+    }) : t === "base64" ? gr(e.data, function(i) {
       e.data = i, n();
     }) : n();
   });
@@ -2919,19 +2918,19 @@ function rf(e, t, n) {
 function af(e, t, n, r, i, a, u, o) {
   if (Vu(t.rev_tree, n.metadata.rev) && !o)
     return r[i] = n, a();
-  var c = t.winningRev || Ye(t), _ = "deleted" in t ? t.deleted : qe(t, c), b = "deleted" in n.metadata ? n.metadata.deleted : qe(n.metadata), s = /^1-/.test(n.metadata.rev);
+  var c = t.winningRev || He(t), _ = "deleted" in t ? t.deleted : qe(t, c), b = "deleted" in n.metadata ? n.metadata.deleted : qe(n.metadata), s = /^1-/.test(n.metadata.rev);
   if (_ && !b && o && s) {
     var m = n.data;
     m._rev = c, m._id = n.metadata.id, n = va(m, o);
   }
   var O = ia(t.rev_tree, n.metadata.rev_tree[0], e), $ = o && (_ && b && O.conflicts !== "new_leaf" || !_ && O.conflicts !== "new_leaf" || _ && !b && O.conflicts === "new_branch");
   if ($) {
-    var S = V(lt);
+    var S = V(ct);
     return r[i] = S, a();
   }
   var A = n.metadata.rev;
   n.metadata.rev_tree = O.tree, n.stemmedRevs = O.stemmedRevs || [], t.rev_map && (n.metadata.rev_map = t.rev_map);
-  var g = Ye(n.metadata), h = qe(n.metadata, g), f = _ === h ? 0 : _ < h ? -1 : 1, l;
+  var g = He(n.metadata), h = qe(n.metadata, g), f = _ === h ? 0 : _ < h ? -1 : 1, l;
   A === g ? l = h : l = qe(n.metadata, A), u(n, g, h, l, !0, f, i, a);
 }
 function uf(e) {
@@ -2940,23 +2939,23 @@ function uf(e) {
 function of(e, t, n, r, i, a, u, o, c) {
   e = e || 1e3;
   function _(S, A, g) {
-    var h = Ye(S.metadata), f = qe(S.metadata, h);
+    var h = He(S.metadata), f = qe(S.metadata, h);
     if ("was_delete" in o && f)
-      return a[A] = V(Ce, "deleted"), g();
+      return a[A] = V(ke, "deleted"), g();
     var l = b && uf(S);
     if (l) {
-      var d = V(lt);
+      var d = V(ct);
       return a[A] = d, g();
     }
     var y = f ? 0 : 1;
     u(S, h, f, f, !1, y, A, g);
   }
-  var b = o.new_edits, s = new we(), m = 0, O = t.length;
+  var b = o.new_edits, s = new me(), m = 0, O = t.length;
   function $() {
     ++m === O && c && c();
   }
   t.forEach(function(S, A) {
-    if (S._id && Xe(S._id)) {
+    if (S._id && Ye(S._id)) {
       var g = S._deleted ? "_removeLocal" : "_putLocal";
       n[g](S, {
         ctx: i
@@ -2984,28 +2983,28 @@ function of(e, t, n, r, i, a, u, o, c) {
     f();
   });
 }
-var ff = 5, oe = "document-store", ge = "by-sequence", $e = "attach-store", Ge = "attach-seq-store", me = "meta-store", je = "local-store", Nn = "detect-blob-support";
+var ff = 5, oe = "document-store", ge = "by-sequence", be = "attach-store", Qe = "attach-seq-store", _e = "meta-store", Ce = "local-store", Dn = "detect-blob-support";
 function sf(e) {
   try {
     return JSON.parse(e);
   } catch {
-    return tn.parse(e);
+    return en.parse(e);
   }
 }
 function cf(e) {
   try {
     return JSON.stringify(e);
   } catch {
-    return tn.stringify(e);
+    return en.stringify(e);
   }
 }
-function Pe(e) {
+function Ie(e) {
   return function(t) {
     var n = "unknown_error";
-    t.target && t.target.error && (n = t.target.error.name || t.target.error.message), e(V(lr, n, t.type));
+    t.target && t.target.error && (n = t.target.error.name || t.target.error.message), e(V(sr, n, t.type));
   };
 }
-function Fn(e, t, n) {
+function Nn(e, t, n) {
   return {
     data: cf(e),
     winningRev: t,
@@ -3014,23 +3013,23 @@ function Fn(e, t, n) {
     id: e.id
   };
 }
-function We(e) {
+function Ge(e) {
   if (!e)
     return null;
   var t = sf(e.data);
   return t.winningRev = e.winningRev, t.deleted = e.deletedOrLocal === "1", t.seq = e.seq, t;
 }
-function Yt(e) {
+function Ht(e) {
   if (!e)
     return e;
   var t = e._doc_id_rev.lastIndexOf(":");
   return e._id = e._doc_id_rev.substring(0, t - 1), e._rev = e._doc_id_rev.substring(t + 1), delete e._doc_id_rev, e;
 }
 function ha(e, t, n, r) {
-  n ? r(e ? typeof e != "string" ? e : pr(e, t) : yr([""], {
+  n ? r(e ? typeof e != "string" ? e : yr(e, t) : vr([""], {
     type: t
   })) : e ? typeof e != "string" ? Zi(e, function(i) {
-    r(Pt(i));
+    r(It(i));
   }) : r(e) : r("");
 }
 function ya(e, t, n, r) {
@@ -3042,7 +3041,7 @@ function ya(e, t, n, r) {
     ++a === i.length && r && r();
   }
   function o(c, _) {
-    var b = c._attachments[_], s = b.digest, m = n.objectStore($e).get(s);
+    var b = c._attachments[_], s = b.digest, m = n.objectStore(be).get(s);
     m.onsuccess = function(O) {
       b.body = O.target.result.body, u();
     };
@@ -3051,7 +3050,7 @@ function ya(e, t, n, r) {
     t.attachments && t.include_docs ? o(e, c) : (e._attachments[c].stub = !0, u());
   });
 }
-function Mn(e, t) {
+function Fn(e, t) {
   return Promise.all(e.map(function(n) {
     if (n.doc && n.doc._attachments) {
       var r = Object.keys(n.doc._attachments);
@@ -3061,7 +3060,7 @@ function Mn(e, t) {
           var u = a.body, o = a.content_type;
           return new Promise(function(c) {
             ha(u, o, t, function(_) {
-              n.doc._attachments[i] = He(It(a, ["digest", "content_type"]), {
+              n.doc._attachments[i] = We(jt(a, ["digest", "content_type"]), {
                 data: _
               }), c();
             });
@@ -3072,7 +3071,7 @@ function Mn(e, t) {
   }));
 }
 function ga(e, t, n) {
-  var r = [], i = n.objectStore(ge), a = n.objectStore($e), u = n.objectStore(Ge), o = e.length;
+  var r = [], i = n.objectStore(ge), a = n.objectStore(be), u = n.objectStore(Qe), o = e.length;
   function c() {
     o--, o || _();
   }
@@ -3104,7 +3103,7 @@ function ga(e, t, n) {
     };
   });
 }
-function Ee(e, t, n) {
+function xe(e, t, n) {
   try {
     return {
       txn: e.transaction(t, n)
@@ -3115,25 +3114,25 @@ function Ee(e, t, n) {
     };
   }
 }
-var At = new ht();
+var bt = new dt();
 function lf(e, t, n, r, i, a) {
   for (var u = t.docs, o, c, _, b, s, m, O, $, S = 0, A = u.length; S < A; S++) {
     var g = u[S];
-    g._id && Xe(g._id) || (g = u[S] = va(g, n.new_edits, e), g.error && !O && (O = g));
+    g._id && Ye(g._id) || (g = u[S] = va(g, n.new_edits, e), g.error && !O && (O = g));
   }
   if (O)
     return a(O);
-  var h = !1, f = 0, l = new Array(u.length), d = new we(), y = !1, j = r._meta.blobSupport ? "blob" : "base64";
+  var h = !1, f = 0, l = new Array(u.length), d = new me(), y = !1, j = r._meta.blobSupport ? "blob" : "base64";
   rf(u, j, function(C) {
     if (C)
       return a(C);
     R();
   });
   function R() {
-    var C = [oe, ge, $e, je, Ge, me], I = Ee(i, C, "readwrite");
+    var C = [oe, ge, be, Ce, Qe, _e], I = xe(i, C, "readwrite");
     if (I.error)
       return a(I.error);
-    o = I.txn, o.onabort = Pe(a), o.ontimeout = Pe(a), o.oncomplete = Y, c = o.objectStore(oe), _ = o.objectStore(ge), b = o.objectStore($e), s = o.objectStore(Ge), m = o.objectStore(me), m.get(me).onsuccess = function(k) {
+    o = I.txn, o.onabort = Ie(a), o.ontimeout = Ie(a), o.oncomplete = Y, c = o.objectStore(oe), _ = o.objectStore(ge), b = o.objectStore(be), s = o.objectStore(Qe), m = o.objectStore(_e), m.get(_e).onsuccess = function(k) {
       $ = k.target.result, K();
     }, G(function(k) {
       if (k)
@@ -3158,21 +3157,21 @@ function lf(e, t, n, r, i, a) {
       ++C === u.length && L();
     }
     function k(E) {
-      var F = We(E.target.result);
+      var F = Ge(E.target.result);
       F && d.set(F.id, F), I();
     }
-    for (var P = 0, T = u.length; P < T; P++) {
-      var q = u[P];
-      if (q._id && Xe(q._id)) {
+    for (var P = 0, q = u.length; P < q; P++) {
+      var T = u[P];
+      if (T._id && Ye(T._id)) {
         I();
         continue;
       }
-      var D = c.get(q.metadata.id);
+      var D = c.get(T.metadata.id);
       D.onsuccess = k;
     }
   }
   function Y() {
-    y || (At.notify(r._meta.name), a(null, l));
+    y || (bt.notify(r._meta.name), a(null, l));
   }
   function J(C, I) {
     var k = b.get(C);
@@ -3180,46 +3179,46 @@ function lf(e, t, n, r, i, a) {
       if (P.target.result)
         I();
       else {
-        var T = V(Iu, "unknown stub attachment with digest " + C);
-        T.status = 412, I(T);
+        var q = V(Iu, "unknown stub attachment with digest " + C);
+        q.status = 412, I(q);
       }
     };
   }
   function G(C) {
     var I = [];
-    if (u.forEach(function(q) {
-      q.data && q.data._attachments && Object.keys(q.data._attachments).forEach(function(D) {
-        var E = q.data._attachments[D];
+    if (u.forEach(function(T) {
+      T.data && T.data._attachments && Object.keys(T.data._attachments).forEach(function(D) {
+        var E = T.data._attachments[D];
         E.stub && I.push(E.digest);
       });
     }), !I.length)
       return C();
     var k = 0, P;
-    function T() {
+    function q() {
       ++k === I.length && C(P);
     }
-    I.forEach(function(q) {
-      J(q, function(D) {
-        D && !P && (P = D), T();
+    I.forEach(function(T) {
+      J(T, function(D) {
+        D && !P && (P = D), q();
       });
     });
   }
-  function U(C, I, k, P, T, q, D, E) {
+  function U(C, I, k, P, q, T, D, E) {
     C.metadata.winningRev = I, C.metadata.deleted = k;
     var F = C.data;
     F._id = C.metadata.id, F._rev = C.metadata.rev, P && (F._deleted = !0);
     var W = F._attachments && Object.keys(F._attachments).length;
     if (W)
-      return p(C, I, k, T, D, E);
-    f += q, K(), v(C, I, k, T, D, E);
+      return p(C, I, k, q, D, E);
+    f += T, K(), v(C, I, k, q, D, E);
   }
-  function v(C, I, k, P, T, q) {
+  function v(C, I, k, P, q, T) {
     var D = C.data, E = C.metadata;
     D._doc_id_rev = E.id + "::" + E.rev, delete D._id, delete D._rev;
     function F(N) {
       var z = C.stemmedRevs || [];
       P && r.auto_compaction && (z = z.concat(Gu(C.metadata))), z && z.length && ga(z, C.metadata.id, o), E.seq = N.target.result;
-      var Q = Fn(E, I, k), ee = c.put(Q);
+      var Q = Nn(E, I, k), ee = c.put(Q);
       ee.onsuccess = te;
     }
     function W(N) {
@@ -3231,19 +3230,19 @@ function lf(e, t, n, r, i, a) {
       };
     }
     function te() {
-      l[T] = {
+      l[q] = {
         ok: !0,
         id: E.id,
         rev: E.rev
-      }, d.set(C.metadata.id, C.metadata), w(C, E.seq, q);
+      }, d.set(C.metadata.id, C.metadata), w(C, E.seq, T);
     }
     var M = _.put(D);
     M.onsuccess = F, M.onerror = W;
   }
-  function p(C, I, k, P, T, q) {
+  function p(C, I, k, P, q, T) {
     var D = C.data, E = 0, F = Object.keys(D._attachments);
     function W() {
-      E === F.length && v(C, I, k, P, T, q);
+      E === F.length && v(C, I, k, P, q, T);
     }
     function te() {
       E++, W();
@@ -3261,29 +3260,29 @@ function lf(e, t, n, r, i, a) {
     });
   }
   function w(C, I, k) {
-    var P = 0, T = Object.keys(C.data._attachments || {});
-    if (!T.length)
+    var P = 0, q = Object.keys(C.data._attachments || {});
+    if (!q.length)
       return k();
-    function q() {
-      ++P === T.length && k();
+    function T() {
+      ++P === q.length && k();
     }
     function D(F) {
       var W = C.data._attachments[F].digest, te = s.put({
         seq: I,
         digestSeq: W + "::" + I
       });
-      te.onsuccess = q, te.onerror = function(M) {
-        M.preventDefault(), M.stopPropagation(), q();
+      te.onsuccess = T, te.onerror = function(M) {
+        M.preventDefault(), M.stopPropagation(), T();
       };
     }
-    for (var E = 0; E < T.length; E++)
-      D(T[E]);
+    for (var E = 0; E < q.length; E++)
+      D(q[E]);
   }
   function x(C, I, k) {
     var P = b.count(C);
-    P.onsuccess = function(T) {
-      var q = T.target.result;
-      if (q)
+    P.onsuccess = function(q) {
+      var T = q.target.result;
+      if (T)
         return k();
       var D = {
         digest: C,
@@ -3374,16 +3373,16 @@ function hf(e, t, n, r, i) {
 function yf(e, t, n) {
   var r = "startkey" in e ? e.startkey : !1, i = "endkey" in e ? e.endkey : !1, a = "key" in e ? e.key : !1, u = "keys" in e ? e.keys : !1, o = e.skip || 0, c = typeof e.limit == "number" ? e.limit : -1, _ = e.inclusive_end !== !1, b, s;
   if (!u && (b = hf(r, i, _, a, e.descending), s = b && b.error, s && !(s.name === "DataError" && s.code === 0)))
-    return n(V(lr, s.name, s.message));
-  var m = [oe, ge, me];
-  e.attachments && m.push($e);
-  var O = Ee(t, m, "readonly");
+    return n(V(sr, s.name, s.message));
+  var m = [oe, ge, _e];
+  e.attachments && m.push(be);
+  var O = xe(t, m, "readonly");
   if (O.error)
     return n(O.error);
   var $ = O.txn;
-  $.oncomplete = Y, $.onabort = Pe(n);
-  var S = $.objectStore(oe), A = $.objectStore(ge), g = $.objectStore(me), h = A.index("_doc_id_rev"), f = [], l, d;
-  g.get(me).onsuccess = function(J) {
+  $.oncomplete = Y, $.onabort = Ie(n);
+  var S = $.objectStore(oe), A = $.objectStore(ge), g = $.objectStore(_e), h = A.index("_doc_id_rev"), f = [], l, d;
+  g.get(_e).onsuccess = function(J) {
     l = J.target.result.docCount;
   }, e.update_seq && y(A, function(J) {
     J.target.result && J.target.result.length > 0 && (d = J.target.result[0]);
@@ -3402,8 +3401,8 @@ function yf(e, t, n) {
   function j(J, G, U) {
     var v = J.id + "::" + U;
     h.get(v).onsuccess = function(w) {
-      if (G.doc = Yt(w.target.result) || {}, e.conflicts) {
-        var x = br(J);
+      if (G.doc = Ht(w.target.result) || {}, e.conflicts) {
+        var x = mr(J);
         x.length && (G.doc._conflicts = x);
       }
       ya(G.doc, e, $);
@@ -3426,7 +3425,7 @@ function yf(e, t, n) {
         f.push(v);
         continue;
       }
-      var p = We(v), w = p.winningRev;
+      var p = Ge(v), w = p.winningRev;
       R(w, p);
     }
   }
@@ -3446,7 +3445,7 @@ function yf(e, t, n) {
     e.update_seq && d !== void 0 && (J.update_seq = d), n(null, J);
   }
   function Y() {
-    e.attachments ? Mn(f, e.binary).then(Z) : Z();
+    e.attachments ? Fn(f, e.binary).then(Z) : Z();
   }
   if (!(s || c === 0)) {
     if (u)
@@ -3458,7 +3457,7 @@ function yf(e, t, n) {
 }
 function gf(e) {
   return new Promise(function(t) {
-    var n = yr([""]), r = e.objectStore(Nn).put(n, "key");
+    var n = vr([""]), r = e.objectStore(Dn).put(n, "key");
     r.onsuccess = function() {
       var i = navigator.userAgent.match(/Chrome\/(\d+)/), a = navigator.userAgent.match(/Edge\//);
       t(a || !i || parseInt(i[1], 10) >= 43);
@@ -3475,7 +3474,7 @@ function pf(e, t) {
     t(r.target.result);
   };
 }
-var Un = !1, zn = [];
+var Mn = !1, Un = [];
 function _f(e, t, n, r) {
   try {
     e(t, n);
@@ -3483,32 +3482,32 @@ function _f(e, t, n, r) {
     r.emit("error", i);
   }
 }
-function Zr() {
-  Un || !zn.length || (Un = !0, zn.shift()());
+function Xr() {
+  Mn || !Un.length || (Mn = !0, Un.shift()());
 }
 function mf(e, t, n) {
-  zn.push(function() {
+  Un.push(function() {
     e(function(a, u) {
-      _f(t, a, u, n), Un = !1, _e(function() {
-        Zr();
+      _f(t, a, u, n), Mn = !1, pe(function() {
+        Xr();
       });
     });
-  }), Zr();
+  }), Xr();
 }
 function wf(e, t, n, r) {
   if (e = le(e), e.continuous) {
-    var i = n + ":" + fn();
-    return At.addListener(n, i, t, e), At.notify(n), {
+    var i = n + ":" + on();
+    return bt.addListener(n, i, t, e), bt.notify(n), {
       cancel: function() {
-        At.removeListener(n, i);
+        bt.removeListener(n, i);
       }
     };
   }
-  var a = e.doc_ids && new ct(e.doc_ids);
+  var a = e.doc_ids && new st(e.doc_ids);
   e.since = e.since || 0;
   var u = e.since, o = "limit" in e ? e.limit : -1;
   o === 0 && (o = 1);
-  var c = [], _ = 0, b = dr(e), s = new we(), m, O, $, S;
+  var c = [], _ = 0, b = cr(e), s = new me(), m, O, $, S;
   function A(R, B, L) {
     if (!L || !R.length)
       return;
@@ -3519,7 +3518,7 @@ function wf(e, t, n, r) {
       var w = b(p);
       return typeof w == "object" ? Promise.reject(w) : w ? (_++, e.return_docs && c.push(p), e.attachments && e.include_docs ? new Promise(function(x) {
         ya(v, e, m, function() {
-          Mn([p], e.binary).then(function() {
+          Fn([p], e.binary).then(function() {
             x(p);
           });
         });
@@ -3540,7 +3539,7 @@ function wf(e, t, n, r) {
     }
     var G = 0;
     B.forEach(function(U, v) {
-      var p = Yt(U), w = R[v];
+      var p = Ht(U), w = R[v];
       h(p, w, function(x, C) {
         Z[v] = x, K[v] = C, ++G === R.length && J();
       });
@@ -3553,7 +3552,7 @@ function wf(e, t, n, r) {
       return K(L, R);
     var Z = R._id + "::" + L.winningRev, Y = S.get(Z);
     Y.onsuccess = function(J) {
-      K(L, Yt(J.target.result));
+      K(L, Ht(J.target.result));
     };
   }
   function h(R, B, L) {
@@ -3563,7 +3562,7 @@ function wf(e, t, n, r) {
     if (K)
       return g(R, B, K, L);
     $.get(R._id).onsuccess = function(Z) {
-      K = We(Z.target.result), s.set(R._id, K), g(R, B, K, L);
+      K = Ge(Z.target.result), s.set(R._id, K), g(R, B, K, L);
     };
   }
   function f() {
@@ -3573,18 +3572,18 @@ function wf(e, t, n, r) {
     });
   }
   function l() {
-    !e.continuous && e.attachments ? Mn(c).then(f) : f();
+    !e.continuous && e.attachments ? Fn(c).then(f) : f();
   }
   var d = [oe, ge];
-  e.attachments && d.push($e);
-  var y = Ee(r, d, "readonly");
+  e.attachments && d.push(be);
+  var y = xe(r, d, "readonly");
   if (y.error)
     return e.complete(y.error);
-  m = y.txn, m.onabort = Pe(e.complete), m.oncomplete = l, O = m.objectStore(ge), $ = m.objectStore(oe), S = O.index("_doc_id_rev");
+  m = y.txn, m.onabort = Ie(e.complete), m.oncomplete = l, O = m.objectStore(ge), $ = m.objectStore(oe), S = O.index("_doc_id_rev");
   var j = e.since && !e.descending ? IDBKeyRange.lowerBound(e.since, !0) : null;
   pa(O, j, e.descending, o, A);
 }
-var rt = new we(), pn, _n = new we();
+var nt = new me(), gn, pn = new me();
 function _a(e, t) {
   var n = this;
   mf(function(r) {
@@ -3607,17 +3606,17 @@ function bf(e, t, n) {
       autoIncrement: !0
     }).createIndex("_doc_id_rev", "_doc_id_rev", {
       unique: !0
-    }), A.createObjectStore($e, {
+    }), A.createObjectStore(be, {
       keyPath: "digest"
-    }), A.createObjectStore(me, {
+    }), A.createObjectStore(_e, {
       keyPath: "id",
       autoIncrement: !1
-    }), A.createObjectStore(Nn), g.createIndex("deletedOrLocal", "deletedOrLocal", {
+    }), A.createObjectStore(Dn), g.createIndex("deletedOrLocal", "deletedOrLocal", {
       unique: !1
-    }), A.createObjectStore(je, {
+    }), A.createObjectStore(Ce, {
       keyPath: "_id"
     });
-    var h = A.createObjectStore(Ge, {
+    var h = A.createObjectStore(Qe, {
       autoIncrement: !0
     });
     h.createIndex("seq", "seq"), h.createIndex("digestSeq", "digestSeq", {
@@ -3638,18 +3637,18 @@ function bf(e, t, n) {
     };
   }
   function _(A) {
-    A.createObjectStore(je, {
+    A.createObjectStore(Ce, {
       keyPath: "_id"
     }).createIndex("_doc_id_rev", "_doc_id_rev", {
       unique: !0
     });
   }
   function b(A, g) {
-    var h = A.objectStore(je), f = A.objectStore(oe), l = A.objectStore(ge), d = f.openCursor();
+    var h = A.objectStore(Ce), f = A.objectStore(oe), l = A.objectStore(ge), d = f.openCursor();
     d.onsuccess = function(y) {
       var j = y.target.result;
       if (j) {
-        var R = j.value, B = R.id, L = Xe(B), K = Ye(R);
+        var R = j.value, B = R.id, L = Ye(B), K = He(R);
         if (L) {
           var Z = B + "::" + K, Y = B + "::", J = B + "::~", G = l.index("_doc_id_rev"), U = IDBKeyRange.bound(Y, J, !1, !1), v = G.openCursor(U);
           v.onsuccess = function(p) {
@@ -3667,7 +3666,7 @@ function bf(e, t, n) {
     };
   }
   function s(A) {
-    var g = A.createObjectStore(Ge, {
+    var g = A.createObjectStore(Qe, {
       autoIncrement: !0
     });
     g.createIndex("seq", "seq"), g.createIndex("digestSeq", "digestSeq", {
@@ -3675,7 +3674,7 @@ function bf(e, t, n) {
     });
   }
   function m(A, g) {
-    var h = A.objectStore(ge), f = A.objectStore($e), l = A.objectStore(Ge), d = f.count();
+    var h = A.objectStore(ge), f = A.objectStore(be), l = A.objectStore(Qe), d = f.count();
     d.onsuccess = function(y) {
       var j = y.target.result;
       if (!j)
@@ -3702,7 +3701,7 @@ function bf(e, t, n) {
   }
   function O(A) {
     function g(d) {
-      return d.data ? We(d) : (d.deleted = d.deletedOrLocal === "1", d);
+      return d.data ? Ge(d) : (d.deleted = d.deletedOrLocal === "1", d);
     }
     var h = A.objectStore(ge), f = A.objectStore(oe), l = f.openCursor();
     l.onsuccess = function(d) {
@@ -3710,7 +3709,7 @@ function bf(e, t, n) {
       if (!y)
         return;
       var j = g(y.value);
-      j.winningRev = j.winningRev || Ye(j);
+      j.winningRev = j.winningRev || He(j);
       function R() {
         var L = j.id + "::", K = j.id + "::\uFFFF", Z = h.index("_doc_id_rev").openCursor(IDBKeyRange.bound(L, K)), Y = 0;
         Z.onsuccess = function(J) {
@@ -3722,7 +3721,7 @@ function bf(e, t, n) {
         };
       }
       function B() {
-        var L = Fn(j, j.winningRev, j.deleted), K = f.put(L);
+        var L = Nn(j, j.winningRev, j.deleted), K = f.put(L);
         K.onsuccess = function() {
           y.continue();
         };
@@ -3741,7 +3740,7 @@ function bf(e, t, n) {
   }, e._get = function(g, h, f) {
     var l, d, y, j = h.ctx;
     if (!j) {
-      var R = Ee(i, [oe, ge, $e], "readonly");
+      var R = xe(i, [oe, ge, be], "readonly");
       if (R.error)
         return f(R.error);
       j = R.txn;
@@ -3754,8 +3753,8 @@ function bf(e, t, n) {
       });
     }
     j.objectStore(oe).get(g).onsuccess = function(L) {
-      if (d = We(L.target.result), !d)
-        return y = V(Ce, "missing"), B();
+      if (d = Ge(L.target.result), !d)
+        return y = V(ke, "missing"), B();
       var K;
       if (h.rev)
         K = h.latest ? to(h.rev, d) : h.rev;
@@ -3763,12 +3762,12 @@ function bf(e, t, n) {
         K = d.winningRev;
         var Z = qe(d);
         if (Z)
-          return y = V(Ce, "deleted"), B();
+          return y = V(ke, "deleted"), B();
       }
       var Y = j.objectStore(ge), J = d.id + "::" + K;
       Y.index("_doc_id_rev").get(J).onsuccess = function(G) {
-        if (l = G.target.result, l && (l = Yt(l)), !l)
-          return y = V(Ce, "missing"), B();
+        if (l = G.target.result, l && (l = Ht(l)), !l)
+          return y = V(ke, "missing"), B();
         B();
       };
     };
@@ -3777,24 +3776,24 @@ function bf(e, t, n) {
     if (f.ctx)
       d = f.ctx;
     else {
-      var y = Ee(i, [oe, ge, $e], "readonly");
+      var y = xe(i, [oe, ge, be], "readonly");
       if (y.error)
         return l(y.error);
       d = y.txn;
     }
     var j = h.digest, R = h.content_type;
-    d.objectStore($e).get(j).onsuccess = function(B) {
+    d.objectStore(be).get(j).onsuccess = function(B) {
       var L = B.target.result.body;
       ha(L, R, f.binary, function(K) {
         l(null, K);
       });
     };
   }, e._info = function(g) {
-    var h, f, l = Ee(i, [me, ge], "readonly");
+    var h, f, l = xe(i, [_e, ge], "readonly");
     if (l.error)
       return g(l.error);
     var d = l.txn;
-    d.objectStore(me).get(me).onsuccess = function(y) {
+    d.objectStore(_e).get(_e).onsuccess = function(y) {
       f = y.target.result.docCount;
     }, d.objectStore(ge).openCursor(null, "prev").onsuccess = function(y) {
       var j = y.target.result;
@@ -3811,40 +3810,40 @@ function bf(e, t, n) {
   }, e._changes = function(g) {
     return wf(g, e, r, i);
   }, e._close = function(A) {
-    i.close(), rt.delete(r), A();
+    i.close(), nt.delete(r), A();
   }, e._getRevisionTree = function(A, g) {
-    var h = Ee(i, [oe], "readonly");
+    var h = xe(i, [oe], "readonly");
     if (h.error)
       return g(h.error);
     var f = h.txn, l = f.objectStore(oe).get(A);
     l.onsuccess = function(d) {
-      var y = We(d.target.result);
-      y ? g(null, y.rev_tree) : g(V(Ce));
+      var y = Ge(d.target.result);
+      y ? g(null, y.rev_tree) : g(V(ke));
     };
   }, e._doCompaction = function(A, g, h) {
-    var f = [oe, ge, $e, Ge], l = Ee(i, f, "readwrite");
+    var f = [oe, ge, be, Qe], l = xe(i, f, "readwrite");
     if (l.error)
       return h(l.error);
     var d = l.txn, y = d.objectStore(oe);
     y.get(A).onsuccess = function(j) {
-      var R = We(j.target.result);
-      tt(R.rev_tree, function(K, Z, Y, J, G) {
+      var R = Ge(j.target.result);
+      et(R.rev_tree, function(K, Z, Y, J, G) {
         var U = Z + "-" + Y;
         g.indexOf(U) !== -1 && (G.status = "missing");
       }), ga(g, A, d);
       var B = R.winningRev, L = R.deleted;
-      d.objectStore(oe).put(Fn(R, B, L));
-    }, d.onabort = Pe(h), d.oncomplete = function() {
+      d.objectStore(oe).put(Nn(R, B, L));
+    }, d.onabort = Ie(h), d.oncomplete = function() {
       h();
     };
   }, e._getLocal = function(A, g) {
-    var h = Ee(i, [je], "readonly");
+    var h = xe(i, [Ce], "readonly");
     if (h.error)
       return g(h.error);
-    var f = h.txn, l = f.objectStore(je).get(A);
-    l.onerror = Pe(g), l.onsuccess = function(d) {
+    var f = h.txn, l = f.objectStore(Ce).get(A);
+    l.onerror = Ie(g), l.onsuccess = function(d) {
       var y = d.target.result;
-      y ? (delete y._doc_id_rev, g(null, y)) : g(V(Ce));
+      y ? (delete y._doc_id_rev, g(null, y)) : g(V(ke));
     };
   }, e._putLocal = function(A, g, h) {
     typeof g == "function" && (h = g, g = {}), delete A._revisions;
@@ -3852,18 +3851,18 @@ function bf(e, t, n) {
     f ? A._rev = "0-" + (parseInt(f.split("-")[1], 10) + 1) : A._rev = "0-1";
     var d = g.ctx, y;
     if (!d) {
-      var j = Ee(i, [je], "readwrite");
+      var j = xe(i, [Ce], "readwrite");
       if (j.error)
         return h(j.error);
-      d = j.txn, d.onerror = Pe(h), d.oncomplete = function() {
+      d = j.txn, d.onerror = Ie(h), d.oncomplete = function() {
         y && h(null, y);
       };
     }
-    var R = d.objectStore(je), B;
+    var R = d.objectStore(Ce), B;
     f ? (B = R.get(l), B.onsuccess = function(L) {
       var K = L.target.result;
       if (!K || K._rev !== f)
-        h(V(lt));
+        h(V(ct));
       else {
         var Z = R.put(A);
         Z.onsuccess = function() {
@@ -3875,7 +3874,7 @@ function bf(e, t, n) {
         };
       }
     }) : (B = R.add(A), B.onerror = function(L) {
-      h(V(lt)), L.preventDefault(), L.stopPropagation();
+      h(V(ct)), L.preventDefault(), L.stopPropagation();
     }, B.onsuccess = function() {
       y = {
         ok: !0,
@@ -3887,40 +3886,40 @@ function bf(e, t, n) {
     typeof g == "function" && (h = g, g = {});
     var f = g.ctx;
     if (!f) {
-      var l = Ee(i, [je], "readwrite");
+      var l = xe(i, [Ce], "readwrite");
       if (l.error)
         return h(l.error);
       f = l.txn, f.oncomplete = function() {
         d && h(null, d);
       };
     }
-    var d, y = A._id, j = f.objectStore(je), R = j.get(y);
-    R.onerror = Pe(h), R.onsuccess = function(B) {
+    var d, y = A._id, j = f.objectStore(Ce), R = j.get(y);
+    R.onerror = Ie(h), R.onsuccess = function(B) {
       var L = B.target.result;
-      !L || L._rev !== A._rev ? h(V(Ce)) : (j.delete(y), d = {
+      !L || L._rev !== A._rev ? h(V(ke)) : (j.delete(y), d = {
         ok: !0,
         id: y,
         rev: "0-0"
       }, g.ctx && h(null, d));
     };
   }, e._destroy = function(A, g) {
-    At.removeAllListeners(r);
-    var h = _n.get(r);
-    h && h.result && (h.result.close(), rt.delete(r));
+    bt.removeAllListeners(r);
+    var h = pn.get(r);
+    h && h.result && (h.result.close(), nt.delete(r));
     var f = indexedDB.deleteDatabase(r);
     f.onsuccess = function() {
-      _n.delete(r), an() && r in localStorage && delete localStorage[r], g(null, {
+      pn.delete(r), rn() && r in localStorage && delete localStorage[r], g(null, {
         ok: !0
       });
-    }, f.onerror = Pe(g);
+    }, f.onerror = Ie(g);
   };
-  var $ = rt.get(r);
+  var $ = nt.get(r);
   if ($)
-    return i = $.idb, e._meta = $.global, _e(function() {
+    return i = $.idb, e._meta = $.global, pe(function() {
       n(null, e);
     });
   var S = indexedDB.open(r, ff);
-  _n.set(r, S), S.onupgradeneeded = function(A) {
+  pn.set(r, S), S.onupgradeneeded = function(A) {
     var g = A.target.result;
     if (A.oldVersion < 1)
       return o(g);
@@ -3939,41 +3938,41 @@ function bf(e, t, n) {
     d();
   }, S.onsuccess = function(A) {
     i = A.target.result, i.onversionchange = function() {
-      i.close(), rt.delete(r);
+      i.close(), nt.delete(r);
     }, i.onabort = function(B) {
-      Ae("error", "Database has a global failure", B.target.error), a = B.target.error, i.close(), rt.delete(r);
+      $e("error", "Database has a false failure", B.target.error), a = B.target.error, i.close(), nt.delete(r);
     };
-    var g = i.transaction([me, Nn, oe], "readwrite"), h = !1, f, l, d, y;
+    var g = i.transaction([_e, Dn, oe], "readwrite"), h = !1, f, l, d, y;
     function j() {
       typeof d > "u" || !h || (e._meta = {
         name: r,
         instanceId: y,
         blobSupport: d
-      }, rt.set(r, {
+      }, nt.set(r, {
         idb: i,
-        global: e._meta
+        false: e._meta
       }), n(null, e));
     }
     function R() {
       if (!(typeof l > "u" || typeof f > "u")) {
         var B = r + "_id";
-        B in f ? y = f[B] : f[B] = y = fn(), f.docCount = l, g.objectStore(me).put(f);
+        B in f ? y = f[B] : f[B] = y = on(), f.docCount = l, g.objectStore(_e).put(f);
       }
     }
-    g.objectStore(me).get(me).onsuccess = function(B) {
+    g.objectStore(_e).get(_e).onsuccess = function(B) {
       f = B.target.result || {
-        id: me
+        id: _e
       }, R();
     }, pf(g, function(B) {
       l = B, R();
-    }), pn || (pn = gf(g)), pn.then(function(B) {
+    }), gn || (gn = gf(g)), gn.then(function(B) {
       d = B, j();
     }), g.oncomplete = function() {
       h = !0, j();
-    }, g.onabort = Pe(n);
+    }, g.onabort = Ie(n);
   }, S.onerror = function(A) {
     var g = A.target.error && A.target.error.message;
-    g ? g.indexOf("stored database is a higher version") !== -1 && (g = new Error('This DB was created with the newer "indexeddb" adapter, but you are trying to open it with the older "idb" adapter')) : g = "Failed to open indexedDB, are you in private browsing mode?", Ae("error", g), n(V(lr, g));
+    g ? g.indexOf("stored database is a higher version") !== -1 && (g = new Error('This DB was created with the newer "indexeddb" adapter, but you are trying to open it with the older "idb" adapter')) : g = "Failed to open indexedDB, are you in private browsing mode?", $e("error", g), n(V(sr, g));
   };
 }
 _a.valid = function() {
@@ -4008,23 +4007,23 @@ function Af(e, t) {
     O();
   });
 }
-var Of = 25, Sf = 50, Ut = 5e3, xf = 1e4, mn = {};
-function wn(e) {
+var Of = 25, Sf = 50, Mt = 5e3, xf = 1e4, _n = {};
+function mn(e) {
   var t = e.doc || e.ok, n = t && t._attachments;
   !n || Object.keys(n).forEach(function(r) {
     var i = n[r];
-    i.data = pr(i.data, i.content_type);
+    i.data = yr(i.data, i.content_type);
   });
 }
-function Ue(e) {
+function Me(e) {
   return /^_design/.test(e) ? "_design/" + encodeURIComponent(e.slice(8)) : /^_local/.test(e) ? "_local/" + encodeURIComponent(e.slice(7)) : encodeURIComponent(e);
 }
-function Vr(e) {
+function Zr(e) {
   return !e._attachments || !Object.keys(e._attachments) ? Promise.resolve() : Promise.all(Object.keys(e._attachments).map(function(t) {
     var n = e._attachments[t];
     if (n.data && typeof n.data != "string")
       return new Promise(function(r) {
-        _r(n.data, r);
+        gr(n.data, r);
       }).then(function(r) {
         n.data = r;
       });
@@ -4050,13 +4049,13 @@ function kf(e, t) {
   return i.db = a.pop(), i.db.indexOf("%") === -1 && (i.db = encodeURIComponent(i.db)), i.path = a.join("/"), i;
 }
 function ce(e, t) {
-  return Jt(e, e.db + "/" + t);
+  return Kt(e, e.db + "/" + t);
 }
-function Jt(e, t) {
+function Kt(e, t) {
   var n = e.path ? "/" : "";
   return e.protocol + "://" + e.host + (e.port ? ":" + e.port : "") + "/" + e.path + n + t;
 }
-function zt(e) {
+function Ut(e) {
   return "?" + Object.keys(e).map(function(t) {
     return t + "=" + encodeURIComponent(e[t]);
   }).join("&");
@@ -4065,12 +4064,12 @@ function Cf(e) {
   var t = typeof navigator < "u" && navigator.userAgent ? navigator.userAgent.toLowerCase() : "", n = t.indexOf("msie") !== -1, r = t.indexOf("trident") !== -1, i = t.indexOf("edge") !== -1, a = !("method" in e) || e.method === "GET";
   return (n || r || i) && a;
 }
-function Kn(e, t) {
+function zn(e, t) {
   var n = this, r = kf(e.name, e), i = ce(r, "");
   e = le(e);
   var a = function(s, m) {
-    if (m = m || {}, m.headers = m.headers || new ot(), m.credentials = "include", e.auth || r.auth) {
-      var O = e.auth || r.auth, $ = O.username + ":" + O.password, S = Pt(unescape(encodeURIComponent($)));
+    if (m = m || {}, m.headers = m.headers || new ut(), m.credentials = "include", e.auth || r.auth) {
+      var O = e.auth || r.auth, $ = O.username + ":" + O.password, S = It(unescape(encodeURIComponent($)));
       m.headers.set("Authorization", "Basic " + S);
     }
     var A = e.headers || {};
@@ -4081,7 +4080,7 @@ function Kn(e, t) {
     return g(s, m);
   };
   function u(s, m) {
-    return se(s, Be(function(O) {
+    return se(s, Te(function(O) {
       _().then(function() {
         return m.apply(this, O);
       }).catch(function($) {
@@ -4092,18 +4091,18 @@ function Kn(e, t) {
   }
   function o(s, m, O) {
     var $ = {};
-    return m = m || {}, m.headers = m.headers || new ot(), m.headers.get("Content-Type") || m.headers.set("Content-Type", "application/json"), m.headers.get("Accept") || m.headers.set("Accept", "application/json"), a(s, m).then(function(S) {
+    return m = m || {}, m.headers = m.headers || new ut(), m.headers.get("Content-Type") || m.headers.set("Content-Type", "application/json"), m.headers.get("Accept") || m.headers.set("Accept", "application/json"), a(s, m).then(function(S) {
       return $.ok = S.ok, $.status = S.status, S.json();
     }).then(function(S) {
       if ($.data = S, !$.ok) {
         $.data.status = $.status;
-        var A = dt($.data);
+        var A = lt($.data);
         if (O)
           return O(A);
         throw A;
       }
       if (Array.isArray($.data) && ($.data = $.data.map(function(g) {
-        return g.error || g.missing ? dt(g) : g;
+        return g.error || g.missing ? lt(g) : g;
       })), O)
         O(null, $.data);
       else
@@ -4113,7 +4112,7 @@ function Kn(e, t) {
   var c;
   function _() {
     return e.skip_setup ? Promise.resolve() : c || (c = o(i).catch(function(s) {
-      return s && s.status && s.status === 404 ? (Tn(404, "PouchDB is just detecting if the remote exists."), o(i, {
+      return s && s.status && s.status === 404 ? (Pn(404, "PouchDB is just detecting if the remote exists."), o(i, {
         method: "PUT"
       })) : Promise.reject(s);
     }).catch(function(s) {
@@ -4122,12 +4121,12 @@ function Kn(e, t) {
       c = null;
     }), c);
   }
-  _e(function() {
+  pe(function() {
     t(null, n);
   }), n._remote = !0, n.type = function() {
     return "http";
   }, n.id = u("id", function(s) {
-    a(Jt(r, "")).then(function(m) {
+    a(Kt(r, "")).then(function(m) {
       return m.json();
     }).catch(function() {
       return {};
@@ -4152,14 +4151,14 @@ function Kn(e, t) {
     var O = this;
     function $(h) {
       var f = {};
-      s.revs && (f.revs = !0), s.attachments && (f.attachments = !0), s.latest && (f.latest = !0), o(ce(r, "_bulk_get" + zt(f)), {
+      s.revs && (f.revs = !0), s.attachments && (f.attachments = !0), s.latest && (f.latest = !0), o(ce(r, "_bulk_get" + Ut(f)), {
         method: "POST",
         body: JSON.stringify({
           docs: s.docs
         })
       }).then(function(l) {
         s.attachments && s.binary && l.data.results.forEach(function(d) {
-          d.docs.forEach(wn);
+          d.docs.forEach(mn);
         }), h(null, l.data);
       }).catch(h);
     }
@@ -4168,18 +4167,18 @@ function Kn(e, t) {
       function y(B) {
         return function(L, K) {
           d[B] = K.results, ++l === f && m(null, {
-            results: Wt(d)
+            results: Gt(d)
           });
         };
       }
       for (var j = 0; j < f; j++) {
-        var R = It(s, ["revs", "attachments", "binary", "latest"]);
+        var R = jt(s, ["revs", "attachments", "binary", "latest"]);
         R.docs = s.docs.slice(j * h, Math.min(s.docs.length, (j + 1) * h)), Ji(O, R, y(j));
       }
     }
-    var A = Jt(r, ""), g = mn[A];
+    var A = Kt(r, ""), g = _n[A];
     typeof g != "boolean" ? $(function(h, f) {
-      h ? (mn[A] = !1, Tn(h.status, "PouchDB is just detecting if the remote supports the _bulk_get API."), S()) : (mn[A] = !0, m(null, f));
+      h ? (_n[A] = !1, Pn(h.status, "PouchDB is just detecting if the remote supports the _bulk_get API."), S()) : (_n[A] = !0, m(null, f));
     }) : g ? $(m) : S();
   }), n._info = function(s) {
     _().then(function() {
@@ -4191,19 +4190,19 @@ function Kn(e, t) {
     }).catch(s);
   }, n.fetch = function(s, m) {
     return _().then(function() {
-      var O = s.substring(0, 1) === "/" ? Jt(r, s.substring(1)) : ce(r, s);
+      var O = s.substring(0, 1) === "/" ? Kt(r, s.substring(1)) : ce(r, s);
       return a(O, m);
     });
   }, n.get = u("get", function(s, m, O) {
     typeof m == "function" && (O = m, m = {}), m = le(m);
     var $ = {};
-    m.revs && ($.revs = !0), m.revs_info && ($.revs_info = !0), m.latest && ($.latest = !0), m.open_revs && (m.open_revs !== "all" && (m.open_revs = JSON.stringify(m.open_revs)), $.open_revs = m.open_revs), m.rev && ($.rev = m.rev), m.conflicts && ($.conflicts = m.conflicts), m.update_seq && ($.update_seq = m.update_seq), s = Ue(s);
+    m.revs && ($.revs = !0), m.revs_info && ($.revs_info = !0), m.latest && ($.latest = !0), m.open_revs && (m.open_revs !== "all" && (m.open_revs = JSON.stringify(m.open_revs)), $.open_revs = m.open_revs), m.rev && ($.rev = m.rev), m.conflicts && ($.conflicts = m.conflicts), m.update_seq && ($.update_seq = m.update_seq), s = Me(s);
     function S(h) {
       var f = h._attachments, l = f && Object.keys(f);
       if (!f || !l.length)
         return;
       function d(j) {
-        var R = f[j], B = Ue(h._id) + "/" + b(j) + "?rev=" + h._rev;
+        var R = f[j], B = Me(h._id) + "/" + b(j) + "?rev=" + h._rev;
         return a(ce(r, B)).then(function(L) {
           return "buffer" in L ? L.buffer() : L.blob();
         }).then(function(L) {
@@ -4212,7 +4211,7 @@ function Kn(e, t) {
             return (!K || K.set) && (L.type = R.content_type), L;
           }
           return new Promise(function(Z) {
-            _r(L, Z);
+            gr(L, Z);
           });
         }).then(function(L) {
           delete R.stub, delete R.length, R.data = L;
@@ -4231,7 +4230,7 @@ function Kn(e, t) {
           return S(f.ok);
       })) : S(h);
     }
-    var g = ce(r, s + zt($));
+    var g = ce(r, s + Ut($));
     o(g).then(function(h) {
       return Promise.resolve().then(function() {
         if (m.attachments)
@@ -4248,7 +4247,7 @@ function Kn(e, t) {
       _id: s,
       _rev: m
     }, typeof O == "function" && ($ = O, O = {})) : (S = s, typeof m == "function" ? ($ = m, O = {}) : ($ = O, O = m));
-    var A = S._rev || O.rev, g = ce(r, Ue(S._id)) + "?rev=" + A;
+    var A = S._rev || O.rev, g = ce(r, Me(S._id)) + "?rev=" + A;
     o(g, {
       method: "DELETE"
     }, $).catch($);
@@ -4258,7 +4257,7 @@ function Kn(e, t) {
   }
   n.getAttachment = u("getAttachment", function(s, m, O, $) {
     typeof O == "function" && ($ = O, O = {});
-    var S = O.rev ? "?rev=" + O.rev : "", A = ce(r, Ue(s)) + "/" + b(m) + S, g;
+    var S = O.rev ? "?rev=" + O.rev : "", A = ce(r, Me(s)) + "/" + b(m) + S, g;
     a(A, {
       method: "GET"
     }).then(function(h) {
@@ -4271,24 +4270,24 @@ function Kn(e, t) {
       $(h);
     });
   }), n.removeAttachment = u("removeAttachment", function(s, m, O, $) {
-    var S = ce(r, Ue(s) + "/" + b(m)) + "?rev=" + O;
+    var S = ce(r, Me(s) + "/" + b(m)) + "?rev=" + O;
     o(S, {
       method: "DELETE"
     }, $).catch($);
   }), n.putAttachment = u("putAttachment", function(s, m, O, $, S, A) {
     typeof S == "function" && (A = S, S = $, $ = O, O = null);
-    var g = Ue(s) + "/" + b(m), h = ce(r, g);
+    var g = Me(s) + "/" + b(m), h = ce(r, g);
     if (O && (h += "?rev=" + O), typeof $ == "string") {
       var f;
       try {
-        f = hr($);
+        f = dr($);
       } catch {
         return A(V(Wi, "Attachment is not a valid base64 string"));
       }
-      $ = f ? gr(f, S) : "";
+      $ = f ? hr(f, S) : "";
     }
     o(h, {
-      headers: new ot({
+      headers: new ut({
         "Content-Type": S
       }),
       method: "PUT",
@@ -4296,7 +4295,7 @@ function Kn(e, t) {
     }, A).catch(A);
   }), n._bulkDocs = function(s, m, O) {
     s.new_edits = m.new_edits, _().then(function() {
-      return Promise.all(s.docs.map(Vr));
+      return Promise.all(s.docs.map(Zr));
     }).then(function() {
       return o(ce(r, "_bulk_docs"), {
         method: "POST",
@@ -4305,9 +4304,9 @@ function Kn(e, t) {
     }).catch(O);
   }, n._put = function(s, m, O) {
     _().then(function() {
-      return Vr(s);
+      return Zr(s);
     }).then(function() {
-      return o(ce(r, Ue(s._id)), {
+      return o(ce(r, Me(s._id)), {
         method: "PUT",
         body: JSON.stringify(s)
       });
@@ -4320,20 +4319,20 @@ function Kn(e, t) {
     typeof s == "function" && (m = s, s = {}), s = le(s);
     var O = {}, $, S = "GET";
     s.conflicts && (O.conflicts = !0), s.update_seq && (O.update_seq = !0), s.descending && (O.descending = !0), s.include_docs && (O.include_docs = !0), s.attachments && (O.attachments = !0), s.key && (O.key = JSON.stringify(s.key)), s.start_key && (s.startkey = s.start_key), s.startkey && (O.startkey = JSON.stringify(s.startkey)), s.end_key && (s.endkey = s.end_key), s.endkey && (O.endkey = JSON.stringify(s.endkey)), typeof s.inclusive_end < "u" && (O.inclusive_end = !!s.inclusive_end), typeof s.limit < "u" && (O.limit = s.limit), typeof s.skip < "u" && (O.skip = s.skip);
-    var A = zt(O);
+    var A = Ut(O);
     typeof s.keys < "u" && (S = "POST", $ = {
       keys: s.keys
     }), o(ce(r, "_all_docs" + A), {
       method: S,
       body: JSON.stringify($)
     }).then(function(g) {
-      s.include_docs && s.attachments && s.binary && g.data.rows.forEach(wn), m(null, g.data);
+      s.include_docs && s.attachments && s.binary && g.data.rows.forEach(mn), m(null, g.data);
     }).catch(m);
   }), n._changes = function(s) {
     var m = "batch_size" in s ? s.batch_size : Of;
     s = le(s), s.continuous && !("heartbeat" in s) && (s.heartbeat = xf);
     var O = "timeout" in s ? s.timeout : 30 * 1e3;
-    "timeout" in s && s.timeout && O - s.timeout < Ut && (O = s.timeout + Ut), "heartbeat" in s && s.heartbeat && O - s.heartbeat < Ut && (O = s.heartbeat + Ut);
+    "timeout" in s && s.timeout && O - s.timeout < Mt && (O = s.timeout + Mt), "heartbeat" in s && s.heartbeat && O - s.heartbeat < Mt && (O = s.heartbeat + Mt);
     var $ = {};
     "timeout" in s && s.timeout && ($.timeout = s.timeout);
     var S = typeof s.limit < "u" ? s.limit : !1, A = S;
@@ -4349,7 +4348,7 @@ function Kn(e, t) {
     var l = new lo(), d, y = function(B, L) {
       if (!s.aborted) {
         $.since = B, typeof $.since == "object" && ($.since = JSON.stringify($.since)), s.descending ? S && ($.limit = A) : $.limit = !S || A > m ? m : A;
-        var K = ce(r, "_changes" + zt($)), Z = {
+        var K = ce(r, "_changes" + Ut($)), Z = {
           signal: l.signal,
           method: h,
           body: JSON.stringify(f)
@@ -4370,8 +4369,8 @@ function Kn(e, t) {
           var J = {};
           J.query = s.query_params, L.results = L.results.filter(function(U) {
             A--;
-            var v = dr(s)(U);
-            return v && (s.include_docs && s.attachments && s.binary && wn(U), s.return_docs && j.results.push(U), s.onChange(U, Z, Y)), v;
+            var v = cr(s)(U);
+            return v && (s.include_docs && s.attachments && s.binary && mn(U), s.return_docs && j.results.push(U), s.onChange(U, Z, Y)), v;
           });
         } else if (B) {
           s.aborted = !0, s.complete(B);
@@ -4379,7 +4378,7 @@ function Kn(e, t) {
         }
         L && L.last_seq && (d = L.last_seq);
         var G = S && A <= 0 || L && K < m || s.descending;
-        s.continuous && !(S && A <= 0) || !G ? _e(function() {
+        s.continuous && !(S && A <= 0) || !G ? pe(function() {
           y(d, R);
         }) : s.complete(null, j);
       }
@@ -4408,49 +4407,49 @@ function Kn(e, t) {
     });
   };
 }
-Kn.valid = function() {
+zn.valid = function() {
   return !0;
 };
 function jf(e) {
-  e.adapter("http", Kn, !1), e.adapter("https", Kn, !1);
+  e.adapter("http", zn, !1), e.adapter("https", zn, !1);
 }
-function Ke(e) {
+function ze(e) {
   this.status = 400, this.name = "query_parse_error", this.message = e, this.error = !0;
   try {
-    Error.captureStackTrace(this, Ke);
+    Error.captureStackTrace(this, ze);
   } catch {
   }
 }
-ve.exports(Ke, Error);
-function sn(e) {
+ve.exports(ze, Error);
+function fn(e) {
   this.status = 404, this.name = "not_found", this.message = e, this.error = !0;
+  try {
+    Error.captureStackTrace(this, fn);
+  } catch {
+  }
+}
+ve.exports(fn, Error);
+function sn(e) {
+  this.status = 500, this.name = "invalid_value", this.message = e, this.error = !0;
   try {
     Error.captureStackTrace(this, sn);
   } catch {
   }
 }
 ve.exports(sn, Error);
-function cn(e) {
-  this.status = 500, this.name = "invalid_value", this.message = e, this.error = !0;
-  try {
-    Error.captureStackTrace(this, cn);
-  } catch {
-  }
-}
-ve.exports(cn, Error);
 function ma(e, t) {
   return t && e.then(function(n) {
-    _e(function() {
+    pe(function() {
       t(null, n);
     });
   }, function(n) {
-    _e(function() {
+    pe(function() {
       t(n);
     });
   }), e;
 }
 function If(e) {
-  return Be(function(t) {
+  return Te(function(t) {
     var n = t.pop(), r = e.apply(this, t);
     return typeof n == "function" && ma(r, n), r;
   });
@@ -4466,7 +4465,7 @@ function Pf(e, t) {
     });
   });
 }
-function bn(e, t) {
+function wn(e, t) {
   return function() {
     var n = arguments, r = this;
     return e.add(function() {
@@ -4474,23 +4473,23 @@ function bn(e, t) {
     });
   };
 }
-function ei(e) {
-  var t = new ct(e), n = new Array(t.size), r = -1;
+function Vr(e) {
+  var t = new st(e), n = new Array(t.size), r = -1;
   return t.forEach(function(i) {
     n[++r] = i;
   }), n;
 }
-function $n(e) {
+function bn(e) {
   var t = new Array(e.size), n = -1;
   return e.forEach(function(r, i) {
     t[++n] = i;
   }), t;
 }
-function ti(e) {
+function ei(e) {
   var t = "builtin " + e + " function requires map values to be numbers or number arrays";
-  return new cn(t);
+  return new sn(t);
 }
-function Jn(e) {
+function Kn(e) {
   for (var t = 0, n = 0, r = e.length; n < r; n++) {
     var i = e[n];
     if (typeof i != "number")
@@ -4499,41 +4498,41 @@ function Jn(e) {
         for (var a = 0, u = i.length; a < u; a++) {
           var o = i[a];
           if (typeof o != "number")
-            throw ti("_sum");
+            throw ei("_sum");
           typeof t[a] > "u" ? t.push(o) : t[a] += o;
         }
       } else
-        throw ti("_sum");
+        throw ei("_sum");
     else
       typeof t == "number" ? t += i : t[0] += i;
   }
   return t;
 }
-var Tf = Ae.bind(null, "log"), qf = Array.isArray, Bf = JSON.parse;
+var qf = $e.bind(null, "log"), Tf = Array.isArray, Bf = JSON.parse;
 function wa(e, t) {
-  return vr("return (" + e.replace(/;\s*$/, "") + ");", {
+  return lr("return (" + e.replace(/;\s*$/, "") + ");", {
     emit: t,
-    sum: Jn,
-    log: Tf,
-    isArray: qf,
+    sum: Kn,
+    log: qf,
+    isArray: Tf,
     toJSON: Bf
   });
 }
-function St() {
+function At() {
   this.promise = new Promise(function(e) {
     e();
   });
 }
-St.prototype.add = function(e) {
+At.prototype.add = function(e) {
   return this.promise = this.promise.catch(function() {
   }).then(function() {
     return e();
   }), this.promise;
 };
-St.prototype.finish = function() {
+At.prototype.finish = function() {
   return this.promise;
 };
-function ni(e) {
+function ti(e) {
   if (!e)
     return "undefined";
   switch (typeof e) {
@@ -4546,9 +4545,9 @@ function ni(e) {
   }
 }
 function Rf(e, t) {
-  return ni(e) + ni(t) + "undefined";
+  return ti(e) + ti(t) + "undefined";
 }
-function ri(e, t, n, r, i, a) {
+function ni(e, t, n, r, i, a) {
   var u = Rf(n, r), o;
   if (!i && (o = e._cachedViews = e._cachedViews || {}, o[u]))
     return o[u];
@@ -4562,7 +4561,7 @@ function ri(e, t, n, r, i, a) {
       if (!$[b])
         return $[b] = !0, m;
     }
-    return on(e, "_local/" + a, s).then(function() {
+    return un(e, "_local/" + a, s).then(function() {
       return e.registerDependentDatabase(b).then(function(m) {
         var O = m.db;
         O.auto_compaction = !0;
@@ -4587,21 +4586,21 @@ function ri(e, t, n, r, i, a) {
   });
   return o && (o[u] = c), c;
 }
-var ii = {}, ai = new St(), Lf = 50;
-function An(e) {
+var ri = {}, ii = new At(), Lf = 50;
+function $n(e) {
   return e.indexOf("/") === -1 ? [e, e] : e.split("/");
 }
 function Df(e) {
   return e.length === 1 && /^1-/.test(e[0].rev);
 }
-function ui(e, t) {
+function ai(e, t) {
   try {
     e.emit("error", t);
   } catch {
-    Ae("error", `The user's map/reduce function threw an uncaught error.
+    $e("error", `The user's map/reduce function threw an uncaught error.
 You can debug this error by doing:
 myDatabase.on('error', function (err) { debugger; });
-Please double-check your map/reduce function.`), Ae("error", t);
+Please double-check your map/reduce function.`), $e("error", t);
   }
 }
 function Nf(e, t, n, r) {
@@ -4609,7 +4608,7 @@ function Nf(e, t, n, r) {
     try {
       p(w);
     } catch (x) {
-      ui(v, x);
+      ai(v, x);
     }
   }
   function a(v, p, w, x, C) {
@@ -4618,7 +4617,7 @@ function Nf(e, t, n, r) {
         output: p(w, x, C)
       };
     } catch (I) {
-      return ui(v, I), {
+      return ai(v, I), {
         error: I
       };
     }
@@ -4639,7 +4638,7 @@ function Nf(e, t, n, r) {
       var w = p.doc && p.doc._attachments;
       !w || Object.keys(w).forEach(function(x) {
         var C = w[x];
-        w[x].data = pr(C.data, C.content_type);
+        w[x].data = yr(C.data, C.content_type);
       });
     });
   }
@@ -4664,20 +4663,20 @@ function Nf(e, t, n, r) {
   function $(v) {
     if (v) {
       if (typeof v != "number")
-        return new Ke('Invalid value for integer: "' + v + '"');
+        return new ze('Invalid value for integer: "' + v + '"');
       if (v < 0)
-        return new Ke('Invalid value for positive integer: "' + v + '"');
+        return new ze('Invalid value for positive integer: "' + v + '"');
     }
   }
   function S(v, p) {
     var w = v.descending ? "endkey" : "startkey", x = v.descending ? "startkey" : "endkey";
     if (typeof v[w] < "u" && typeof v[x] < "u" && ue(v[w], v[x]) > 0)
-      throw new Ke("No rows can match your key range, reverse your start_key and end_key or set {descending : true}");
+      throw new ze("No rows can match your key range, reverse your start_key and end_key or set {descending : true}");
     if (p.reduce && v.reduce !== !1) {
       if (v.include_docs)
-        throw new Ke("{include_docs:true} is invalid for reduce");
+        throw new ze("{include_docs:true} is invalid for reduce");
       if (v.keys && v.keys.length > 1 && !v.group && !v.group_level)
-        throw new Ke("Multi-key fetches for reduce views must use {group: true}");
+        throw new ze("Multi-key fetches for reduce views must use {group: true}");
     }
     ["group_level", "limit", "skip"].forEach(function(C) {
       var I = $(v[C]);
@@ -4688,15 +4687,15 @@ function Nf(e, t, n, r) {
   function A(v, p, w) {
     var x = [], C, I = "GET", k, P;
     if (s("reduce", w, x), s("include_docs", w, x), s("attachments", w, x), s("limit", w, x), s("descending", w, x), s("group", w, x), s("group_level", w, x), s("skip", w, x), s("stale", w, x), s("conflicts", w, x), s("startkey", w, x, !0), s("start_key", w, x, !0), s("endkey", w, x, !0), s("end_key", w, x, !0), s("inclusive_end", w, x), s("key", w, x, !0), s("update_seq", w, x), x = x.join("&"), x = x === "" ? "" : "?" + x, typeof w.keys < "u") {
-      var T = 2e3, q = "keys=" + encodeURIComponent(JSON.stringify(w.keys));
-      q.length + x.length + 1 <= T ? x += (x[0] === "?" ? "&" : "?") + q : (I = "POST", typeof p == "string" ? C = {
+      var q = 2e3, T = "keys=" + encodeURIComponent(JSON.stringify(w.keys));
+      T.length + x.length + 1 <= q ? x += (x[0] === "?" ? "&" : "?") + T : (I = "POST", typeof p == "string" ? C = {
         keys: w.keys
       } : p.keys = w.keys);
     }
     if (typeof p == "string") {
-      var D = An(p);
+      var D = $n(p);
       return v.fetch("_design/" + D[0] + "/_view/" + D[1] + x, {
-        headers: new ot({
+        headers: new ut({
           "Content-Type": "application/json"
         }),
         method: I,
@@ -4705,7 +4704,7 @@ function Nf(e, t, n, r) {
         return k = E.ok, P = E.status, E.json();
       }).then(function(E) {
         if (!k)
-          throw E.status = P, dt(E);
+          throw E.status = P, lt(E);
         return E.rows.forEach(function(F) {
           if (F.value && F.value.error && F.value.error === "builtin_reduce_error")
             throw new Error(F.reason);
@@ -4715,7 +4714,7 @@ function Nf(e, t, n, r) {
     return C = C || {}, Object.keys(p).forEach(function(E) {
       Array.isArray(p[E]) ? C[E] = p[E] : C[E] = p[E].toString();
     }), v.fetch("_temp_view" + x, {
-      headers: new ot({
+      headers: new ut({
         "Content-Type": "application/json"
       }),
       method: "POST",
@@ -4724,7 +4723,7 @@ function Nf(e, t, n, r) {
       return k = E.ok, P = E.status, E.json();
     }).then(function(E) {
       if (!k)
-        throw E.status = P, dt(E);
+        throw E.status = P, lt(E);
       return E;
     }).then(b(w));
   }
@@ -4758,10 +4757,10 @@ function Nf(e, t, n, r) {
       _id: x,
       keys: []
     }, I = w.get(v), k = I[0], P = I[1];
-    function T() {
+    function q() {
       return Df(P) ? Promise.resolve(C) : p.db.get(x).catch(f(C));
     }
-    function q(E) {
+    function T(E) {
       return E.keys.length ? p.db.allDocs({
         keys: E.keys,
         include_docs: !0
@@ -4770,25 +4769,25 @@ function Nf(e, t, n, r) {
       });
     }
     function D(E, F) {
-      for (var W = [], te = new ct(), M = 0, N = F.rows.length; M < N; M++) {
+      for (var W = [], te = new st(), M = 0, N = F.rows.length; M < N; M++) {
         var z = F.rows[M], Q = z.doc;
         if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
         }
       }
-      var X = $n(k);
+      var X = bn(k);
       return X.forEach(function(he) {
         if (!te.has(he)) {
-          var Se = {
+          var Oe = {
             _id: he
-          }, pt = k.get(he);
-          "value" in pt && (Se.value = pt.value), W.push(Se);
+          }, yt = k.get(he);
+          "value" in yt && (Oe.value = yt.value), W.push(Oe);
         }
-      }), E.keys = ei(X.concat(E.keys)), W.push(E), W;
+      }), E.keys = Vr(X.concat(E.keys)), W.push(E), W;
     }
-    return T().then(function(E) {
-      return q(E).then(function(F) {
+    return q().then(function(E) {
+      return T(E).then(function(F) {
         return D(E, F);
       });
     });
@@ -4799,11 +4798,11 @@ function Nf(e, t, n, r) {
       _id: x,
       seq: 0
     })).then(function(C) {
-      var I = $n(p);
+      var I = bn(p);
       return Promise.all(I.map(function(k) {
         return l(k, v, p);
       })).then(function(k) {
-        var P = Wt(k);
+        var P = Gt(k);
         return C.seq = w, P.push(C), v.db.bulkDocs({
           docs: P
         });
@@ -4811,11 +4810,11 @@ function Nf(e, t, n, r) {
     });
   }
   function y(v) {
-    var p = typeof v == "string" ? v : v.name, w = ii[p];
-    return w || (w = ii[p] = new St()), w;
+    var p = typeof v == "string" ? v : v.name, w = ri[p];
+    return w || (w = ri[p] = new At()), w;
   }
   function j(v, p) {
-    return bn(y(v), function() {
+    return wn(y(v), function() {
       return R(v, p);
     })();
   }
@@ -4824,9 +4823,9 @@ function Nf(e, t, n, r) {
     function C(M, N) {
       var z = {
         id: x._id,
-        key: Ze(M)
+        key: Xe(M)
       };
-      typeof N < "u" && N !== null && (z.value = Ze(N)), w.push(z);
+      typeof N < "u" && N !== null && (z.value = Xe(N)), w.push(z);
     }
     var I = t(v.mapFun, C), k = v.seq || 0;
     function P(M, N) {
@@ -4834,12 +4833,12 @@ function Nf(e, t, n, r) {
         return d(v, M, N);
       };
     }
-    let T = 0, q = {
+    let q = 0, T = {
       view: v.name,
-      indexed_docs: T
+      indexed_docs: q
     };
-    v.sourceDB.emit("indexing", q);
-    var D = new St();
+    v.sourceDB.emit("indexing", T);
+    var D = new At();
     function E() {
       return v.sourceDB.changes({
         return_docs: !0,
@@ -4855,18 +4854,18 @@ function Nf(e, t, n, r) {
       if (!N.length)
         return;
       var z = W(N);
-      D.add(P(z, k)), T = T + N.length;
+      D.add(P(z, k)), q = q + N.length;
       let Q = {
         view: v.name,
         last_seq: M.last_seq,
         results_count: N.length,
-        indexed_docs: T
+        indexed_docs: q
       };
       if (v.sourceDB.emit("indexing", Q), !(N.length < p.changes_batch_size))
         return E();
     }
     function W(M) {
-      for (var N = new we(), z = 0, Q = M.length; z < Q; z++) {
+      for (var N = new me(), z = 0, Q = M.length; z < Q; z++) {
         var ee = M[z];
         if (ee.doc._id[0] !== "_") {
           w = [], x = ee.doc, x._deleted || i(v.sourceDB, I, x), w.sort(u);
@@ -4878,9 +4877,9 @@ function Nf(e, t, n, r) {
       return N;
     }
     function te(M) {
-      for (var N = new we(), z, Q = 0, ee = M.length; Q < ee; Q++) {
+      for (var N = new me(), z, Q = 0, ee = M.length; Q < ee; Q++) {
         var X = M[Q], he = [X.key, X.id];
-        Q > 0 && ue(X.key, z) === 0 && he.push(Q), N.set(xe(he), X), z = X.key;
+        Q > 0 && ue(X.key, z) === 0 && he.push(Q), N.set(Se(he), X), z = X.key;
       }
       return N;
     }
@@ -4905,13 +4904,13 @@ function Nf(e, t, n, r) {
         groupKey: W
       });
     }), p = [];
-    for (var P = 0, T = I.length; P < T; P++) {
-      var q = I[P], D = a(v.sourceDB, C, q.keys, q.values, !1);
-      if (D.error && D.error instanceof cn)
+    for (var P = 0, q = I.length; P < q; P++) {
+      var T = I[P], D = a(v.sourceDB, C, T.keys, T.values, !1);
+      if (D.error && D.error instanceof sn)
         throw D.error;
       p.push({
         value: D.error ? null : D.output,
-        key: q.groupKey
+        key: T.groupKey
       });
     }
     return {
@@ -4919,7 +4918,7 @@ function Nf(e, t, n, r) {
     };
   }
   function L(v, p) {
-    return bn(y(v), function() {
+    return wn(y(v), function() {
       return K(v, p);
     })();
   }
@@ -4954,7 +4953,7 @@ function Nf(e, t, n, r) {
         offset: C,
         rows: o(M, p.limit, p.skip)
       }, p.update_seq && (N.update_seq = v.seq), p.include_docs) {
-        var z = ei(M.map(c));
+        var z = Vr(M.map(c));
         return v.sourceDB.allDocs({
           keys: z,
           include_docs: !0,
@@ -4962,46 +4961,46 @@ function Nf(e, t, n, r) {
           attachments: p.attachments,
           binary: p.binary
         }).then(function(Q) {
-          var ee = new we();
+          var ee = new me();
           return Q.rows.forEach(function(X) {
             ee.set(X.id, X.doc);
           }), M.forEach(function(X) {
-            var he = c(X), Se = ee.get(he);
-            Se && (X.doc = Se);
+            var he = c(X), Oe = ee.get(he);
+            Oe && (X.doc = Oe);
           }), N;
         });
       } else
         return N;
     }
     if (typeof p.keys < "u") {
-      var P = p.keys, T = P.map(function(M) {
+      var P = p.keys, q = P.map(function(M) {
         var N = {
-          startkey: xe([M]),
-          endkey: xe([M, {}])
+          startkey: Se([M]),
+          endkey: Se([M, {}])
         };
         return p.update_seq && (N.update_seq = !0), I(N);
       });
-      return Promise.all(T).then(Wt).then(k);
+      return Promise.all(q).then(Gt).then(k);
     } else {
-      var q = {
+      var T = {
         descending: p.descending
       };
-      p.update_seq && (q.update_seq = !0);
+      p.update_seq && (T.update_seq = !0);
       var D, E;
-      if ("start_key" in p && (D = p.start_key), "startkey" in p && (D = p.startkey), "end_key" in p && (E = p.end_key), "endkey" in p && (E = p.endkey), typeof D < "u" && (q.startkey = p.descending ? xe([D, {}]) : xe([D])), typeof E < "u") {
+      if ("start_key" in p && (D = p.start_key), "startkey" in p && (D = p.startkey), "end_key" in p && (E = p.end_key), "endkey" in p && (E = p.endkey), typeof D < "u" && (T.startkey = p.descending ? Se([D, {}]) : Se([D])), typeof E < "u") {
         var F = p.inclusive_end !== !1;
-        p.descending && (F = !F), q.endkey = xe(F ? [E, {}] : [E]);
+        p.descending && (F = !F), T.endkey = Se(F ? [E, {}] : [E]);
       }
       if (typeof p.key < "u") {
-        var W = xe([p.key]), te = xe([p.key, {}]);
-        q.descending ? (q.endkey = W, q.startkey = te) : (q.startkey = W, q.endkey = te);
+        var W = Se([p.key]), te = Se([p.key, {}]);
+        T.descending ? (T.endkey = W, T.startkey = te) : (T.startkey = W, T.endkey = te);
       }
-      return x || (typeof p.limit == "number" && (q.limit = p.limit), q.skip = C), I(q).then(k);
+      return x || (typeof p.limit == "number" && (T.limit = p.limit), T.skip = C), I(T).then(k);
     }
   }
   function Z(v) {
     return v.fetch("_view_cleanup", {
-      headers: new ot({
+      headers: new ut({
         "Content-Type": "application/json"
       }),
       method: "POST"
@@ -5011,33 +5010,33 @@ function Nf(e, t, n, r) {
   }
   function Y(v) {
     return v.get("_local/" + e).then(function(p) {
-      var w = new we();
+      var w = new me();
       Object.keys(p.views).forEach(function(C) {
-        var I = An(C), k = "_design/" + I[0], P = I[1], T = w.get(k);
-        T || (T = new ct(), w.set(k, T)), T.add(P);
+        var I = $n(C), k = "_design/" + I[0], P = I[1], q = w.get(k);
+        q || (q = new st(), w.set(k, q)), q.add(P);
       });
       var x = {
-        keys: $n(w),
+        keys: bn(w),
         include_docs: !0
       };
       return v.allDocs(x).then(function(C) {
         var I = {};
-        C.rows.forEach(function(T) {
-          var q = T.key.substring(8);
-          w.get(T.key).forEach(function(D) {
-            var E = q + "/" + D;
+        C.rows.forEach(function(q) {
+          var T = q.key.substring(8);
+          w.get(q.key).forEach(function(D) {
+            var E = T + "/" + D;
             p.views[E] || (E = D);
-            var F = Object.keys(p.views[E]), W = T.doc && T.doc.views && T.doc.views[D];
+            var F = Object.keys(p.views[E]), W = q.doc && q.doc.views && q.doc.views[D];
             F.forEach(function(te) {
               I[te] = I[te] || W;
             });
           });
         });
-        var k = Object.keys(I).filter(function(T) {
-          return !I[T];
-        }), P = k.map(function(T) {
-          return bn(y(T), function() {
-            return new v.constructor(T, v.__opts).destroy();
+        var k = Object.keys(I).filter(function(q) {
+          return !I[q];
+        }), P = k.map(function(q) {
+          return wn(y(q), function() {
+            return new v.constructor(q, v.__opts).destroy();
           })();
         });
         return Promise.all(P).then(function() {
@@ -5053,31 +5052,31 @@ function Nf(e, t, n, r) {
   function J(v, p, w) {
     if (typeof v._query == "function")
       return g(v, p, w);
-    if (Te(v))
+    if (Pe(v))
       return A(v, p, w);
     var x = {
       changes_batch_size: v.__opts.view_update_changes_batch_size || Lf
     };
     if (typeof p != "string")
-      return S(w, p), ai.add(function() {
-        var T = ri(v, "temp_view/temp_view", p.map, p.reduce, !0, e);
-        return T.then(function(q) {
-          return Pf(j(q, x).then(function() {
-            return L(q, w);
+      return S(w, p), ii.add(function() {
+        var q = ni(v, "temp_view/temp_view", p.map, p.reduce, !0, e);
+        return q.then(function(T) {
+          return Pf(j(T, x).then(function() {
+            return L(T, w);
           }), function() {
-            return q.db.destroy();
+            return T.db.destroy();
           });
         });
-      }), ai.finish();
-    var C = p, I = An(C), k = I[0], P = I[1];
-    return v.get("_design/" + k).then(function(T) {
-      var q = T.views && T.views[P];
-      if (!q)
-        throw new sn("ddoc " + T._id + " has no view named " + P);
-      r(T, P), S(w, q);
-      var D = ri(v, C, q.map, q.reduce, !1, e);
+      }), ii.finish();
+    var C = p, I = $n(C), k = I[0], P = I[1];
+    return v.get("_design/" + k).then(function(q) {
+      var T = q.views && q.views[P];
+      if (!T)
+        throw new fn("ddoc " + q._id + " has no view named " + P);
+      r(q, P), S(w, T);
+      var D = ni(v, C, T.map, T.reduce, !1, e);
       return D.then(function(E) {
-        return w.stale === "ok" || w.stale === "update_after" ? (w.stale === "update_after" && _e(function() {
+        return w.stale === "ok" || w.stale === "update_after" ? (w.stale === "update_after" && pe(function() {
           j(E, x);
         }), L(E, w)) : j(E, x).then(function() {
           return L(E, w);
@@ -5097,16 +5096,16 @@ function Nf(e, t, n, r) {
   }
   var U = If(function() {
     var v = this;
-    return typeof v._viewCleanup == "function" ? h(v) : Te(v) ? Z(v) : Y(v);
+    return typeof v._viewCleanup == "function" ? h(v) : Pe(v) ? Z(v) : Y(v);
   });
   return {
     query: G,
     viewCleanup: U
   };
 }
-var On = {
+var An = {
   _sum: function(e, t) {
-    return Jn(t);
+    return Kn(t);
   },
   _count: function(e, t) {
     return t.length;
@@ -5120,7 +5119,7 @@ var On = {
       return i;
     }
     return {
-      sum: Jn(t),
+      sum: Kn(t),
       min: Math.min.apply(null, t),
       max: Math.max.apply(null, t),
       count: t.length,
@@ -5130,11 +5129,11 @@ var On = {
 };
 function Ff(e) {
   if (/^_sum/.test(e))
-    return On._sum;
+    return An._sum;
   if (/^_count/.test(e))
-    return On._count;
+    return An._count;
   if (/^_stats/.test(e))
-    return On._stats;
+    return An._stats;
   if (/^_/.test(e))
     throw new Error(e + " is not a supported reduce function.");
 }
@@ -5154,7 +5153,7 @@ function Uf(e) {
 function zf(e, t) {
   var n = e.views && e.views[t];
   if (typeof n.map != "string")
-    throw new sn("ddoc " + e._id + " has no string view named " + t + ", instead found object of type: " + typeof n.map);
+    throw new fn("ddoc " + e._id + " has no string view named " + t + ", instead found object of type: " + typeof n.map);
 }
 var Kf = "mrviews", ba = Nf(Kf, Mf, Uf, zf);
 function Jf(e, t, n) {
@@ -5167,13 +5166,13 @@ var Gf = {
   query: Jf,
   viewCleanup: Qf
 };
-function oi(e) {
+function ui(e) {
   return /^1-/.test(e);
 }
 function Wf(e, t, n) {
   return !e._attachments || !e._attachments[n] || e._attachments[n].digest !== t._attachments[n].digest;
 }
-function fi(e, t) {
+function oi(e, t) {
   var n = Object.keys(t._attachments);
   return Promise.all(n.map(function(r) {
     return e.getAttachment(t._id, r, {
@@ -5182,7 +5181,7 @@ function fi(e, t) {
   }));
 }
 function Hf(e, t, n) {
-  var r = Te(t) && !Te(e), i = Object.keys(n._attachments);
+  var r = Pe(t) && !Pe(e), i = Object.keys(n._attachments);
   return r ? e.get(n._id).then(function(a) {
     return Promise.all(i.map(function(u) {
       return Wf(a, n, u) ? t.getAttachment(n._id, u) : e.getAttachment(a._id, u);
@@ -5190,8 +5189,8 @@ function Hf(e, t, n) {
   }).catch(function(a) {
     if (a.status !== 404)
       throw a;
-    return fi(t, n);
-  }) : fi(t, n);
+    return oi(t, n);
+  }) : oi(t, n);
 }
 function Yf(e) {
   var t = [];
@@ -5230,7 +5229,7 @@ function Xf(e, t, n, r) {
             });
           }));
         })).then(function($) {
-          i = i.concat(Wt($).filter(Boolean));
+          i = i.concat(Gt($).filter(Boolean));
         });
       });
   }
@@ -5249,14 +5248,14 @@ function Xf(e, t, n, r) {
       if (r.cancelled)
         throw new Error("cancelled");
       O.rows.forEach(function($) {
-        $.deleted || !$.doc || !oi($.value.rev) || o($.doc) || c($.doc) || ($.doc._conflicts && delete $.doc._conflicts, i.push($.doc), delete n[$.id]);
+        $.deleted || !$.doc || !ui($.value.rev) || o($.doc) || c($.doc) || ($.doc._conflicts && delete $.doc._conflicts, i.push($.doc), delete n[$.id]);
       });
     });
   }
   function b() {
     var m = Object.keys(n).filter(function(O) {
       var $ = n[O].missing;
-      return $.length === 1 && oi($[0]);
+      return $.length === 1 && ui($[0]);
     });
     if (m.length > 0)
       return _(m);
@@ -5269,16 +5268,16 @@ function Xf(e, t, n, r) {
   }
   return Promise.resolve().then(b).then(u).then(s);
 }
-var si = 1, ci = "pouchdb", Zf = 5, Ie = 0;
-function Sr(e, t, n, r, i) {
+var fi = 1, si = "pouchdb", Zf = 5, je = 0;
+function Ar(e, t, n, r, i) {
   return e.get(t).catch(function(a) {
     if (a.status === 404)
-      return (e.adapter === "http" || e.adapter === "https") && Tn(404, "PouchDB is just checking if a remote checkpoint exists."), {
+      return (e.adapter === "http" || e.adapter === "https") && Pn(404, "PouchDB is just checking if a remote checkpoint exists."), {
         session_id: r,
         _id: t,
         history: [],
-        replicator: ci,
-        version: si
+        replicator: si,
+        version: fi
       };
     throw a;
   }).then(function(a) {
@@ -5288,29 +5287,29 @@ function Sr(e, t, n, r, i) {
       }), a.history.unshift({
         last_seq: n,
         session_id: r
-      }), a.history = a.history.slice(0, Zf), a.version = si, a.replicator = ci, a.session_id = r, a.last_seq = n, e.put(a).catch(function(u) {
+      }), a.history = a.history.slice(0, Zf), a.version = fi, a.replicator = si, a.session_id = r, a.last_seq = n, e.put(a).catch(function(u) {
         if (u.status === 409)
-          return Sr(e, t, n, r, i);
+          return Ar(e, t, n, r, i);
         throw u;
       });
   });
 }
-function Bt(e, t, n, r, i) {
+function Tt(e, t, n, r, i) {
   this.src = e, this.target = t, this.id = n, this.returnValue = r, this.opts = i || {};
 }
-Bt.prototype.writeCheckpoint = function(e, t) {
+Tt.prototype.writeCheckpoint = function(e, t) {
   var n = this;
   return this.updateTarget(e, t).then(function() {
     return n.updateSource(e, t);
   });
 };
-Bt.prototype.updateTarget = function(e, t) {
-  return this.opts.writeTargetCheckpoint ? Sr(this.target, this.id, e, t, this.returnValue) : Promise.resolve(!0);
+Tt.prototype.updateTarget = function(e, t) {
+  return this.opts.writeTargetCheckpoint ? Ar(this.target, this.id, e, t, this.returnValue) : Promise.resolve(!0);
 };
-Bt.prototype.updateSource = function(e, t) {
+Tt.prototype.updateSource = function(e, t) {
   if (this.opts.writeSourceCheckpoint) {
     var n = this;
-    return Sr(this.src, this.id, e, t, this.returnValue).catch(function(r) {
+    return Ar(this.src, this.id, e, t, this.returnValue).catch(function(r) {
       if (Aa(r))
         return n.opts.writeSourceCheckpoint = !1, !0;
       throw r;
@@ -5318,7 +5317,7 @@ Bt.prototype.updateSource = function(e, t) {
   } else
     return Promise.resolve(!0);
 };
-var li = {
+var ci = {
   undefined: function(e, t) {
     return ue(e.last_seq, t.last_seq) === 0 ? t.last_seq : 0;
   },
@@ -5326,36 +5325,36 @@ var li = {
     return Vf(t, e).last_seq;
   }
 };
-Bt.prototype.getCheckpoint = function() {
+Tt.prototype.getCheckpoint = function() {
   var e = this;
   return e.opts && e.opts.writeSourceCheckpoint && !e.opts.writeTargetCheckpoint ? e.src.get(e.id).then(function(t) {
-    return t.last_seq || Ie;
+    return t.last_seq || je;
   }).catch(function(t) {
     if (t.status !== 404)
       throw t;
-    return Ie;
+    return je;
   }) : e.target.get(e.id).then(function(t) {
-    return e.opts && e.opts.writeTargetCheckpoint && !e.opts.writeSourceCheckpoint ? t.last_seq || Ie : e.src.get(e.id).then(function(n) {
+    return e.opts && e.opts.writeTargetCheckpoint && !e.opts.writeSourceCheckpoint ? t.last_seq || je : e.src.get(e.id).then(function(n) {
       if (t.version !== n.version)
-        return Ie;
+        return je;
       var r;
-      return t.version ? r = t.version.toString() : r = "undefined", r in li ? li[r](t, n) : Ie;
+      return t.version ? r = t.version.toString() : r = "undefined", r in ci ? ci[r](t, n) : je;
     }, function(n) {
       if (n.status === 404 && t.last_seq)
         return e.src.put({
           _id: e.id,
-          last_seq: Ie
+          last_seq: je
         }).then(function() {
-          return Ie;
+          return je;
         }, function(r) {
-          return Aa(r) ? (e.opts.writeSourceCheckpoint = !1, t.last_seq) : Ie;
+          return Aa(r) ? (e.opts.writeSourceCheckpoint = !1, t.last_seq) : je;
         });
       throw n;
     });
   }).catch(function(t) {
     if (t.status !== 404)
       throw t;
-    return Ie;
+    return je;
   });
 };
 function Vf(e, t) {
@@ -5368,29 +5367,29 @@ function $a(e, t) {
   var n = e[0], r = e.slice(1), i = t[0], a = t.slice(1);
   if (!n || t.length === 0)
     return {
-      last_seq: Ie,
+      last_seq: je,
       history: []
     };
   var u = n.session_id;
-  if (Qn(u, t))
+  if (Jn(u, t))
     return {
       last_seq: n.last_seq,
       history: e
     };
   var o = i.session_id;
-  return Qn(o, r) ? {
+  return Jn(o, r) ? {
     last_seq: i.last_seq,
     history: a
   } : $a(r, a);
 }
-function Qn(e, t) {
+function Jn(e, t) {
   var n = t[0], r = t.slice(1);
-  return !e || t.length === 0 ? !1 : e === n.session_id ? !0 : Qn(e, r);
+  return !e || t.length === 0 ? !1 : e === n.session_id ? !0 : Jn(e, r);
 }
 function Aa(e) {
   return typeof e.status == "number" && Math.floor(e.status / 100) === 4;
 }
-var di = 0;
+var li = 0;
 function es(e, t, n, r) {
   if (e.retry === !1) {
     t.emit("error", n), t.removeAllListeners();
@@ -5399,13 +5398,13 @@ function es(e, t, n, r) {
   if (typeof e.back_off_function != "function" && (e.back_off_function = xu), t.emit("requestError", n), t.state === "active" || t.state === "pending") {
     t.emit("paused", n), t.state = "stopped";
     var i = function() {
-      e.current_back_off = di;
+      e.current_back_off = li;
     }, a = function() {
       t.removeListener("active", i);
     };
     t.once("paused", a), t.once("active", i);
   }
-  e.current_back_off = e.current_back_off || di, e.current_back_off = e.back_off_function(e.current_back_off), setTimeout(r, e.current_back_off);
+  e.current_back_off = e.current_back_off || li, e.current_back_off = e.back_off_function(e.current_back_off), setTimeout(r, e.current_back_off);
 }
 function ts(e) {
   return Object.keys(e).sort(ue).reduce(function(t, n) {
@@ -5417,7 +5416,7 @@ function ns(e, t, n) {
   return n.selector && (o = JSON.stringify(n.selector)), n.filter && n.query_params && (a = JSON.stringify(ts(n.query_params))), n.filter && n.filter === "_view" && (u = n.view.toString()), Promise.all([e.id(), t.id()]).then(function(c) {
     var _ = c[0] + c[1] + i + u + a + r + o;
     return new Promise(function(b) {
-      mr(_, b);
+      pr(_, b);
     });
   }).then(function(c) {
     return c = c.replace(/\//g, ".").replace(/\+/g, "_"), "_local/" + c;
@@ -5428,7 +5427,7 @@ function Oa(e, t, n, r, i) {
     seq: 0,
     changes: [],
     docs: []
-  }, c = !1, _ = !1, b = !1, s = 0, m = n.continuous || n.live || !1, O = n.batch_size || 100, $ = n.batches_limit || 10, S = n.style || "all_docs", A = !1, g = n.doc_ids, h = n.selector, f, l, d = [], y = fn();
+  }, c = !1, _ = !1, b = !1, s = 0, m = n.continuous || n.live || !1, O = n.batch_size || 100, $ = n.batches_limit || 10, S = n.style || "all_docs", A = !1, g = n.doc_ids, h = n.selector, f, l, d = [], y = on();
   i = i || {
     ok: !0,
     start_time: new Date().toISOString(),
@@ -5455,7 +5454,7 @@ function Oa(e, t, n, r, i) {
       } : P = {
         writeSourceCheckpoint: !0,
         writeTargetCheckpoint: !0
-      }, l = new Bt(e, t, f, r, P);
+      }, l = new Tt(e, t, f, r, P);
     });
   }
   function B() {
@@ -5466,16 +5465,16 @@ function Oa(e, t, n, r, i) {
       return t.bulkDocs({
         docs: k,
         new_edits: !1
-      }, P).then(function(T) {
+      }, P).then(function(q) {
         if (r.cancelled)
           throw U(), new Error("cancelled");
-        var q = /* @__PURE__ */ Object.create(null);
-        T.forEach(function(E) {
-          E.error && (q[E.id] = E);
+        var T = /* @__PURE__ */ Object.create(null);
+        q.forEach(function(E) {
+          E.error && (T[E.id] = E);
         });
-        var D = Object.keys(q).length;
+        var D = Object.keys(T).length;
         i.doc_write_failures += D, i.docs_written += k.length - D, k.forEach(function(E) {
-          var F = q[E._id];
+          var F = T[E._id];
           if (F) {
             i.errors.push(F);
             var W = (F.name || "").toLowerCase();
@@ -5486,8 +5485,8 @@ function Oa(e, t, n, r, i) {
           } else
             d.push(E);
         });
-      }, function(T) {
-        throw i.doc_write_failures += k.length, T;
+      }, function(q) {
+        throw i.doc_write_failures += k.length, q;
       });
     }
   }
@@ -5511,8 +5510,8 @@ function Oa(e, t, n, r, i) {
     return u.changes.forEach(function(P) {
       r.emit("checkpoint", {
         revs_diff: P
-      }), P.id !== "_user/" && (k[P.id] = P.changes.map(function(T) {
-        return T.rev;
+      }), P.id !== "_user/" && (k[P.id] = P.changes.map(function(q) {
+        return q.rev;
       }));
     }), t.revsDiff(k).then(function(P) {
       if (r.cancelled)
@@ -5569,14 +5568,14 @@ function Oa(e, t, n, r, i) {
       } else
         r.emit("complete", i), r.removeAllListeners();
   }
-  function v(k, P, T) {
+  function v(k, P, q) {
     if (r.cancelled)
       return U();
     typeof P == "number" && (o.pending = P);
-    var q = dr(n)(k);
-    !q || (o.seq = k.seq || T, o.changes.push(k), r.emit("checkpoint", {
+    var T = cr(n)(k);
+    !T || (o.seq = k.seq || q, o.changes.push(k), r.emit("checkpoint", {
       pending_batch: o.seq
-    }), _e(function() {
+    }), pe(function() {
       J(a.length === 0 && j.live);
     }));
   }
@@ -5604,14 +5603,14 @@ function Oa(e, t, n, r, i) {
       return;
     A = !0;
     function k() {
-      T.cancel();
+      q.cancel();
     }
     function P() {
       r.removeListener("cancel", k);
     }
     r._changes && (r.removeListener("cancel", r._abortChanges), r._changes.cancel()), r.once("cancel", k);
-    var T = e.changes(j).on("change", v);
-    T.then(P, P), T.then(p).catch(w), n.retry && (r._changes = T, r._abortChanges = k);
+    var q = e.changes(j).on("change", v);
+    q.then(P, P), q.then(p).catch(w), n.retry && (r._changes = q, r._abortChanges = k);
   }
   function C() {
     R().then(function() {
@@ -5653,8 +5652,8 @@ function Oa(e, t, n, r, i) {
     s = n.since, C();
   }).catch(I);
 }
-ve.exports(ln, de.exports);
-function ln() {
+ve.exports(cn, de.exports);
+function cn() {
   de.exports.call(this), this.cancelled = !1, this.state = "pending";
   var e = this, t = new Promise(function(n, r) {
     e.once("complete", n), e.once("error", r);
@@ -5666,10 +5665,10 @@ function ln() {
   }, e.catch(function() {
   });
 }
-ln.prototype.cancel = function() {
+cn.prototype.cancel = function() {
   this.cancelled = !0, this.state = "cancelled", this.emit("cancel");
 };
-ln.prototype.ready = function(e, t) {
+cn.prototype.ready = function(e, t) {
   var n = this;
   if (n._readyCalled)
     return;
@@ -5683,26 +5682,26 @@ ln.prototype.ready = function(e, t) {
   }
   n.once("complete", i), n.once("error", i);
 };
-function Xt(e, t) {
+function Yt(e, t) {
   var n = t.PouchConstructor;
   return typeof e == "string" ? new n(e, t) : e;
 }
-function Gn(e, t, n, r) {
+function Qn(e, t, n, r) {
   if (typeof n == "function" && (r = n, n = {}), typeof n > "u" && (n = {}), n.doc_ids && !Array.isArray(n.doc_ids))
-    throw V(un, "`doc_ids` filter parameter is not a list.");
+    throw V(an, "`doc_ids` filter parameter is not a list.");
   n.complete = r, n = le(n), n.continuous = n.continuous || n.live, n.retry = "retry" in n ? n.retry : !1, n.PouchConstructor = n.PouchConstructor || this;
-  var i = new ln(), a = Xt(e, n), u = Xt(t, n);
+  var i = new cn(), a = Yt(e, n), u = Yt(t, n);
   return Oa(a, u, n, i), i;
 }
-ve.exports(xr, de.exports);
+ve.exports(Or, de.exports);
 function rs(e, t, n, r) {
-  return typeof n == "function" && (r = n, n = {}), typeof n > "u" && (n = {}), n = le(n), n.PouchConstructor = n.PouchConstructor || this, e = Xt(e, n), t = Xt(t, n), new xr(e, t, n, r);
+  return typeof n == "function" && (r = n, n = {}), typeof n > "u" && (n = {}), n = le(n), n.PouchConstructor = n.PouchConstructor || this, e = Yt(e, n), t = Yt(t, n), new Or(e, t, n, r);
 }
-function xr(e, t, n, r) {
+function Or(e, t, n, r) {
   var i = this;
   this.canceled = !1;
-  var a = n.push ? He({}, n, n.push) : n, u = n.pull ? He({}, n, n.pull) : n;
-  this.push = Gn(e, t, a), this.pull = Gn(t, e, u), this.pushPaused = !0, this.pullPaused = !0;
+  var a = n.push ? We({}, n, n.push) : n, u = n.pull ? We({}, n, n.pull) : n;
+  this.push = Qn(e, t, a), this.pull = Qn(t, e, u), this.pushPaused = !0, this.pullPaused = !0;
   function o(f) {
     i.emit("change", {
       direction: "pull",
@@ -5775,11 +5774,11 @@ function xr(e, t, n, r) {
     return h.catch(f);
   };
 }
-xr.prototype.cancel = function() {
+Or.prototype.cancel = function() {
   this.canceled || (this.canceled = !0, this.push.cancel(), this.pull.cancel());
 };
 function is(e) {
-  e.replicate = Gn, e.sync = rs, Object.defineProperty(e.prototype, "replicate", {
+  e.replicate = Qn, e.sync = rs, Object.defineProperty(e.prototype, "replicate", {
     get: function() {
       var t = this;
       return typeof this.replicateMethods > "u" && (this.replicateMethods = {
@@ -5832,70 +5831,70 @@ new ie(400, "bad_request", "Invalid rev format");
 new ie(412, "file_exists", "The database could not be created, the file already exists.");
 new ie(412, "missing_stub", "A pre-existing attachment stub wasn't found");
 new ie(413, "invalid_url", "Provided URL is invalid");
-function Wn(e) {
+function Gn(e) {
   if (typeof e != "object") {
     var t = e;
     e = as, e.data = t;
   }
   return "error" in e && e.error === "conflict" && (e.name = "conflict", e.status = 409), "name" in e || (e.name = e.error || "unknown"), "status" in e || (e.status = 500), "message" in e || (e.message = e.message || e.reason), "stack" in e || (e.stack = new Error().stack), e;
 }
-var Qt = Headers;
-function dn(e) {
+var Jt = Headers;
+function ln(e) {
   return "$" + e;
 }
 function Sa(e) {
   return e.substring(1);
 }
-function Le() {
+function Re() {
   this._store = {};
 }
-Le.prototype.get = function(e) {
-  var t = dn(e);
+Re.prototype.get = function(e) {
+  var t = ln(e);
   return this._store[t];
 };
-Le.prototype.set = function(e, t) {
-  var n = dn(e);
+Re.prototype.set = function(e, t) {
+  var n = ln(e);
   return this._store[n] = t, !0;
 };
-Le.prototype.has = function(e) {
-  var t = dn(e);
+Re.prototype.has = function(e) {
+  var t = ln(e);
   return t in this._store;
 };
-Le.prototype.keys = function() {
+Re.prototype.keys = function() {
   return Object.keys(this._store).map((e) => Sa(e));
 };
-Le.prototype.delete = function(e) {
-  var t = dn(e), n = t in this._store;
+Re.prototype.delete = function(e) {
+  var t = ln(e), n = t in this._store;
   return delete this._store[t], n;
 };
-Le.prototype.forEach = function(e) {
+Re.prototype.forEach = function(e) {
   for (var t = Object.keys(this._store), n = 0, r = t.length; n < r; n++) {
     var i = t[n], a = this._store[i];
     i = Sa(i), e(a, i);
   }
 };
-Object.defineProperty(Le.prototype, "size", {
+Object.defineProperty(Re.prototype, "size", {
   get: function() {
     return Object.keys(this._store).length;
   }
 });
-function Rt(e) {
-  if (this._store = new Le(), e && Array.isArray(e))
+function Bt(e) {
+  if (this._store = new Re(), e && Array.isArray(e))
     for (var t = 0, n = e.length; t < n; t++)
       this.add(e[t]);
 }
-Rt.prototype.add = function(e) {
+Bt.prototype.add = function(e) {
   return this._store.set(e, !0);
 };
-Rt.prototype.has = function(e) {
+Bt.prototype.has = function(e) {
   return this._store.has(e);
 };
-Rt.prototype.forEach = function(e) {
+Bt.prototype.forEach = function(e) {
   this._store.forEach(function(t, n) {
     e(n);
   });
 };
-Object.defineProperty(Rt.prototype, "size", {
+Object.defineProperty(Bt.prototype, "size", {
   get: function() {
     return this._store.size;
   }
@@ -5906,8 +5905,8 @@ function us() {
   var e = Object.getOwnPropertyDescriptor(Map, Symbol.species);
   return e && "get" in e && Map[Symbol.species] === Map;
 }
-var xt, it;
-us() ? (xt = Set, it = Map) : (xt = Rt, it = Le);
+var Ot, rt;
+us() ? (Ot = Set, rt = Map) : (Ot = Bt, rt = Re);
 var os = function(e) {
   return atob(e);
 };
@@ -5945,12 +5944,12 @@ function vs(e, t, n) {
   var r = ds(e, t, n);
   return r + e;
 }
-var xa = -324, Hn = 3, Yn = "";
+var xa = -324, Wn = 3, Hn = "";
 function fe(e, t) {
   if (e === t)
     return 0;
-  e = Ve(e), t = Ve(t);
-  var n = Xn(e), r = Xn(t);
+  e = Ze(e), t = Ze(t);
+  var n = Yn(e), r = Yn(t);
   if (n - r !== 0)
     return n - r;
   switch (typeof e) {
@@ -5963,7 +5962,7 @@ function fe(e, t) {
   }
   return Array.isArray(e) ? _s(e, t) : ws(e, t);
 }
-function Ve(e) {
+function Ze(e) {
   switch (typeof e) {
     case "undefined":
       return null;
@@ -5975,7 +5974,7 @@ function Ve(e) {
         var n = e.length;
         e = new Array(n);
         for (var r = 0; r < n; r++)
-          e[r] = Ve(t[r]);
+          e[r] = Ze(t[r]);
       } else {
         if (e instanceof Date)
           return e.toJSON();
@@ -5984,7 +5983,7 @@ function Ve(e) {
           for (var i in t)
             if (Object.prototype.hasOwnProperty.call(t, i)) {
               var a = t[i];
-              typeof a < "u" && (e[i] = Ve(a));
+              typeof a < "u" && (e[i] = Ze(a));
             }
         }
       }
@@ -6004,19 +6003,19 @@ function hs(e) {
         var t = Array.isArray(e), n = t ? e : Object.keys(e), r = -1, i = n.length, a = "";
         if (t)
           for (; ++r < i; )
-            a += ke(n[r]);
+            a += Ee(n[r]);
         else
           for (; ++r < i; ) {
             var u = n[r];
-            a += ke(u) + ke(e[u]);
+            a += Ee(u) + Ee(e[u]);
           }
         return a;
     }
   return "";
 }
-function ke(e) {
+function Ee(e) {
   var t = "\0";
-  return e = Ve(e), Xn(e) + Yn + hs(e) + t;
+  return e = Ze(e), Yn(e) + Hn + hs(e) + t;
 }
 function ys(e, t) {
   var n = t, r, i = e[t] === "1";
@@ -6025,8 +6024,8 @@ function ys(e, t) {
   else {
     var a = e[t] === "0";
     t++;
-    var u = "", o = e.substring(t, t + Hn), c = parseInt(o, 10) + xa;
-    for (a && (c = -c), t += Hn; ; ) {
+    var u = "", o = e.substring(t, t + Wn), c = parseInt(o, 10) + xa;
+    for (a && (c = -c), t += Wn; ; ) {
       var _ = e[t];
       if (_ === "\0")
         break;
@@ -6121,7 +6120,7 @@ function ws(e, t) {
   }
   return n.length === r.length ? 0 : n.length > r.length ? 1 : -1;
 }
-function Xn(e) {
+function Yn(e) {
   var t = ["boolean", "number", "string", "object"], n = t.indexOf(typeof e);
   if (~n)
     return e === null ? 1 : Array.isArray(e) ? 5 : n < 3 ? n + 2 : n + 3;
@@ -6131,15 +6130,15 @@ function Xn(e) {
 function bs(e) {
   if (e === 0)
     return "1";
-  var t = e.toExponential().split(/e\+?/), n = parseInt(t[1], 10), r = e < 0, i = r ? "0" : "2", a = (r ? -n : n) - xa, u = vs(a.toString(), "0", Hn);
-  i += Yn + u;
+  var t = e.toExponential().split(/e\+?/), n = parseInt(t[1], 10), r = e < 0, i = r ? "0" : "2", a = (r ? -n : n) - xa, u = vs(a.toString(), "0", Wn);
+  i += Hn + u;
   var o = Math.abs(parseFloat(t[0]));
   r && (o = 10 - o);
   var c = o.toFixed(20);
-  return c = c.replace(/\.?0+$/, ""), i += Yn + c, i;
+  return c = c.replace(/\.?0+$/, ""), i += Hn + c, i;
 }
 function Ea(e) {
-  return Gt.hash(e);
+  return Qt.hash(e);
 }
 function $s(e) {
   return typeof ArrayBuffer < "u" && e instanceof ArrayBuffer || typeof Blob < "u" && e instanceof Blob;
@@ -6164,13 +6163,13 @@ function xs(e) {
   var n = t.constructor;
   return typeof n == "function" && n instanceof n && ka.call(n) == Ss;
 }
-function Ne(e) {
+function De(e) {
   var t, n, r;
   if (!e || typeof e != "object")
     return e;
   if (Array.isArray(e)) {
     for (t = [], n = 0, r = e.length; n < r; n++)
-      t[n] = Ne(e[n]);
+      t[n] = De(e[n]);
     return t;
   }
   if (e instanceof Date && isFinite(e))
@@ -6182,22 +6181,22 @@ function Ne(e) {
   t = {};
   for (n in e)
     if (Object.prototype.hasOwnProperty.call(e, n)) {
-      var i = Ne(e[n]);
+      var i = De(e[n]);
       typeof i < "u" && (t[n] = i);
     }
   return t;
 }
 function Es(e) {
   var t = !1;
-  return Be(function(n) {
+  return Te(function(n) {
     if (t)
       throw new Error("once called more than once");
     t = !0, e.apply(this, n);
   });
 }
-function Lt(e) {
-  return Be(function(t) {
-    t = Ne(t);
+function Rt(e) {
+  return Te(function(t) {
+    t = De(t);
     var n = this, r = typeof t[t.length - 1] == "function" ? t.pop() : !1, i = new Promise(function(a, u) {
       var o;
       try {
@@ -6221,25 +6220,25 @@ function ks(e, t) {
   }
   return n;
 }
-var Zn;
+var Xn;
 try {
-  localStorage.setItem("_pouch_check_localstorage", 1), Zn = !!localStorage.getItem("_pouch_check_localstorage");
+  localStorage.setItem("_pouch_check_localstorage", 1), Xn = !!localStorage.getItem("_pouch_check_localstorage");
 } catch {
-  Zn = !1;
+  Xn = !1;
 }
 function Ca() {
-  return Zn;
+  return Xn;
 }
-ve.exports(Dt, de.exports);
+ve.exports(Lt, de.exports);
 function Cs(e) {
   Ca() && addEventListener("storage", function(t) {
     e.emit(t.key);
   });
 }
-function Dt() {
+function Lt() {
   de.exports.call(this), this._listeners = {}, Cs(this);
 }
-Dt.prototype.addListener = function(e, t, n, r) {
+Lt.prototype.addListener = function(e, t, n, r) {
   if (this._listeners[t])
     return;
   var i = this, a = !1;
@@ -6258,28 +6257,28 @@ Dt.prototype.addListener = function(e, t, n, r) {
     n.changes(o).on("change", function(_) {
       _.seq > r.since && !r.cancelled && (r.since = _.seq, r.onChange(_));
     }).on("complete", function() {
-      a === "waiting" && _e(u), a = !1;
+      a === "waiting" && pe(u), a = !1;
     }).on("error", c);
   }
   this._listeners[t] = u, this.on(e, u);
 };
-Dt.prototype.removeListener = function(e, t) {
+Lt.prototype.removeListener = function(e, t) {
   t in this._listeners && (de.exports.prototype.removeListener.call(this, e, this._listeners[t]), delete this._listeners[t]);
 };
-Dt.prototype.notifyLocalWindows = function(e) {
+Lt.prototype.notifyLocalWindows = function(e) {
   Ca() && (localStorage[e] = localStorage[e] === "a" ? "b" : "a");
 };
-Dt.prototype.notify = function(e) {
+Lt.prototype.notify = function(e) {
   this.emit(e), this.notifyLocalWindows(e);
 };
-function Vn(e) {
+function Zn(e) {
   if (typeof console < "u" && typeof console[e] == "function") {
     var t = Array.prototype.slice.call(arguments, 1);
     console[e].apply(console, t);
   }
 }
-var er;
-typeof Object.assign == "function" ? er = Object.assign : er = function(e) {
+var Vn;
+typeof Object.assign == "function" ? Vn = Object.assign : Vn = function(e) {
   for (var t = Object(e), n = 1; n < arguments.length; n++) {
     var r = arguments[n];
     if (r != null)
@@ -6288,16 +6287,16 @@ typeof Object.assign == "function" ? er = Object.assign : er = function(e) {
   }
   return t;
 };
-var Er = er;
-function vi(e) {
+var Sr = Vn;
+function di(e) {
   for (var t = [], n = 0, r = e.length; n < r; n++)
     t = t.concat(e[n]);
   return t;
 }
-function et(e) {
-  return typeof e._remote == "boolean" ? e._remote : typeof e.type == "function" ? (Vn("warn", "db.type() is deprecated and will be removed in a future version of PouchDB"), e.type() === "http") : !1;
+function Ve(e) {
+  return typeof e._remote == "boolean" ? e._remote : typeof e.type == "function" ? (Zn("warn", "db.type() is deprecated and will be removed in a future version of PouchDB"), e.type() === "http") : !1;
 }
-function vn(e, t, n) {
+function dn(e, t, n) {
   return e.get(t).catch(function(r) {
     if (r.status !== 404)
       throw r;
@@ -6319,46 +6318,46 @@ function js(e, t, n) {
   }, function(r) {
     if (r.status !== 409)
       throw r;
-    return vn(e, t._id, n);
+    return dn(e, t._id, n);
   });
 }
-function Je(e) {
+function Ke(e) {
   this.status = 400, this.name = "query_parse_error", this.message = e, this.error = !0;
   try {
-    Error.captureStackTrace(this, Je);
+    Error.captureStackTrace(this, Ke);
   } catch {
   }
 }
-ve.exports(Je, Error);
-function kr(e) {
+ve.exports(Ke, Error);
+function xr(e) {
   this.status = 404, this.name = "not_found", this.message = e, this.error = !0;
   try {
-    Error.captureStackTrace(this, kr);
+    Error.captureStackTrace(this, xr);
   } catch {
   }
 }
-ve.exports(kr, Error);
-function Cr(e) {
+ve.exports(xr, Error);
+function Er(e) {
   this.status = 500, this.name = "invalid_value", this.message = e, this.error = !0;
   try {
-    Error.captureStackTrace(this, Cr);
+    Error.captureStackTrace(this, Er);
   } catch {
   }
 }
-ve.exports(Cr, Error);
+ve.exports(Er, Error);
 function ja(e, t) {
   return t && e.then(function(n) {
-    _e(function() {
+    pe(function() {
       t(null, n);
     });
   }, function(n) {
-    _e(function() {
+    pe(function() {
       t(n);
     });
   }), e;
 }
 function Is(e) {
-  return Be(function(t) {
+  return Te(function(t) {
     var n = t.pop(), r = e.apply(this, t);
     return typeof n == "function" && ja(r, n), r;
   });
@@ -6374,7 +6373,7 @@ function Ps(e, t) {
     });
   });
 }
-function Sn(e, t) {
+function On(e, t) {
   return function() {
     var n = arguments, r = this;
     return e.add(function() {
@@ -6382,33 +6381,33 @@ function Sn(e, t) {
     });
   };
 }
-function hi(e) {
-  var t = new xt(e), n = new Array(t.size), r = -1;
+function vi(e) {
+  var t = new Ot(e), n = new Array(t.size), r = -1;
   return t.forEach(function(i) {
     n[++r] = i;
   }), n;
 }
-function xn(e) {
+function Sn(e) {
   var t = new Array(e.size), n = -1;
   return e.forEach(function(r, i) {
     t[++n] = i;
   }), t;
 }
-function Et() {
+function St() {
   this.promise = new Promise(function(e) {
     e();
   });
 }
-Et.prototype.add = function(e) {
+St.prototype.add = function(e) {
   return this.promise = this.promise.catch(function() {
   }).then(function() {
     return e();
   }), this.promise;
 };
-Et.prototype.finish = function() {
+St.prototype.finish = function() {
   return this.promise;
 };
-function yi(e) {
+function hi(e) {
   if (!e)
     return "undefined";
   switch (typeof e) {
@@ -6420,11 +6419,11 @@ function yi(e) {
       return JSON.stringify(e);
   }
 }
-function Ts(e, t) {
-  return yi(e) + yi(t) + "undefined";
+function qs(e, t) {
+  return hi(e) + hi(t) + "undefined";
 }
-function gi(e, t, n, r, i, a) {
-  var u = Ts(n, r), o;
+function yi(e, t, n, r, i, a) {
+  var u = qs(n, r), o;
   if (!i && (o = e._cachedViews = e._cachedViews || {}, o[u]))
     return o[u];
   var c = e.info().then(function(_) {
@@ -6437,7 +6436,7 @@ function gi(e, t, n, r, i, a) {
       if (!$[b])
         return $[b] = !0, m;
     }
-    return vn(e, "_local/" + a, s).then(function() {
+    return dn(e, "_local/" + a, s).then(function() {
       return e.registerDependentDatabase(b).then(function(m) {
         var O = m.db;
         O.auto_compaction = !0;
@@ -6462,21 +6461,21 @@ function gi(e, t, n, r, i, a) {
   });
   return o && (o[u] = c), c;
 }
-var pi = {}, _i = new Et(), qs = 50;
-function En(e) {
+var gi = {}, pi = new St(), Ts = 50;
+function xn(e) {
   return e.indexOf("/") === -1 ? [e, e] : e.split("/");
 }
 function Bs(e) {
   return e.length === 1 && /^1-/.test(e[0].rev);
 }
-function mi(e, t) {
+function _i(e, t) {
   try {
     e.emit("error", t);
   } catch {
-    Vn("error", `The user's map/reduce function threw an uncaught error.
+    Zn("error", `The user's map/reduce function threw an uncaught error.
 You can debug this error by doing:
 myDatabase.on('error', function (err) { debugger; });
-Please double-check your map/reduce function.`), Vn("error", t);
+Please double-check your map/reduce function.`), Zn("error", t);
   }
 }
 function Rs(e, t, n, r) {
@@ -6484,7 +6483,7 @@ function Rs(e, t, n, r) {
     try {
       p(w);
     } catch (x) {
-      mi(v, x);
+      _i(v, x);
     }
   }
   function a(v, p, w, x, C) {
@@ -6493,7 +6492,7 @@ function Rs(e, t, n, r) {
         output: p(w, x, C)
       };
     } catch (I) {
-      return mi(v, I), {
+      return _i(v, I), {
         error: I
       };
     }
@@ -6539,20 +6538,20 @@ function Rs(e, t, n, r) {
   function $(v) {
     if (v) {
       if (typeof v != "number")
-        return new Je('Invalid value for integer: "' + v + '"');
+        return new Ke('Invalid value for integer: "' + v + '"');
       if (v < 0)
-        return new Je('Invalid value for positive integer: "' + v + '"');
+        return new Ke('Invalid value for positive integer: "' + v + '"');
     }
   }
   function S(v, p) {
     var w = v.descending ? "endkey" : "startkey", x = v.descending ? "startkey" : "endkey";
     if (typeof v[w] < "u" && typeof v[x] < "u" && fe(v[w], v[x]) > 0)
-      throw new Je("No rows can match your key range, reverse your start_key and end_key or set {descending : true}");
+      throw new Ke("No rows can match your key range, reverse your start_key and end_key or set {descending : true}");
     if (p.reduce && v.reduce !== !1) {
       if (v.include_docs)
-        throw new Je("{include_docs:true} is invalid for reduce");
+        throw new Ke("{include_docs:true} is invalid for reduce");
       if (v.keys && v.keys.length > 1 && !v.group && !v.group_level)
-        throw new Je("Multi-key fetches for reduce views must use {group: true}");
+        throw new Ke("Multi-key fetches for reduce views must use {group: true}");
     }
     ["group_level", "limit", "skip"].forEach(function(C) {
       var I = $(v[C]);
@@ -6563,15 +6562,15 @@ function Rs(e, t, n, r) {
   function A(v, p, w) {
     var x = [], C, I = "GET", k, P;
     if (s("reduce", w, x), s("include_docs", w, x), s("attachments", w, x), s("limit", w, x), s("descending", w, x), s("group", w, x), s("group_level", w, x), s("skip", w, x), s("stale", w, x), s("conflicts", w, x), s("startkey", w, x, !0), s("start_key", w, x, !0), s("endkey", w, x, !0), s("end_key", w, x, !0), s("inclusive_end", w, x), s("key", w, x, !0), s("update_seq", w, x), x = x.join("&"), x = x === "" ? "" : "?" + x, typeof w.keys < "u") {
-      var T = 2e3, q = "keys=" + encodeURIComponent(JSON.stringify(w.keys));
-      q.length + x.length + 1 <= T ? x += (x[0] === "?" ? "&" : "?") + q : (I = "POST", typeof p == "string" ? C = {
+      var q = 2e3, T = "keys=" + encodeURIComponent(JSON.stringify(w.keys));
+      T.length + x.length + 1 <= q ? x += (x[0] === "?" ? "&" : "?") + T : (I = "POST", typeof p == "string" ? C = {
         keys: w.keys
       } : p.keys = w.keys);
     }
     if (typeof p == "string") {
-      var D = En(p);
+      var D = xn(p);
       return v.fetch("_design/" + D[0] + "/_view/" + D[1] + x, {
-        headers: new Qt({
+        headers: new Jt({
           "Content-Type": "application/json"
         }),
         method: I,
@@ -6580,7 +6579,7 @@ function Rs(e, t, n, r) {
         return k = E.ok, P = E.status, E.json();
       }).then(function(E) {
         if (!k)
-          throw E.status = P, Wn(E);
+          throw E.status = P, Gn(E);
         return E.rows.forEach(function(F) {
           if (F.value && F.value.error && F.value.error === "builtin_reduce_error")
             throw new Error(F.reason);
@@ -6590,7 +6589,7 @@ function Rs(e, t, n, r) {
     return C = C || {}, Object.keys(p).forEach(function(E) {
       Array.isArray(p[E]) ? C[E] = p[E] : C[E] = p[E].toString();
     }), v.fetch("_temp_view" + x, {
-      headers: new Qt({
+      headers: new Jt({
         "Content-Type": "application/json"
       }),
       method: "POST",
@@ -6599,7 +6598,7 @@ function Rs(e, t, n, r) {
       return k = E.ok, P = E.status, E.json();
     }).then(function(E) {
       if (!k)
-        throw E.status = P, Wn(E);
+        throw E.status = P, Gn(E);
       return E;
     }).then(b(w));
   }
@@ -6633,10 +6632,10 @@ function Rs(e, t, n, r) {
       _id: x,
       keys: []
     }, I = w.get(v), k = I[0], P = I[1];
-    function T() {
+    function q() {
       return Bs(P) ? Promise.resolve(C) : p.db.get(x).catch(f(C));
     }
-    function q(E) {
+    function T(E) {
       return E.keys.length ? p.db.allDocs({
         keys: E.keys,
         include_docs: !0
@@ -6645,25 +6644,25 @@ function Rs(e, t, n, r) {
       });
     }
     function D(E, F) {
-      for (var W = [], te = new xt(), M = 0, N = F.rows.length; M < N; M++) {
+      for (var W = [], te = new Ot(), M = 0, N = F.rows.length; M < N; M++) {
         var z = F.rows[M], Q = z.doc;
         if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
         }
       }
-      var X = xn(k);
+      var X = Sn(k);
       return X.forEach(function(he) {
         if (!te.has(he)) {
-          var Se = {
+          var Oe = {
             _id: he
-          }, pt = k.get(he);
-          "value" in pt && (Se.value = pt.value), W.push(Se);
+          }, yt = k.get(he);
+          "value" in yt && (Oe.value = yt.value), W.push(Oe);
         }
-      }), E.keys = hi(X.concat(E.keys)), W.push(E), W;
+      }), E.keys = vi(X.concat(E.keys)), W.push(E), W;
     }
-    return T().then(function(E) {
-      return q(E).then(function(F) {
+    return q().then(function(E) {
+      return T(E).then(function(F) {
         return D(E, F);
       });
     });
@@ -6674,11 +6673,11 @@ function Rs(e, t, n, r) {
       _id: x,
       seq: 0
     })).then(function(C) {
-      var I = xn(p);
+      var I = Sn(p);
       return Promise.all(I.map(function(k) {
         return l(k, v, p);
       })).then(function(k) {
-        var P = vi(k);
+        var P = di(k);
         return C.seq = w, P.push(C), v.db.bulkDocs({
           docs: P
         });
@@ -6686,11 +6685,11 @@ function Rs(e, t, n, r) {
     });
   }
   function y(v) {
-    var p = typeof v == "string" ? v : v.name, w = pi[p];
-    return w || (w = pi[p] = new Et()), w;
+    var p = typeof v == "string" ? v : v.name, w = gi[p];
+    return w || (w = gi[p] = new St()), w;
   }
   function j(v, p) {
-    return Sn(y(v), function() {
+    return On(y(v), function() {
       return R(v, p);
     })();
   }
@@ -6699,9 +6698,9 @@ function Rs(e, t, n, r) {
     function C(M, N) {
       var z = {
         id: x._id,
-        key: Ve(M)
+        key: Ze(M)
       };
-      typeof N < "u" && N !== null && (z.value = Ve(N)), w.push(z);
+      typeof N < "u" && N !== null && (z.value = Ze(N)), w.push(z);
     }
     var I = t(v.mapFun, C), k = v.seq || 0;
     function P(M, N) {
@@ -6709,12 +6708,12 @@ function Rs(e, t, n, r) {
         return d(v, M, N);
       };
     }
-    let T = 0, q = {
+    let q = 0, T = {
       view: v.name,
-      indexed_docs: T
+      indexed_docs: q
     };
-    v.sourceDB.emit("indexing", q);
-    var D = new Et();
+    v.sourceDB.emit("indexing", T);
+    var D = new St();
     function E() {
       return v.sourceDB.changes({
         return_docs: !0,
@@ -6730,18 +6729,18 @@ function Rs(e, t, n, r) {
       if (!N.length)
         return;
       var z = W(N);
-      D.add(P(z, k)), T = T + N.length;
+      D.add(P(z, k)), q = q + N.length;
       let Q = {
         view: v.name,
         last_seq: M.last_seq,
         results_count: N.length,
-        indexed_docs: T
+        indexed_docs: q
       };
       if (v.sourceDB.emit("indexing", Q), !(N.length < p.changes_batch_size))
         return E();
     }
     function W(M) {
-      for (var N = new it(), z = 0, Q = M.length; z < Q; z++) {
+      for (var N = new rt(), z = 0, Q = M.length; z < Q; z++) {
         var ee = M[z];
         if (ee.doc._id[0] !== "_") {
           w = [], x = ee.doc, x._deleted || i(v.sourceDB, I, x), w.sort(u);
@@ -6753,9 +6752,9 @@ function Rs(e, t, n, r) {
       return N;
     }
     function te(M) {
-      for (var N = new it(), z, Q = 0, ee = M.length; Q < ee; Q++) {
+      for (var N = new rt(), z, Q = 0, ee = M.length; Q < ee; Q++) {
         var X = M[Q], he = [X.key, X.id];
-        Q > 0 && fe(X.key, z) === 0 && he.push(Q), N.set(ke(he), X), z = X.key;
+        Q > 0 && fe(X.key, z) === 0 && he.push(Q), N.set(Ee(he), X), z = X.key;
       }
       return N;
     }
@@ -6780,13 +6779,13 @@ function Rs(e, t, n, r) {
         groupKey: W
       });
     }), p = [];
-    for (var P = 0, T = I.length; P < T; P++) {
-      var q = I[P], D = a(v.sourceDB, C, q.keys, q.values, !1);
-      if (D.error && D.error instanceof Cr)
+    for (var P = 0, q = I.length; P < q; P++) {
+      var T = I[P], D = a(v.sourceDB, C, T.keys, T.values, !1);
+      if (D.error && D.error instanceof Er)
         throw D.error;
       p.push({
         value: D.error ? null : D.output,
-        key: q.groupKey
+        key: T.groupKey
       });
     }
     return {
@@ -6794,7 +6793,7 @@ function Rs(e, t, n, r) {
     };
   }
   function L(v, p) {
-    return Sn(y(v), function() {
+    return On(y(v), function() {
       return K(v, p);
     })();
   }
@@ -6829,7 +6828,7 @@ function Rs(e, t, n, r) {
         offset: C,
         rows: o(M, p.limit, p.skip)
       }, p.update_seq && (N.update_seq = v.seq), p.include_docs) {
-        var z = hi(M.map(c));
+        var z = vi(M.map(c));
         return v.sourceDB.allDocs({
           keys: z,
           include_docs: !0,
@@ -6837,46 +6836,46 @@ function Rs(e, t, n, r) {
           attachments: p.attachments,
           binary: p.binary
         }).then(function(Q) {
-          var ee = new it();
+          var ee = new rt();
           return Q.rows.forEach(function(X) {
             ee.set(X.id, X.doc);
           }), M.forEach(function(X) {
-            var he = c(X), Se = ee.get(he);
-            Se && (X.doc = Se);
+            var he = c(X), Oe = ee.get(he);
+            Oe && (X.doc = Oe);
           }), N;
         });
       } else
         return N;
     }
     if (typeof p.keys < "u") {
-      var P = p.keys, T = P.map(function(M) {
+      var P = p.keys, q = P.map(function(M) {
         var N = {
-          startkey: ke([M]),
-          endkey: ke([M, {}])
+          startkey: Ee([M]),
+          endkey: Ee([M, {}])
         };
         return p.update_seq && (N.update_seq = !0), I(N);
       });
-      return Promise.all(T).then(vi).then(k);
+      return Promise.all(q).then(di).then(k);
     } else {
-      var q = {
+      var T = {
         descending: p.descending
       };
-      p.update_seq && (q.update_seq = !0);
+      p.update_seq && (T.update_seq = !0);
       var D, E;
-      if ("start_key" in p && (D = p.start_key), "startkey" in p && (D = p.startkey), "end_key" in p && (E = p.end_key), "endkey" in p && (E = p.endkey), typeof D < "u" && (q.startkey = p.descending ? ke([D, {}]) : ke([D])), typeof E < "u") {
+      if ("start_key" in p && (D = p.start_key), "startkey" in p && (D = p.startkey), "end_key" in p && (E = p.end_key), "endkey" in p && (E = p.endkey), typeof D < "u" && (T.startkey = p.descending ? Ee([D, {}]) : Ee([D])), typeof E < "u") {
         var F = p.inclusive_end !== !1;
-        p.descending && (F = !F), q.endkey = ke(F ? [E, {}] : [E]);
+        p.descending && (F = !F), T.endkey = Ee(F ? [E, {}] : [E]);
       }
       if (typeof p.key < "u") {
-        var W = ke([p.key]), te = ke([p.key, {}]);
-        q.descending ? (q.endkey = W, q.startkey = te) : (q.startkey = W, q.endkey = te);
+        var W = Ee([p.key]), te = Ee([p.key, {}]);
+        T.descending ? (T.endkey = W, T.startkey = te) : (T.startkey = W, T.endkey = te);
       }
-      return x || (typeof p.limit == "number" && (q.limit = p.limit), q.skip = C), I(q).then(k);
+      return x || (typeof p.limit == "number" && (T.limit = p.limit), T.skip = C), I(T).then(k);
     }
   }
   function Z(v) {
     return v.fetch("_view_cleanup", {
-      headers: new Qt({
+      headers: new Jt({
         "Content-Type": "application/json"
       }),
       method: "POST"
@@ -6886,33 +6885,33 @@ function Rs(e, t, n, r) {
   }
   function Y(v) {
     return v.get("_local/" + e).then(function(p) {
-      var w = new it();
+      var w = new rt();
       Object.keys(p.views).forEach(function(C) {
-        var I = En(C), k = "_design/" + I[0], P = I[1], T = w.get(k);
-        T || (T = new xt(), w.set(k, T)), T.add(P);
+        var I = xn(C), k = "_design/" + I[0], P = I[1], q = w.get(k);
+        q || (q = new Ot(), w.set(k, q)), q.add(P);
       });
       var x = {
-        keys: xn(w),
+        keys: Sn(w),
         include_docs: !0
       };
       return v.allDocs(x).then(function(C) {
         var I = {};
-        C.rows.forEach(function(T) {
-          var q = T.key.substring(8);
-          w.get(T.key).forEach(function(D) {
-            var E = q + "/" + D;
+        C.rows.forEach(function(q) {
+          var T = q.key.substring(8);
+          w.get(q.key).forEach(function(D) {
+            var E = T + "/" + D;
             p.views[E] || (E = D);
-            var F = Object.keys(p.views[E]), W = T.doc && T.doc.views && T.doc.views[D];
+            var F = Object.keys(p.views[E]), W = q.doc && q.doc.views && q.doc.views[D];
             F.forEach(function(te) {
               I[te] = I[te] || W;
             });
           });
         });
-        var k = Object.keys(I).filter(function(T) {
-          return !I[T];
-        }), P = k.map(function(T) {
-          return Sn(y(T), function() {
-            return new v.constructor(T, v.__opts).destroy();
+        var k = Object.keys(I).filter(function(q) {
+          return !I[q];
+        }), P = k.map(function(q) {
+          return On(y(q), function() {
+            return new v.constructor(q, v.__opts).destroy();
           })();
         });
         return Promise.all(P).then(function() {
@@ -6928,31 +6927,31 @@ function Rs(e, t, n, r) {
   function J(v, p, w) {
     if (typeof v._query == "function")
       return g(v, p, w);
-    if (et(v))
+    if (Ve(v))
       return A(v, p, w);
     var x = {
-      changes_batch_size: v.__opts.view_update_changes_batch_size || qs
+      changes_batch_size: v.__opts.view_update_changes_batch_size || Ts
     };
     if (typeof p != "string")
-      return S(w, p), _i.add(function() {
-        var T = gi(v, "temp_view/temp_view", p.map, p.reduce, !0, e);
-        return T.then(function(q) {
-          return Ps(j(q, x).then(function() {
-            return L(q, w);
+      return S(w, p), pi.add(function() {
+        var q = yi(v, "temp_view/temp_view", p.map, p.reduce, !0, e);
+        return q.then(function(T) {
+          return Ps(j(T, x).then(function() {
+            return L(T, w);
           }), function() {
-            return q.db.destroy();
+            return T.db.destroy();
           });
         });
-      }), _i.finish();
-    var C = p, I = En(C), k = I[0], P = I[1];
-    return v.get("_design/" + k).then(function(T) {
-      var q = T.views && T.views[P];
-      if (!q)
-        throw new kr("ddoc " + T._id + " has no view named " + P);
-      r(T, P), S(w, q);
-      var D = gi(v, C, q.map, q.reduce, !1, e);
+      }), pi.finish();
+    var C = p, I = xn(C), k = I[0], P = I[1];
+    return v.get("_design/" + k).then(function(q) {
+      var T = q.views && q.views[P];
+      if (!T)
+        throw new xr("ddoc " + q._id + " has no view named " + P);
+      r(q, P), S(w, T);
+      var D = yi(v, C, T.map, T.reduce, !1, e);
       return D.then(function(E) {
-        return w.stale === "ok" || w.stale === "update_after" ? (w.stale === "update_after" && _e(function() {
+        return w.stale === "ok" || w.stale === "update_after" ? (w.stale === "update_after" && pe(function() {
           j(E, x);
         }), L(E, w)) : j(E, x).then(function() {
           return L(E, w);
@@ -6972,14 +6971,14 @@ function Rs(e, t, n, r) {
   }
   var U = Is(function() {
     var v = this;
-    return typeof v._viewCleanup == "function" ? h(v) : et(v) ? Z(v) : Y(v);
+    return typeof v._viewCleanup == "function" ? h(v) : Ve(v) ? Z(v) : Y(v);
   });
   return {
     query: G,
     viewCleanup: U
   };
 }
-function hn(e, t) {
+function vn(e, t) {
   for (var n = e, r = 0, i = t.length; r < i; r++) {
     var a = t[r];
     if (n = n[a], !n)
@@ -6994,10 +6993,10 @@ function Ls(e, t, n) {
   }
   e[t[i - 1]] = n;
 }
-function jr(e, t) {
+function kr(e, t) {
   return e < t ? -1 : e > t ? 1 : 0;
 }
-function yt(e) {
+function vt(e) {
   for (var t = [], n = "", r = 0, i = e.length; r < i; r++) {
     var a = e[r];
     r > 0 && e[r - 1] === "\\" && (a === "$" || a === ".") ? n = n.substring(0, n.length - 1) + a : a === "." ? (t.push(n), n = "") : n += a;
@@ -7008,13 +7007,13 @@ var Ds = ["$or", "$nor", "$not"];
 function Ia(e) {
   return Ds.indexOf(e) > -1;
 }
-function be(e) {
+function we(e) {
   return Object.keys(e)[0];
 }
-function Ir(e) {
-  return e[be(e)];
+function Cr(e) {
+  return e[we(e)];
 }
-function kt(e) {
+function xt(e) {
   var t = {}, n = {
     $or: !0,
     $nor: !0
@@ -7033,12 +7032,12 @@ function kt(e) {
           var u = [];
           t[i].forEach(function(c) {
             Object.keys(a).forEach(function(_) {
-              var b = a[_], s = Math.max(Object.keys(c).length, Object.keys(b).length), m = kt([c, b]);
+              var b = a[_], s = Math.max(Object.keys(c).length, Object.keys(b).length), m = xt([c, b]);
               Object.keys(m).length <= s || u.push(m);
             });
           }), t[i] = u;
         } else
-          t[i] = kt([a]);
+          t[i] = xt([a]);
       else {
         var o = t[i] = t[i] || {};
         Object.keys(a).forEach(function(c) {
@@ -7078,23 +7077,23 @@ function Pa(e) {
   for (var t in e) {
     if (Array.isArray(e))
       for (var n in e)
-        e[n].$and && (e[n] = kt(e[n].$and));
+        e[n].$and && (e[n] = xt(e[n].$and));
     var r = e[t];
     typeof r == "object" && Pa(r);
   }
   return e;
 }
-function Ta(e, t) {
+function qa(e, t) {
   for (var n in e) {
     n === "$and" && (t = !0);
     var r = e[n];
-    typeof r == "object" && (t = Ta(r, t));
+    typeof r == "object" && (t = qa(r, t));
   }
   return t;
 }
-function qa(e) {
-  var t = Ne(e), n = !1;
-  Ta(t, !1) && (t = Pa(t), "$and" in t && (t = kt(t.$and)), n = !0), ["$or", "$nor"].forEach(function(o) {
+function Ta(e) {
+  var t = De(e), n = !1;
+  qa(t, !1) && (t = Pa(t), "$and" in t && (t = xt(t.$and)), n = !0), ["$or", "$nor"].forEach(function(o) {
     o in t && t[o].forEach(function(c) {
       for (var _ = Object.keys(c), b = 0; b < _.length; b++) {
         var s = _[b], m = c[s];
@@ -7103,7 +7102,7 @@ function qa(e) {
         });
       }
     });
-  }), "$not" in t && (t.$not = kt([t.$not]));
+  }), "$not" in t && (t.$not = xt([t.$not]));
   for (var r = Object.keys(t), i = 0; i < r.length; i++) {
     var a = r[i], u = t[a];
     typeof u != "object" || u === null ? u = {
@@ -7115,21 +7114,21 @@ function qa(e) {
 function Ks(e) {
   function t(n) {
     return e.map(function(r) {
-      var i = be(r), a = yt(i), u = hn(n, a);
+      var i = we(r), a = vt(i), u = vn(n, a);
       return u;
     });
   }
   return function(n, r) {
     var i = t(n.doc), a = t(r.doc), u = fe(i, a);
-    return u !== 0 ? u : jr(n.doc._id, r.doc._id);
+    return u !== 0 ? u : kr(n.doc._id, r.doc._id);
   };
 }
 function Ba(e, t, n) {
   if (e = e.filter(function(u) {
-    return st(u.doc, t.selector, n);
+    return ft(u.doc, t.selector, n);
   }), t.sort) {
     var r = Ks(t.sort);
-    e = e.sort(r), typeof t.sort[0] != "string" && Ir(t.sort[0]) === "desc" && (e = e.reverse());
+    e = e.sort(r), typeof t.sort[0] != "string" && Cr(t.sort[0]) === "desc" && (e = e.reverse());
   }
   if ("limit" in t || "skip" in t) {
     var i = t.skip || 0, a = ("limit" in t ? t.limit : e.length) + i;
@@ -7137,40 +7136,40 @@ function Ba(e, t, n) {
   }
   return e;
 }
-function st(e, t, n) {
+function ft(e, t, n) {
   return n.every(function(r) {
-    var i = t[r], a = yt(r), u = hn(e, a);
-    return Ia(r) ? Js(r, i, e) : Zt(i, e, a, u);
+    var i = t[r], a = vt(r), u = vn(e, a);
+    return Ia(r) ? Js(r, i, e) : Xt(i, e, a, u);
   });
 }
-function Zt(e, t, n, r) {
+function Xt(e, t, n, r) {
   return e ? typeof e == "object" ? Object.keys(e).every(function(i) {
     var a = e[i];
     if (i.indexOf("$") === 0)
-      return wi(i, t, a, n, r);
-    var u = yt(i);
+      return mi(i, t, a, n, r);
+    var u = vt(i);
     if (r === void 0 && typeof a != "object" && u.length > 0)
       return !1;
-    var o = hn(r, u);
-    return typeof a == "object" ? Zt(a, t, n, o) : wi("$eq", t, a, u, o);
+    var o = vn(r, u);
+    return typeof a == "object" ? Xt(a, t, n, o) : mi("$eq", t, a, u, o);
   }) : e === r : !0;
 }
 function Js(e, t, n) {
   return e === "$or" ? t.some(function(r) {
-    return st(n, r, Object.keys(r));
-  }) : e === "$not" ? !st(n, t, Object.keys(t)) : !t.find(function(r) {
-    return st(n, r, Object.keys(r));
+    return ft(n, r, Object.keys(r));
+  }) : e === "$not" ? !ft(n, t, Object.keys(t)) : !t.find(function(r) {
+    return ft(n, r, Object.keys(r));
   });
 }
-function wi(e, t, n, r, i) {
-  if (!$i[e])
+function mi(e, t, n, r, i) {
+  if (!bi[e])
     throw new Error('unknown operator "' + e + '" - should be one of $eq, $lte, $lt, $gt, $gte, $exists, $ne, $in, $nin, $size, $mod, $regex, $elemMatch, $type, $allMatch or $all');
-  return $i[e](t, n, r, i);
+  return bi[e](t, n, r, i);
 }
-function wt(e) {
+function _t(e) {
   return typeof e < "u" && e !== null;
 }
-function ze(e) {
+function Ue(e) {
   return typeof e < "u";
 }
 function Qs(e, t) {
@@ -7179,7 +7178,7 @@ function Qs(e, t) {
   var n = t[0], r = t[1];
   return e % n === r;
 }
-function bi(e, t) {
+function wi(e, t) {
   return t.some(function(n) {
     return e instanceof Array ? e.some(function(r) {
       return fe(n, r) === 0;
@@ -7216,41 +7215,41 @@ function Ys(e, t) {
       return {}.toString.call(e) === "[object Object]";
   }
 }
-var $i = {
+var bi = {
   $elemMatch: function(e, t, n, r) {
     return !Array.isArray(r) || r.length === 0 ? !1 : typeof r[0] == "object" ? r.some(function(i) {
-      return st(i, t, Object.keys(t));
+      return ft(i, t, Object.keys(t));
     }) : r.some(function(i) {
-      return Zt(t, e, n, i);
+      return Xt(t, e, n, i);
     });
   },
   $allMatch: function(e, t, n, r) {
     return !Array.isArray(r) || r.length === 0 ? !1 : typeof r[0] == "object" ? r.every(function(i) {
-      return st(i, t, Object.keys(t));
+      return ft(i, t, Object.keys(t));
     }) : r.every(function(i) {
-      return Zt(t, e, n, i);
+      return Xt(t, e, n, i);
     });
   },
   $eq: function(e, t, n, r) {
-    return ze(r) && fe(r, t) === 0;
+    return Ue(r) && fe(r, t) === 0;
   },
   $gte: function(e, t, n, r) {
-    return ze(r) && fe(r, t) >= 0;
+    return Ue(r) && fe(r, t) >= 0;
   },
   $gt: function(e, t, n, r) {
-    return ze(r) && fe(r, t) > 0;
+    return Ue(r) && fe(r, t) > 0;
   },
   $lte: function(e, t, n, r) {
-    return ze(r) && fe(r, t) <= 0;
+    return Ue(r) && fe(r, t) <= 0;
   },
   $lt: function(e, t, n, r) {
-    return ze(r) && fe(r, t) < 0;
+    return Ue(r) && fe(r, t) < 0;
   },
   $exists: function(e, t, n, r) {
-    return t ? ze(r) : !ze(r);
+    return t ? Ue(r) : !Ue(r);
   },
   $mod: function(e, t, n, r) {
-    return wt(r) && Qs(r, t);
+    return _t(r) && Qs(r, t);
   },
   $ne: function(e, t, n, r) {
     return t.every(function(i) {
@@ -7258,19 +7257,19 @@ var $i = {
     });
   },
   $in: function(e, t, n, r) {
-    return wt(r) && bi(r, t);
+    return _t(r) && wi(r, t);
   },
   $nin: function(e, t, n, r) {
-    return wt(r) && !bi(r, t);
+    return _t(r) && !wi(r, t);
   },
   $size: function(e, t, n, r) {
-    return wt(r) && Array.isArray(r) && Ws(r, t);
+    return _t(r) && Array.isArray(r) && Ws(r, t);
   },
   $all: function(e, t, n, r) {
     return Array.isArray(r) && Gs(r, t);
   },
   $regex: function(e, t, n, r) {
-    return wt(r) && typeof r == "string" && t.every(function(i) {
+    return _t(r) && typeof r == "string" && t.every(function(i) {
       return Hs(r, i);
     });
   },
@@ -7278,10 +7277,10 @@ var $i = {
     return Ys(r, t);
   }
 };
-function yn(e, t) {
+function hn(e, t) {
   if (typeof t != "object")
     throw new Error("Selector error: expected a JSON object");
-  t = qa(t);
+  t = Ta(t);
   var n = {
     doc: e
   }, r = Ba([n], {
@@ -7290,7 +7289,7 @@ function yn(e, t) {
   return r && r.length === 1;
 }
 function Ra(e) {
-  return e = Ne(e), e.index || (e.index = {}), ["type", "name", "ddoc"].forEach(function(t) {
+  return e = De(e), e.index || (e.index = {}), ["type", "name", "ddoc"].forEach(function(t) {
     e.index[t] && (e[t] = e.index[t], delete e.index[t]);
   }), e.fields && (e.index.fields = e.fields, delete e.fields), e.type || (e.type = "json"), e;
 }
@@ -7316,19 +7315,19 @@ function Xs(e, t, n) {
   }
 }
 var Zs = ["$all", "$allMatch", "$and", "$elemMatch", "$exists", "$in", "$mod", "$nin", "$nor", "$not", "$or", "$regex", "$size", "$type"], Vs = ["$in", "$nin", "$mod", "$all"], ec = ["$eq", "$gt", "$gte", "$lt", "$lte"];
-function Vt(e, t) {
+function Zt(e, t) {
   if (Array.isArray(e))
     for (var n of e)
-      typeof n == "object" && u !== null && Vt(n, t);
+      typeof n == "object" && u !== null && Zt(n, t);
   else
     for (var r = Object.keys(e), i = 0; i < r.length; i++) {
       var a = r[i], u = e[a];
-      Zs.indexOf(a) !== -1 && Xs(a, u, t), ec.indexOf(a) === -1 && Vs.indexOf(a) === -1 && typeof u == "object" && u !== null && Vt(u, t);
+      Zs.indexOf(a) !== -1 && Xs(a, u, t), ec.indexOf(a) === -1 && Vs.indexOf(a) === -1 && typeof u == "object" && u !== null && Zt(u, t);
     }
 }
-function Nt(e, t, n, r) {
+function Dt(e, t, n, r) {
   var i, a;
-  n.headers = new Qt({
+  n.headers = new Jt({
     "Content-type": "application/json"
   }), e.fetch(t, n).then(function(u) {
     return i = u.status, a = u.ok, u.json();
@@ -7337,31 +7336,31 @@ function Nt(e, t, n, r) {
       r(null, u);
     else {
       u.status = i;
-      var o = Wn(u);
+      var o = Gn(u);
       r(o);
     }
   }).catch(r);
 }
 function tc(e, t, n) {
-  t = Ra(t), Nt(e, "_index", {
+  t = Ra(t), Dt(e, "_index", {
     method: "POST",
     body: JSON.stringify(t)
   }, n);
 }
 function nc(e, t, n) {
-  Vt(t.selector, !0), Nt(e, "_find", {
+  Zt(t.selector, !0), Dt(e, "_find", {
     method: "POST",
     body: JSON.stringify(t)
   }, n);
 }
 function rc(e, t, n) {
-  Nt(e, "_explain", {
+  Dt(e, "_explain", {
     method: "POST",
     body: JSON.stringify(t)
   }, n);
 }
 function ic(e, t) {
-  Nt(e, "_index", {
+  Dt(e, "_index", {
     method: "GET"
   }, t);
 }
@@ -7372,7 +7371,7 @@ function ac(e, t, n) {
   if (!a)
     return n(new Error("you must provide an index's name"));
   var u = "_index/" + [r, i, a].map(encodeURIComponent).join("/");
-  Nt(e, u, {
+  Dt(e, u, {
     method: "DELETE"
   }, n);
 }
@@ -7383,7 +7382,7 @@ function La(e) {
     return e.call(this, n);
   };
 }
-function Ft(e) {
+function Nt(e) {
   return La(function(t) {
     var n = t.pop(), r = e.apply(this, t);
     return uc(r, n), r;
@@ -7391,30 +7390,30 @@ function Ft(e) {
 }
 function uc(e, t) {
   return e.then(function(n) {
-    _e(function() {
+    pe(function() {
       t(null, n);
     });
   }, function(n) {
-    _e(function() {
+    pe(function() {
       t(n);
     });
   }), e;
 }
-var Pr = La(function(e) {
+var jr = La(function(e) {
   for (var t = [], n = 0, r = e.length; n < r; n++) {
     var i = e[n];
-    Array.isArray(i) ? t = t.concat(Pr.apply(null, i)) : t.push(i);
+    Array.isArray(i) ? t = t.concat(jr.apply(null, i)) : t.push(i);
   }
   return t;
 });
-function Tr(e) {
+function Ir(e) {
   for (var t = {}, n = 0, r = e.length; n < r; n++)
-    t = Er(t, e[n]);
+    t = Sr(t, e[n]);
   return t;
 }
 function oc(e, t) {
   for (var n = {}, r = 0, i = t.length; r < i; r++) {
-    var a = yt(t[r]), u = hn(e, a);
+    var a = vt(t[r]), u = vn(e, a);
     typeof u < "u" && Ls(n, a, u);
   }
   return n;
@@ -7453,7 +7452,7 @@ function lc(e, t) {
   }
   return n;
 }
-function Ai(e, t) {
+function $i(e, t) {
   if (e.length !== t.length)
     return !1;
   for (var n = 0, r = e.length; n < r; n++)
@@ -7470,9 +7469,9 @@ function dc(e) {
 }
 function vc(e, t, n) {
   return function(r) {
-    if (!(n && !yn(r, n))) {
+    if (!(n && !hn(r, n))) {
       for (var i = [], a = 0, u = e.length; a < u; a++) {
-        for (var o = yt(e[a]), c = r, _ = 0, b = o.length; _ < b; _++) {
+        for (var o = vt(e[a]), c = r, _ = 0, b = o.length; _ < b; _++) {
           var s = o[_];
           if (c = c[s], typeof c > "u")
             return;
@@ -7484,9 +7483,9 @@ function vc(e, t, n) {
   };
 }
 function hc(e, t, n) {
-  var r = yt(e);
+  var r = vt(e);
   return function(i) {
-    if (!(n && !yn(i, n))) {
+    if (!(n && !hn(i, n))) {
       for (var a = i, u = 0, o = r.length; u < o; u++) {
         var c = r[u];
         if (a = a[c], typeof a > "u")
@@ -7498,12 +7497,12 @@ function hc(e, t, n) {
 }
 function yc(e, t, n) {
   return function(r) {
-    n && !yn(r, n) || t(r[e]);
+    n && !hn(r, n) || t(r[e]);
   };
 }
 function gc(e, t, n) {
   return function(r) {
-    if (!(n && !yn(r, n))) {
+    if (!(n && !hn(r, n))) {
       for (var i = [], a = 0, u = e.length; a < u; a++)
         i.push(r[e[a]]);
       t(i);
@@ -7535,7 +7534,7 @@ function bc(e, t) {
     throw new Error("ddoc " + e._id + " with view " + t + " doesn't have map.fields defined. maybe it wasn't created by this plugin?");
 }
 var $c = Rs("indexes", mc, wc, bc);
-function qr(e) {
+function Pr(e) {
   return e._customFindAbstractMapper || $c;
 }
 function Ac(e) {
@@ -7566,7 +7565,7 @@ function Na(e) {
 }
 function Sc(e, t) {
   for (var n = [], r = 0; r < t.def.fields.length; r++) {
-    var i = be(t.def.fields[r]);
+    var i = we(t.def.fields[r]);
     n.push(e[i]);
   }
   return n;
@@ -7585,12 +7584,12 @@ function xc(e, t, n) {
   return i > 0 ? e.slice(i) : e;
 }
 function Ec(e) {
-  var t = Ne(e);
+  var t = De(e);
   return delete t.startkey, delete t.endkey, delete t.inclusive_start, delete t.inclusive_end, "endkey" in e && (t.startkey = e.endkey), "startkey" in e && (t.endkey = e.startkey), "inclusive_start" in e && (t.inclusive_end = e.inclusive_start), "inclusive_end" in e && (t.inclusive_start = e.inclusive_end), t;
 }
 function kc(e) {
   var t = e.fields.filter(function(n) {
-    return Ir(n) === "asc";
+    return Cr(n) === "asc";
   });
   if (t.length !== 0 && t.length !== e.fields.length)
     throw new Error("unsupported mixed sorting");
@@ -7612,7 +7611,7 @@ function jc(e) {
     throw new Error("you must provide a selector when you find()");
 }
 function Ic(e, t) {
-  var n = Object.keys(e), r = t ? t.map(be) : [], i;
+  var n = Object.keys(e), r = t ? t.map(we) : [], i;
   return n.length >= r.length ? i = n : i = r, r.length === 0 ? {
     fields: i
   } : (i = i.sort(function(a, u) {
@@ -7622,12 +7621,12 @@ function Ic(e, t) {
     return c === -1 && (c = Number.MAX_VALUE), o < c ? -1 : o > c ? 1 : 0;
   }), {
     fields: i,
-    sortOrder: t.map(be)
+    sortOrder: t.map(we)
   });
 }
 function Pc(e, t) {
   t = Ra(t);
-  var n = Ne(t.index);
+  var n = De(t.index);
   t.index = Na(t.index), kc(t.index);
   var r;
   function i() {
@@ -7637,7 +7636,7 @@ function Pc(e, t) {
   function b(s) {
     return s._rev && s.language !== "query" && (c = !0), s.language = "query", s.views = s.views || {}, _ = !!s.views[a], _ ? !1 : (s.views[a] = {
       map: {
-        fields: Tr(t.index.fields)
+        fields: Ir(t.index.fields)
       },
       reduce: "_count",
       options: {
@@ -7645,12 +7644,12 @@ function Pc(e, t) {
       }
     }, s);
   }
-  return e.constructor.emit("debug", ["find", "creating index", o]), vn(e, o, b).then(function() {
+  return e.constructor.emit("debug", ["find", "creating index", o]), dn(e, o, b).then(function() {
     if (c)
       throw new Error('invalid language for ddoc with id "' + o + '" (should be "query")');
   }).then(function() {
     var s = u + "/" + a;
-    return qr(e).query.call(e, s, {
+    return Pr(e).query.call(e, s, {
       limit: 0,
       reduce: !1
     }).then(function() {
@@ -7680,7 +7679,7 @@ function Fa(e) {
         }
       }]
     };
-    return n.indexes = Pr(n.indexes, t.rows.filter(function(r) {
+    return n.indexes = jr(n.indexes, t.rows.filter(function(r) {
       return r.doc.language === "query";
     }).map(function(r) {
       var i = r.doc.views !== void 0 ? Object.keys(r.doc.views) : [];
@@ -7694,23 +7693,23 @@ function Fa(e) {
         };
       });
     })), n.indexes.sort(function(r, i) {
-      return jr(r.name, i.name);
+      return kr(r.name, i.name);
     }), n.total_rows = n.indexes.length, n;
   });
 }
-var en = null, tr = {
+var Vt = null, er = {
   "\uFFFF": {}
 };
-const Tc = {
+const qc = {
   queryOpts: {
     limit: 0,
-    startkey: tr,
-    endkey: en
+    startkey: er,
+    endkey: Vt
   },
   inMemoryFields: []
 };
-function qc(e, t) {
-  for (var n = e.def.fields.map(be), r = 0, i = n.length; r < i; r++) {
+function Tc(e, t) {
+  for (var n = e.def.fields.map(we), r = 0, i = n.length; r < i; r++) {
     var a = n[r];
     if (t === a)
       return !0;
@@ -7718,21 +7717,21 @@ function qc(e, t) {
   return !1;
 }
 function Bc(e, t) {
-  var n = e[t], r = be(n);
+  var n = e[t], r = we(n);
   return r !== "$eq";
 }
 function Ma(e, t) {
-  var n = t.def.fields.map(be);
+  var n = t.def.fields.map(we);
   return e.slice().sort(function(r, i) {
     var a = n.indexOf(r), u = n.indexOf(i);
-    return a === -1 && (a = Number.MAX_VALUE), u === -1 && (u = Number.MAX_VALUE), jr(a, u);
+    return a === -1 && (a = Number.MAX_VALUE), u === -1 && (u = Number.MAX_VALUE), kr(a, u);
   });
 }
 function Rc(e, t, n) {
   n = Ma(n, e);
   for (var r = !1, i = 0, a = n.length; i < a; i++) {
     var u = n[i];
-    if (r || !qc(e, u))
+    if (r || !Tc(e, u))
       return n.slice(i);
     i < a - 1 && Bc(t, u) && (r = !0);
   }
@@ -7748,7 +7747,7 @@ function Lc(e) {
   }), t;
 }
 function Dc(e, t, n, r) {
-  var i = Pr(
+  var i = jr(
     e,
     Rc(t, n, r),
     Lc(n)
@@ -7770,11 +7769,11 @@ function Mc(e, t) {
   var n = e[0], r = t[n];
   if (typeof r > "u")
     return !0;
-  var i = Object.keys(r).length === 1 && be(r) === "$ne";
+  var i = Object.keys(r).length === 1 && we(r) === "$ne";
   return !i;
 }
 function Uc(e, t, n, r) {
-  var i = e.def.fields.map(be), a = Nc(i, t, n);
+  var i = e.def.fields.map(we), a = Nc(i, t, n);
   return a ? Mc(i, r) : !1;
 }
 function zc(e, t, n, r) {
@@ -7797,7 +7796,7 @@ function Kc(e, t, n, r, i) {
     return a[0];
   var o = cc(t);
   function c(m) {
-    for (var O = m.def.fields.map(be), $ = 0, S = 0, A = O.length; S < A; S++) {
+    for (var O = m.def.fields.map(we), $ = 0, S = 0, A = O.length; S < A; S++) {
       var g = O[S];
       o[g] && $++;
     }
@@ -7842,15 +7841,15 @@ function Jc(e, t) {
       };
   }
   return {
-    startkey: en
+    startkey: Vt
   };
 }
 function Qc(e, t) {
-  var n = be(t.def.fields[0]), r = e[n] || {}, i = [], a = Object.keys(r), u;
+  var n = we(t.def.fields[0]), r = e[n] || {}, i = [], a = Object.keys(r), u;
   return a.forEach(function(o) {
     Ua(o) && i.push(n);
     var c = r[o], _ = Jc(o, c);
-    u ? u = Tr([u, _]) : u = _;
+    u ? u = Ir([u, _]) : u = _;
   }), {
     queryOpts: u,
     inMemoryFields: i
@@ -7884,9 +7883,9 @@ function Gc(e, t) {
   }
 }
 function Wc(e, t) {
-  var n = t.def.fields.map(be), r = [], i = [], a = [], u, o;
+  var n = t.def.fields.map(we), r = [], i = [], a = [], u, o;
   function c(B) {
-    u !== !1 && i.push(en), o !== !1 && a.push(tr), r = n.slice(B);
+    u !== !1 && i.push(Vt), o !== !1 && a.push(er), r = n.slice(B);
   }
   for (var _ = 0, b = n.length; _ < b; _++) {
     var s = n[_], m = e[s];
@@ -7897,7 +7896,7 @@ function Wc(e, t) {
       c(_);
       break;
     } else if (_ > 0) {
-      var O = "$gt" in m || "$gte" in m || "$lt" in m || "$lte" in m, $ = Object.keys(e[n[_ - 1]]), S = Ai($, ["$eq"]), A = Ai($, Object.keys(m)), g = O && !S && !A;
+      var O = "$gt" in m || "$gte" in m || "$lt" in m || "$lte" in m, $ = Object.keys(e[n[_ - 1]]), S = $i($, ["$eq"]), A = $i($, Object.keys(m)), g = O && !S && !A;
       if (g) {
         c(_);
         break;
@@ -7905,9 +7904,9 @@ function Wc(e, t) {
     }
     for (var h = Object.keys(m), f = null, l = 0; l < h.length; l++) {
       var d = h[l], y = m[d], j = Gc(d, y);
-      f ? f = Tr([f, j]) : f = j;
+      f ? f = Ir([f, j]) : f = j;
     }
-    i.push("startkey" in f ? f.startkey : en), a.push("endkey" in f ? f.endkey : tr), "inclusive_start" in f && (u = f.inclusive_start), "inclusive_end" in f && (o = f.inclusive_end);
+    i.push("startkey" in f ? f.startkey : Vt), a.push("endkey" in f ? f.endkey : er), "inclusive_start" in f && (u = f.inclusive_start), "inclusive_end" in f && (o = f.inclusive_end);
   }
   var R = {
     startkey: i,
@@ -7939,7 +7938,7 @@ function Xc(e, t) {
 function Zc(e, t) {
   var n = e.selector, r = e.sort;
   if (Hc(n))
-    return Er({}, Tc, {
+    return Sr({}, qc, {
       index: t[0]
     });
   var i = Ic(n, r), a = i.fields, u = i.sortOrder, o = Kc(n, a, u, t, e.use_index), c = Xc(n, o), _ = c.queryOpts, b = c.inMemoryFields, s = Dc(b, o, n, a), m = {
@@ -7953,7 +7952,7 @@ function Vc(e) {
   return e.ddoc.substring(8) + "/" + e.name;
 }
 function el(e, t) {
-  var n = Ne(t);
+  var n = De(t);
   return n.descending ? ("endkey" in n && typeof n.endkey != "string" && (n.endkey = ""), "startkey" in n && typeof n.startkey != "string" && (n.limit = 0)) : ("startkey" in n && typeof n.startkey != "string" && (n.startkey = ""), "endkey" in n && typeof n.endkey != "string" && (n.limit = 0)), "key" in n && typeof n.key != "string" && (n.limit = 0), n.limit > 0 && n.indexes_count && (n.original_limit = n.limit, n.limit += n.indexes_count), e.allDocs(n).then(function(r) {
     return r.rows = r.rows.filter(function(i) {
       return !/^_design\//.test(i.id);
@@ -7961,13 +7960,13 @@ function el(e, t) {
   });
 }
 function za(e, t, n) {
-  return t.selector && (Vt(t.selector, !1), t.selector = qa(t.selector)), t.sort && (t.sort = Ac(t.sort)), t.use_index && (t.use_index = Oc(t.use_index)), jc(t), Fa(e).then(function(r) {
+  return t.selector && (Zt(t.selector, !1), t.selector = Ta(t.selector)), t.sort && (t.sort = Ac(t.sort)), t.use_index && (t.use_index = Oc(t.use_index)), jc(t), Fa(e).then(function(r) {
     e.constructor.emit("debug", ["find", "planning query", t]);
     var i = Zc(t, r.indexes);
     e.constructor.emit("debug", ["find", "query plan", i]);
     var a = i.index;
     Cc(t, a);
-    var u = Er({
+    var u = Sr({
       include_docs: !0,
       reduce: !1,
       indexes_count: r.total_rows
@@ -7976,12 +7975,12 @@ function za(e, t, n) {
       return {
         docs: []
       };
-    var o = t.sort && typeof t.sort[0] != "string" && Ir(t.sort[0]) === "desc";
+    var o = t.sort && typeof t.sort[0] != "string" && Cr(t.sort[0]) === "desc";
     return o && (u.descending = !0, u = Ec(u)), i.inMemoryFields.length || ("limit" in t && (u.limit = t.limit), "skip" in t && (u.skip = t.skip)), n ? Promise.resolve(i, u) : Promise.resolve().then(function() {
       if (a.name === "_all_docs")
         return el(e, u);
       var c = Vc(a);
-      return qr(e).query.call(e, c, u);
+      return Pr(e).query.call(e, c, u);
     }).then(function(c) {
       u.inclusive_start === !1 && (c.rows = xc(c.rows, u.startkey, a)), i.inMemoryFields.length && (c.rows = Ba(c.rows, t, i.inMemoryFields));
       var _ = {
@@ -8032,56 +8031,56 @@ function nl(e, t) {
       _deleted: !0
     } : (delete a.views[r], a);
   }
-  return vn(e, n, i).then(function() {
-    return qr(e).viewCleanup.apply(e);
+  return dn(e, n, i).then(function() {
+    return Pr(e).viewCleanup.apply(e);
   }).then(function() {
     return {
       ok: !0
     };
   });
 }
-var rl = Ft(Pc), il = Ft(za), al = Ft(tl), ul = Ft(Fa), ol = Ft(nl), gt = {};
-gt.createIndex = Lt(function(e, t) {
+var rl = Nt(Pc), il = Nt(za), al = Nt(tl), ul = Nt(Fa), ol = Nt(nl), ht = {};
+ht.createIndex = Rt(function(e, t) {
   if (typeof e != "object")
     return t(new Error("you must provide an index to create"));
-  var n = et(this) ? tc : rl;
+  var n = Ve(this) ? tc : rl;
   n(this, e, t);
 });
-gt.find = Lt(function(e, t) {
+ht.find = Rt(function(e, t) {
   if (typeof t > "u" && (t = e, e = void 0), typeof e != "object")
     return t(new Error("you must provide search parameters to find()"));
-  var n = et(this) ? nc : il;
+  var n = Ve(this) ? nc : il;
   n(this, e, t);
 });
-gt.explain = Lt(function(e, t) {
+ht.explain = Rt(function(e, t) {
   if (typeof t > "u" && (t = e, e = void 0), typeof e != "object")
     return t(new Error("you must provide search parameters to explain()"));
-  var n = et(this) ? rc : al;
+  var n = Ve(this) ? rc : al;
   n(this, e, t);
 });
-gt.getIndexes = Lt(function(e) {
-  var t = et(this) ? ic : ul;
+ht.getIndexes = Rt(function(e) {
+  var t = Ve(this) ? ic : ul;
   t(this, e);
 });
-gt.deleteIndex = Lt(function(e, t) {
+ht.deleteIndex = Rt(function(e, t) {
   if (typeof e != "object")
     return t(new Error("you must provide an index to delete"));
-  var n = et(this) ? ac : ol;
+  var n = Ve(this) ? ac : ol;
   n(this, e, t);
 });
-function vt(...e) {
+function Et(...e) {
   return [].concat(...e).filter((t) => !sl(t) && !cl(t) && !dl(t)).flat();
 }
 function fl(e = null) {
   const t = new Date();
   return typeof e == "number" && t.setSeconds(t.getSeconds() + e), t;
 }
-function Ct(e, t) {
+function kt(e, t) {
   if (e instanceof Map)
-    return Array.from(e).map(([r, i]) => Ct(i, t));
+    return Array.from(e).map(([r, i]) => kt(i, t));
   if (Array.isArray(e))
-    return e.map((r) => Ct(r, t));
-  if (t = vt(t), !t.length)
+    return e.map((r) => kt(r, t));
+  if (t = Et(t), !t.length)
     return e;
   const n = t.map((r) => ll(e) ? e[r] : e);
   if (!!n.length)
@@ -8105,7 +8104,7 @@ function Ja(e) {
 function dl(e) {
   return e === void 0;
 }
-function Br(e, t, n = []) {
+function qr(e, t, n = []) {
   if (e instanceof Map)
     return e;
   if (t === void 0)
@@ -8113,14 +8112,14 @@ function Br(e, t, n = []) {
       "You must specify an attribute for the map's key."
     );
   const r = new Map(
-    vt(n).map((i) => [i, void 0])
+    Et(n).map((i) => [i, void 0])
   );
-  return vt(e).reduce((i, a) => {
+  return Et(e).reduce((i, a) => {
     const u = typeof t == "function" ? t(a) : a[t];
     return i.set(u, a);
   }, Object.assign(r, {
     first(...i) {
-      return Ct(this.toArray().shift(), [...i]);
+      return kt(this.toArray().shift(), [...i]);
     },
     last() {
       return this.toArray().pop();
@@ -8136,38 +8135,38 @@ function Br(e, t, n = []) {
 function Qa(e, ...t) {
   return e instanceof Promise ? e : typeof e == "function" ? Promise.resolve(e(...t)) : Promise.resolve(e);
 }
-function Rr(e, t = (n) => n) {
+function Tr(e, t = (n) => n) {
   if (!!e.size)
     return e.size === 1 ? t(e.first()) : Object.fromEntries(
       Array.from(e).map(([n, r]) => [n, t(r)])
     );
 }
-async function nr(e, t) {
+async function Ai(e, t) {
   const n = Object.entries(t);
   for (const [r, i] of n)
     t[r] = i && await e.remove(i);
-  return Rr(Br(t, "id"));
+  return Tr(qr(t, "id"));
 }
-function Ga(e) {
+function vl(e) {
   e && console.warn(e);
 }
-const vl = {
+const hl = {
   async cache(...e) {
     const [t, n, r] = e;
     await this.clearExpiredCache(t);
     const i = await this.findCache(t);
     if (e.length <= 1 || i.length) {
-      const _ = Br(i, "_id", t);
-      return Rr(_, (b) => Ct(b, "$value"));
+      const _ = qr(i, "_id", t);
+      return Tr(_, (b) => kt(b, "$value"));
     }
     if (!Ja(t))
-      throw new Error("The key must be a string when cache() is being used a setter.");
+      throw new Error(
+        "The key must be a string when cache() is being used a setter."
+      );
     const a = r instanceof Date ? r : typeof r == "number" ? fl(r) : null;
     let u = await Qa(n);
     u !== void 0 && (u = JSON.parse(JSON.stringify(u)));
-    const {
-      _rev: o
-    } = Ka(i) || {}, c = Object.assign({
+    const { _rev: o } = Ka(i) || {}, c = Object.assign({
       _id: t,
       _rev: o,
       $value: u,
@@ -8191,8 +8190,10 @@ const vl = {
     };
   },
   async clearExpiredCache(e) {
-    const t = await this.findCache(vt(e), new Date(), !0);
-    return await Promise.all(Object.entries(t).map(([n, r]) => r && this.remove(r._id, r._rev)));
+    const t = await this.findCache(Et(e), new Date(), !0);
+    return await Promise.all(
+      Object.entries(t).map(([n, r]) => r && this.remove(r._id, r._rev))
+    );
   },
   async createCacheIndex() {
     return await this.createIndex({
@@ -8203,11 +8204,10 @@ const vl = {
   },
   async findCache(e = void 0, t = void 0, n = !1) {
     t === void 0 && (t = new Date());
-    const {
-      docs: r,
-      warning: i
-    } = await this.find(this.cacheSelector(vt(e), t, n));
-    return Ga(i), r;
+    const { docs: r, warning: i } = await this.find(
+      this.cacheSelector(Et(e), t, n)
+    );
+    return vl(i), r;
   },
   async findExpiredCache(e, t = null) {
     return await this.findCache(e, !0, t || new Date());
@@ -8226,25 +8226,25 @@ const vl = {
     }) : e;
   },
   async purge(e) {
-    return await nr(this, await this.findCache(e));
+    return await Ai(this, await this.findCache(e));
   },
   async removeCache(e) {
-    return await nr(this, await this.findCache(e));
+    return await Ai(this, await this.findCache(e));
   }
-}, hl = {
+}, yl = {
   async config(...e) {
     const [t, n] = e, r = await this.findConfig(t);
     if (e.length <= 1) {
-      const o = Br(r, "_id", t);
-      return Rr(o, (c) => Ct(c, "$value"));
+      const o = qr(r, "_id", t);
+      return Tr(o, (c) => kt(c, "$value"));
     }
     if (!Ja(t))
-      throw new Error("The key must be a string when config() is being used a setter.");
+      throw new Error(
+        "The key must be a string when config() is being used a setter."
+      );
     let i = await Qa(n);
     i !== void 0 && (i = JSON.parse(JSON.stringify(i)));
-    const {
-      _rev: a
-    } = Ka(r) || {}, u = Object.assign({
+    const { _rev: a } = Ka(r) || {}, u = Object.assign({
       _id: t,
       _rev: a,
       $value: i,
@@ -8270,78 +8270,68 @@ const vl = {
         fields: ["$config"]
       }
     });
-  },
-  async findConfig(e) {
-    const {
-      docs: t,
-      warning: n
-    } = await this.find(this.configSelector(vt(e)));
-    return Ga(n), t;
-  },
-  async removeConfig(e) {
-    return await nr(this, await this.findConfig(e));
   }
 };
-H.plugin(gt);
-H.plugin(vl);
+H.plugin(ht);
 H.plugin(hl);
-let Oe;
-function Fe() {
-  if (!Oe)
+H.plugin(yl);
+let Ae;
+function Ne() {
+  if (!Ae)
     throw new Error("You must initialize with init() before accessing the database.");
   return !0;
 }
-function yl(e, t) {
-  return Oe || (Oe = new H(e, t));
-}
-async function Rl() {
-  return Fe() && {
-    cache: await Oe.createCacheIndex(),
-    config: await Oe.createConfigIndex()
-  };
+function gl(e, t) {
+  return Ae || (Ae = new H(e, t));
 }
 async function Ll() {
-  return Fe() && await Oe.createCacheIndex();
+  return Ne() && {
+    cache: await Ae.createCacheIndex(),
+    config: await Ae.createConfigIndex()
+  };
 }
 async function Dl() {
-  return Fe() && await Oe.createConfigIndex();
+  return Ne() && await Ae.createCacheIndex();
 }
-async function Nl(...e) {
-  return Fe() && await Oe.cache(...e);
+async function Nl() {
+  return Ne() && await Ae.createConfigIndex();
 }
 async function Fl(...e) {
-  return Fe() && await Oe.config(...e);
+  return Ne() && await Ae.cache(...e);
 }
 async function Ml(...e) {
-  return Fe() && await Oe.purge(...e);
+  return Ne() && await Ae.config(...e);
 }
 async function Ul(...e) {
-  return Fe() && await Oe.removeCache(...e);
+  return Ne() && await Ae.purge(...e);
 }
 async function zl(...e) {
-  return Fe() && await Oe.removeConfig(...e);
+  return Ne() && await Ae.removeCache(...e);
 }
-const kn = (e) => e instanceof Date, gl = (e) => Object.keys(e).length === 0, rr = (e) => e != null && typeof e == "object", Oi = (e, ...t) => Object.prototype.hasOwnProperty.call(e, ...t), Cn = (e) => rr(e) && gl(e), Wa = (e, t) => {
+async function Kl(...e) {
+  return Ne() && await Ae.removeConfig(...e);
+}
+const En = (e) => e instanceof Date, pl = (e) => Object.keys(e).length === 0, tr = (e) => e != null && typeof e == "object", Oi = (e, ...t) => Object.prototype.hasOwnProperty.call(e, ...t), kn = (e) => tr(e) && pl(e), Ga = (e, t) => {
   if (e === t)
     return {};
-  if (!rr(e) || !rr(t))
+  if (!tr(e) || !tr(t))
     return t;
   const n = e, r = t, i = Object.keys(n).reduce((a, u) => (Oi(r, u) || (a[u] = void 0), a), {});
-  return kn(n) || kn(r) ? n.valueOf() == r.valueOf() ? {} : r : Object.keys(r).reduce((a, u) => {
+  return En(n) || En(r) ? n.valueOf() == r.valueOf() ? {} : r : Object.keys(r).reduce((a, u) => {
     if (!Oi(n, u))
       return a[u] = r[u], a;
-    const o = Wa(n[u], r[u]);
-    return Cn(o) && !kn(o) && (Cn(n[u]) || !Cn(r[u])) || (a[u] = o), a;
+    const o = Ga(n[u], r[u]);
+    return kn(o) && !En(o) && (kn(n[u]) || !kn(r[u])) || (a[u] = o), a;
   }, i);
 };
-var pl = "Expected a function", Si = 0 / 0, _l = "[object Symbol]", ml = /^\s+|\s+$/g, wl = /^[-+]0x[0-9a-f]+$/i, bl = /^0b[01]+$/i, $l = /^0o[0-7]+$/i, Al = parseInt, Ol = typeof pe == "object" && pe && pe.Object === Object && pe, Sl = typeof self == "object" && self && self.Object === Object && self, xl = Ol || Sl || Function("return this")(), El = Object.prototype, kl = El.toString, Cl = Math.max, jl = Math.min, jn = function() {
+var _l = "Expected a function", Si = 0 / 0, ml = "[object Symbol]", wl = /^\s+|\s+$/g, bl = /^[-+]0x[0-9a-f]+$/i, $l = /^0b[01]+$/i, Al = /^0o[0-7]+$/i, Ol = parseInt, Sl = typeof self == "object" && self && self.Object === Object && self, xl = Sl || Function("return this")(), El = Object.prototype, kl = El.toString, Cl = Math.max, jl = Math.min, Cn = function() {
   return xl.Date.now();
 };
 function Il(e, t, n) {
   var r, i, a, u, o, c, _ = 0, b = !1, s = !1, m = !0;
   if (typeof e != "function")
-    throw new TypeError(pl);
-  t = xi(t) || 0, ir(n) && (b = !!n.leading, s = "maxWait" in n, a = s ? Cl(xi(n.maxWait) || 0, t) : a, m = "trailing" in n ? !!n.trailing : m);
+    throw new TypeError(_l);
+  t = xi(t) || 0, nr(n) && (b = !!n.leading, s = "maxWait" in n, a = s ? Cl(xi(n.maxWait) || 0, t) : a, m = "trailing" in n ? !!n.trailing : m);
   function O(y) {
     var j = r, R = i;
     return r = i = void 0, _ = y, u = e.apply(R, j), u;
@@ -8358,7 +8348,7 @@ function Il(e, t, n) {
     return c === void 0 || j >= t || j < 0 || s && R >= a;
   }
   function g() {
-    var y = jn();
+    var y = Cn();
     if (A(y))
       return h(y);
     o = setTimeout(g, S(y));
@@ -8370,10 +8360,10 @@ function Il(e, t, n) {
     o !== void 0 && clearTimeout(o), _ = 0, r = c = i = o = void 0;
   }
   function l() {
-    return o === void 0 ? u : h(jn());
+    return o === void 0 ? u : h(Cn());
   }
   function d() {
-    var y = jn(), j = A(y);
+    var y = Cn(), j = A(y);
     if (r = arguments, i = this, c = y, j) {
       if (o === void 0)
         return $(c);
@@ -8384,65 +8374,79 @@ function Il(e, t, n) {
   }
   return d.cancel = f, d.flush = l, d;
 }
-function ir(e) {
+function nr(e) {
   var t = typeof e;
   return !!e && (t == "object" || t == "function");
 }
 function Pl(e) {
   return !!e && typeof e == "object";
 }
-function Tl(e) {
-  return typeof e == "symbol" || Pl(e) && kl.call(e) == _l;
+function ql(e) {
+  return typeof e == "symbol" || Pl(e) && kl.call(e) == ml;
 }
 function xi(e) {
   if (typeof e == "number")
     return e;
-  if (Tl(e))
+  if (ql(e))
     return Si;
-  if (ir(e)) {
+  if (nr(e)) {
     var t = typeof e.valueOf == "function" ? e.valueOf() : e;
-    e = ir(t) ? t + "" : t;
+    e = nr(t) ? t + "" : t;
   }
   if (typeof e != "string")
     return e === 0 ? e : +e;
-  e = e.replace(ml, "");
-  var n = bl.test(e);
-  return n || $l.test(e) ? Al(e.slice(2), n ? 2 : 8) : wl.test(e) ? Si : +e;
+  e = e.replace(wl, "");
+  var n = $l.test(e);
+  return n || Al.test(e) ? Ol(e.slice(2), n ? 2 : 8) : bl.test(e) ? Si : +e;
 }
-var ql = Il;
-const Kl = (e) => {
-  if (!e.database)
-    throw new Error("The database name must be defined.");
-  const t = yl(e.database);
-  return async (n) => {
-    for (const [i, a] of Object.entries(n.pinia.state.value))
-      for (const u of Object.keys(a)) {
-        const o = await t.config(`${i}.${u}`);
-        o !== void 0 && (a[u] = JSON.parse(JSON.stringify(o)));
+var Tl = Il;
+async function Bl(e, t) {
+  for (const [n, r] of Object.entries(t.state.value))
+    for (const i of Object.keys(r)) {
+      const a = await e.config(`${n}.${i}`);
+      a !== void 0 && (r[i] = JSON.parse(JSON.stringify(a)));
+    }
+}
+const Jl = (e) => {
+  console.log("pouch plugin");
+  const t = gl(e.database || "pinia-pouchdb-plugin");
+  return (n) => {
+    n.app.component(e.component || "PouchDB", {
+      render(i) {
+        return Br(Wa, Br({
+          async setup() {
+            await Bl(t, n.pinia);
+          },
+          render() {
+            return i.$slots.default(n);
+          }
+        }));
       }
+    });
     let r = JSON.parse(JSON.stringify(n.pinia.state)) || {};
-    Ha(n.pinia.state, ql(async (i) => {
-      for (const [a, u] of Object.entries(n.pinia.state.value)) {
-        const o = JSON.parse(JSON.stringify(u)), c = Wa(r[a] || {}, o);
-        for (let _ of Object.keys(c))
-          await t.config(`${a}.${_}`, u[_]);
-        r[a] = o;
+    Ha(n.pinia.state, Tl(async () => {
+      for (const [i, a] of Object.entries(n.pinia.state.value)) {
+        const u = JSON.parse(JSON.stringify(a)), o = Ga(r[i] || {}, u);
+        for (let c of Object.keys(o))
+          await t.config(`${i}.${c}`, a[c]);
+        r[i] = u;
       }
     }, e.wait || 100), {
       deep: !0
-    }), typeof e.initialized == "function" && e.initialized(n);
+    });
   };
 };
 export {
-  Nl as cache,
-  Fl as config,
-  Ll as createCacheIndex,
-  Dl as createConfigIndex,
-  Rl as createIndex,
-  Oe as db,
-  yl as init,
-  Ml as purge,
-  Ul as removeCache,
-  zl as removeConfig,
-  Kl as usePouchPlugin
+  Fl as cache,
+  Ml as config,
+  Dl as createCacheIndex,
+  Nl as createConfigIndex,
+  Ll as createIndex,
+  Ae as db,
+  gl as init,
+  Bl as load,
+  Ul as purge,
+  zl as removeCache,
+  Kl as removeConfig,
+  Jl as usePouchPlugin
 };

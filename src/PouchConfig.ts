@@ -165,31 +165,31 @@ export default {
         });
     },
 
-    /**
-     * Find the config documents using the specified keys.
-     * 
-     * @param {array|string} key 
-     * @returns {Promise}
-     */
-    async findConfig(key) {
-        // Find the matching config docs by key(s).
-        const { docs, warning } = await this.find(
-            this.configSelector(array(key))
-        );
+    // /**
+    //  * Find the config documents using the specified keys.
+    //  * 
+    //  * @param {array|string} key 
+    //  * @returns {Promise}
+    //  */
+    // async findConfig(key) {
+    //     // Find the matching config docs by key(s).
+    //     const { docs, warning } = await this.find(
+    //         this.configSelector(array(key))
+    //     );
         
-        // Log the query warning in the console if it exists.
-        warn(warning);
+    //     // Log the query warning in the console if it exists.
+    //     warn(warning);
 
-        return docs;
-    },
+    //     return docs;
+    // },
 
-    /**
-     * Remove the config documents using the specified key(s).
-     * 
-     * @param {array|string} key 
-     * @returns {Promise}
-     */
-    async removeConfig(key) {
-        return await remove(this, await this.findConfig(key));
-    }
+    // /**
+    //  * Remove the config documents using the specified key(s).
+    //  * 
+    //  * @param {array|string} key 
+    //  * @returns {Promise}
+    //  */
+    // async removeConfig(key) {
+    //     return await remove(this, await this.findConfig(key));
+    // }
 };

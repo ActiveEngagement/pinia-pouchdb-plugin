@@ -26,6 +26,8 @@ export async function load(db: PouchDB.Database, pinia: Pinia) {
 }
 
 export const usePouchPlugin = (options: PouchePluginOptions) => {
+    console.log('pouch plugin');
+    
     // Initialize the database.
     const db = init(options.database || 'pinia-pouchdb-plugin');
 
