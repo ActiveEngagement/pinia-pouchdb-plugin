@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'es2015',
     lib: {
-        entry: path.resolve(__dirname, 'index.js'),
+        entry: path.resolve(__dirname, 'index.ts'),
         name: pascalCase(name),
         fileName: (format) => `${name}.${format}.js`,
     },
