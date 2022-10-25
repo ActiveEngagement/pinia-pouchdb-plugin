@@ -4,10 +4,9 @@
 /// <reference types="pouchdb-replication" />
 import { Pinia } from 'pinia';
 interface PouchePluginOptions {
-    component?: string;
-    database?: string;
+    database: PouchDB.Database;
     wait?: number;
 }
-export declare function load(db: PouchDB.Database, pinia: Pinia): Promise<void>;
+export declare function load(database: PouchDB.Database, pinia: Pinia): Promise<void>;
 export declare const usePouchPlugin: (options: PouchePluginOptions) => (context: any) => void;
 export {};

@@ -89,5 +89,19 @@ declare const _default: {
      * @returns {Promise}
      */
     createConfigIndex(): Promise<any>;
+    /**
+     * Find the config documents using the specified keys.
+     *
+     * @param {array|string} key
+     * @returns {Promise}
+     */
+    findConfig(key: any): Promise<any>;
+    /**
+     * Remove the config documents using the specified key(s).
+     *
+     * @param {array|string} key
+     * @returns {Promise}
+     */
+    removeConfig(key: any): Promise<any>;
 };
 export default _default;

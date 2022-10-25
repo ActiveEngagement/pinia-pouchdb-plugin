@@ -6,8 +6,6 @@ const { first, last } = storeToRefs(useStore())
 </script>
 
 <template>
-  <PouchDB>
     <input type="text" v-model="first" placeholder="First Name" />
     <input type="text" v-model="last" placeholder="Last Name" />
-  </PouchDB>
 </template>

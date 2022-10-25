@@ -7,9 +7,12 @@ import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { babel } from '@rollup/plugin-babel';
 import dts from 'vite-plugin-dts';
 
+// import nodePolyfills from 'rollup-plugin-polyfill-node';
+// import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+// import commonjsExternals from 'vite-plugin-commonjs-externals';
+
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => !console.log(mode) && ({
-  
+export default defineConfig(({ mode }) => ({
   optimizeDeps: {
       allowNodeBuiltins: ['pouchdb', 'pouchdb-utils']
   },
@@ -52,6 +55,6 @@ export default defineConfig(({ mode }) => !console.log(mode) && ({
     // }),
   ],
   define: {
-    global: process.env.NODE_ENV === 'development' && {},
+    global: 'window',
   }
 }))
