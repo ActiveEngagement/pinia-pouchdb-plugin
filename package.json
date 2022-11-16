@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "deep-object-diff": "^1.1.0",
-    "pouchdb": "^7.3.0",
     "pouchdb-browser": "^7.3.0",
     "pouchdb-find": "^7.2.1",
     "pouchdb-upsert": "^2.2.0"

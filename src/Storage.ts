@@ -1,4 +1,4 @@
-import PouchDB from 'pouchdb';
+import PouchDB from 'pouchdb-browser';
 import PouchFind from 'pouchdb-find';
 import PouchUpsert from 'pouchdb-upsert';
 import PoucheCache from './PouchCache';
