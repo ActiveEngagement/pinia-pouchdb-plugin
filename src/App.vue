@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import { useStore } from './store';
+import { useMainStore } from './store';
 
-const { first, last } = storeToRefs(useStore())
+const { first, last } = storeToRefs(useMainStore())
 </script>
 
 <template>

@@ -47,12 +47,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     viteCommonjs(),
     vue(),
-    dts({
-      insertTypesEntry: true
-    })
-    // commonjsExternals.default({
-    //   externals: ['path', /^pouch-db(\/.+)?$/],
-    // }),
+    dts()
   ],
   define: {
     global: 'window',

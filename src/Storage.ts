@@ -1,9 +1,11 @@
 import PouchDB from 'pouchdb';
 import PouchFind from 'pouchdb-find';
+import PouchUpsert from 'pouchdb-upsert';
 import PoucheCache from './PouchCache';
 import PoucheConfig from './PouchConfig';
 
 PouchDB.plugin(PouchFind);
+PouchDB.plugin(PouchUpsert);
 PouchDB.plugin(PoucheCache);
 PouchDB.plugin(PoucheConfig);
 
@@ -37,16 +39,14 @@ function initialized() {
  * @param {object} options
  * @returns {PouchDB}
  */
-export function init(name, options) {
+export function init(name: string, options?: PouchDB.AdapterWebSql.Configuration): PouchDB.Database {
     return db|| (db = new PouchDB(name, options));
 }
 
 /**
  * Create the cache and config database indexes.
- * 
- * @returns {Promise}
  */
-export async function createIndex() {
+export async function createIndex(): Promise<{cache: any, config: any}> {
     return initialized() && {
         cache: await db.createCacheIndex(),
         config: await db.createConfigIndex()
@@ -55,19 +55,15 @@ export async function createIndex() {
 
 /**
  * Create the cache database index.
- * 
- * @returns {Promise}
  */
-export async function createCacheIndex() {
+export async function createCacheIndex(): Promise<{cache: any, config: any}> {
     return initialized() && await db.createCacheIndex();
 }
 
 /**
  * Create the config database index.
- * 
- * @returns {Promise}
  */
-export async function createConfigIndex() {
+export async function createConfigIndex(): Promise<{cache: any, config: any}> {
     return initialized() && await db.createConfigIndex();
 }
 
@@ -85,7 +81,7 @@ export async function createConfigIndex() {
  * @param {Date|number|null} length 
  * @returns {Promise}
  */
-export async function cache(...args) {
+export async function cache(...args): Promise<any> {
     return initialized() && await db.cache(...args);
 }
 
@@ -101,7 +97,7 @@ export async function cache(...args) {
  * @param {any} data
  * @returns {Promise}
  */
-export async function config(...args) {
+export async function config(...args): Promise<any> {
     return initialized() && await db.config(...args);
 }
 
@@ -114,7 +110,7 @@ export async function config(...args) {
  * @param {array|string} key 
  * @returns {Promise}
  */
-export async function purge(...args) {
+export async function purge(...args): Promise<any> {
     return initialized() && await db.purge(...args);
 }
 
@@ -124,7 +120,7 @@ export async function purge(...args) {
  * @param {array|string} key 
  * @returns {Promise}
  */
-export async function removeCache(...args) {
+export async function removeCache(...args): Promise<any> {
     return initialized() && await db.removeCache(...args);
 }
 
@@ -134,6 +130,6 @@ export async function removeCache(...args) {
  * @param {array|string} key 
  * @returns {Promise}
  */
-export async function removeConfig(...args) {
+export async function removeConfig(...args): Promise<any> {
     return initialized() && await db.removeConfig(...args);
 }

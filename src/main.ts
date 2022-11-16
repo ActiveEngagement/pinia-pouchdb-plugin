@@ -1,9 +1,9 @@
 import { createPinia } from 'pinia';
 import App from './App.vue'
 import { usePouchPlugin } from './PouchPlugin';
-import { createPouchApp } from './createPouchLoader';
+import { createPouchApp } from './createPouchApp';
 import { init } from './Storage';
-import { useStore } from './store';
+import { useMainStore, useSettingsStore } from './store';
 
 const database = init('pinia-demo');
 
@@ -15,9 +15,11 @@ const pinia = createPinia().use(
 
 createPouchApp(App, {
     pinia,
-    database
-}, async () => [
-    useStore()
-])
+    database,
+    stores: [
+        useMainStore,
+        useSettingsStore
+    ]
+})
     .use(pinia)
     .mount('#app');

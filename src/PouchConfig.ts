@@ -1,3 +1,5 @@
+import { diff } from 'deep-object-diff';
+
 import {
     array,
     extract,
@@ -124,7 +126,11 @@ export default {
         });
         
         // Put the doc in the database
-        await this.put(doc);
+        await this.upsert(key, (changed) => {
+            if(Object.keys(diff(doc, changed)).length > 0) {
+                return doc;
+            }
+        });
 
         // Return the newly created doc.
         return $value;

@@ -6,22 +6,20 @@
   "exports": {
     ".": "./index.ts"
   },
-  "types": "dist/index.d.ts",
-  "main": "dist/pinia-pouchdb-plugin.umd.js",
-  "module": "dist/pinia-pouchdb-plugin.es.js",
+  "main": "./dist/pinia-pouchdb-plugin.umd.js",
+  "module": "./dist/pinia-pouchdb-plugin.es.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/pouchdb": "^6.4.0",
     "deep-object-diff": "^1.1.0",
-    "lodash.debounce": "^4.0.8",
     "pouchdb": "^7.3.0",
     "pouchdb-browser": "^7.3.0",
     "pouchdb-find": "^7.2.1",
-    "vite-plugin-dts": "^1.6.6"
+    "pouchdb-upsert": "^2.2.0"
   },
   "peerDependencies": {
     "pinia": "^2.0.0",
@@ -30,12 +28,14 @@
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@rollup/plugin-babel": "^6.0.0",
+    "@types/pouchdb": "^6.4.0",
     "@vitejs/plugin-vue": "^3.1.0",
     "babel-eslint": "^10.1.0",
     "babel-preset-vue": "^2.0.2",
     "change-case": "^4.1.2",
     "events": "^3.3.0",
     "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.6.6",
     "vue": "^3.2.37"
   }
 }

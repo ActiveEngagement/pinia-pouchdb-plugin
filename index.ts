@@ -1,4 +1,4 @@
-import { createPouchLoader, createPouchApp } from './src/createPouchLoader';
+import { createPouchLoader, createPouchApp } from './src/createPouchApp';
 
 export {
     createPouchLoader,
