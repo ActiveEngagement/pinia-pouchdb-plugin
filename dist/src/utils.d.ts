@@ -4,7 +4,7 @@
  * @param  {...string|array} args
  * @returns {array}
  */
-export declare function array(...args: any[]): any;
+export declare function array(...args: any[]): any[];
 /**
  * Creates a date and adds the length in seconds.
  *

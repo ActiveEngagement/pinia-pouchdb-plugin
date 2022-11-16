@@ -10,7 +10,8 @@ interface PouchePluginOptions {
 export async function load(database: PouchDB.Database, pinia: Pinia) {
     // Loop through the context.pinia.state keys and get the saved values.
     for(const [key, store] of Object.entries(pinia.state.value)) {
-        for(const prop of Object.keys(store)) {            
+        for(const prop of Object.keys(store)) {    
+            // @ts-ignore        
             const value = await database.config(`${key}.${prop}`);
 
             if(value !== undefined) {
@@ -40,6 +41,7 @@ export const usePouchPlugin = (options: PouchePluginOptions) => {
             // Loop through the differences and save the key/value in the db.
             for(let prop of Object.keys(difference)) {
                 // Set the config key/value pair.
+                // @ts-ignore
                 await options.database.config(
                     `${context.store.$id}.${prop}`, context.store[prop]
                 );

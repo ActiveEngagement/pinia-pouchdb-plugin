@@ -1,5 +1,5 @@
 import { createApp, defineComponent, h, Suspense } from "vue";
-import type { Application, Component } from "vue";
+import type { App, Component } from "vue";
 import type { Pinia, StoreDefinition } from "pinia";
 import { load } from "./PouchPlugin";
 
@@ -11,9 +11,9 @@ interface PouchLoaderParameters {
 }
 
 interface PouchAppParameters extends PouchLoaderParameters {
-    loaded?: (app: Application) => void,
-    beforeMount?: (app: Application) => void,
-    mounted?: (app: Application) => void,
+    loaded?: (app: App) => void,
+    beforeMount?: (app: App) => void,
+    mounted?: (app: App) => void,
 }
 
 export function createPouchLoader(App: Component, options?: PouchLoaderParameters, component?: Record<string,any>) {

@@ -197,6 +197,7 @@ export default {
 
         return await Promise.all(
             Object.entries(docs).map(([key, doc]) => {
+                // @ts-ignore
                 return doc && this.remove(doc._id, doc._rev);
             })
         );
