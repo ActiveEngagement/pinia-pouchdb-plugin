@@ -45,7 +45,9 @@ export function init(name: string, options?: PouchDB.AdapterWebSql.Configuration
  */
 export async function createIndex(): Promise<{cache: any, config: any}> {
     return initialized() && {
+        // @ts-ignore
         cache: await db.createCacheIndex(),
+        // @ts-ignore
         config: await db.createConfigIndex()
     };
 }
@@ -54,6 +56,7 @@ export async function createIndex(): Promise<{cache: any, config: any}> {
  * Create the cache database index.
  */
 export async function createCacheIndex(): Promise<{cache: any, config: any}> {
+    // @ts-ignore
     return initialized() && await db.createCacheIndex();
 }
 
@@ -61,6 +64,7 @@ export async function createCacheIndex(): Promise<{cache: any, config: any}> {
  * Create the config database index.
  */
 export async function createConfigIndex(): Promise<{cache: any, config: any}> {
+    // @ts-ignore
     return initialized() && await db.createConfigIndex();
 }
 
@@ -79,6 +83,7 @@ export async function createConfigIndex(): Promise<{cache: any, config: any}> {
  * @returns {Promise}
  */
 export async function cache(...args): Promise<any> {
+    // @ts-ignore
     return initialized() && await db.cache(...args);
 }
 
@@ -95,6 +100,7 @@ export async function cache(...args): Promise<any> {
  * @returns {Promise}
  */
 export async function config(...args): Promise<any> {
+    // @ts-ignore
     return initialized() && await db.config(...args);
 }
 
@@ -108,6 +114,7 @@ export async function config(...args): Promise<any> {
  * @returns {Promise}
  */
 export async function purge(...args): Promise<any> {
+    // @ts-ignore
     return initialized() && await db.purge(...args);
 }
 
@@ -118,6 +125,7 @@ export async function purge(...args): Promise<any> {
  * @returns {Promise}
  */
 export async function removeCache(...args): Promise<any> {
+    // @ts-ignore
     return initialized() && await db.removeCache(...args);
 }
 
@@ -128,5 +136,6 @@ export async function removeCache(...args): Promise<any> {
  * @returns {Promise}
  */
 export async function removeConfig(...args): Promise<any> {
+    // @ts-ignore
     return initialized() && await db.removeConfig(...args);
 }
