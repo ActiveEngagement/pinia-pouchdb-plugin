@@ -35,8 +35,6 @@ function initialized(): boolean|never {
  * @returns {PouchDB}
  */
 export function init(name: string, options?: PouchDB.AdapterWebSql.Configuration): PouchDB.Database {
-    console.log(PouchDB);
-    
     return db || (db = new PouchDB(name, options));
 }
 

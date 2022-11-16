@@ -1638,7 +1638,7 @@ function xo(e, t, n) {
 }
 Dt.prototype.validateChanges = function(e) {
   var t = e.complete, n = this;
-  W._changesFilterPlugin ? W._changesFilterPlugin.validate(e, function(r) {
+  H._changesFilterPlugin ? H._changesFilterPlugin.validate(e, function(r) {
     if (r)
       return t(r);
     n.doChanges(e);
@@ -1658,9 +1658,9 @@ Dt.prototype.doChanges = function(e) {
     }, n);
     return;
   }
-  if (W._changesFilterPlugin) {
-    if (W._changesFilterPlugin.normalize(e), W._changesFilterPlugin.shouldFilter(this, e))
-      return W._changesFilterPlugin.filter(this, e);
+  if (H._changesFilterPlugin) {
+    if (H._changesFilterPlugin.normalize(e), H._changesFilterPlugin.shouldFilter(this, e))
+      return H._changesFilterPlugin.filter(this, e);
   } else
     ["doc_ids", "filter", "selector", "view"].forEach(function(a) {
       a in e && Oe("warn", 'The "' + a + '" option was passed in to changes/replicate, but pouchdb-changes-filter plugin is not installed, so it was ignored. Please install the plugin to enable filtering.');
@@ -2174,7 +2174,7 @@ function qo(e, t) {
       name: /https?/.test(n[1]) ? n[1] + "://" + n[2] : n[2],
       adapter: n[1]
     };
-  var r = W.adapters, i = W.preferredAdapters, a = W.prefix, u = t.adapter;
+  var r = H.adapters, i = H.preferredAdapters, a = H.prefix, u = t.adapter;
   if (!u)
     for (var o = 0; o < i.length; ++o) {
       if (u = i[o], u === "idb" && "websql" in r && hn() && localStorage["_pouch__websqldb_" + a + e]) {
@@ -2198,22 +2198,22 @@ function Io(e) {
   }
   e.once("destroyed", t), e.once("closed", n), e.constructor.emit("ref", e);
 }
-he.exports(W, ae);
-function W(e, t) {
-  if (!(this instanceof W))
-    return new W(e, t);
+he.exports(H, ae);
+function H(e, t) {
+  if (!(this instanceof H))
+    return new H(e, t);
   var n = this;
-  if (t = t || {}, e && typeof e == "object" && (t = e, e = t.name, delete t.name), t.deterministic_revs === void 0 && (t.deterministic_revs = !0), this.__opts = t = de(t), n.auto_compaction = t.auto_compaction, n.prefix = W.prefix, typeof e != "string")
+  if (t = t || {}, e && typeof e == "object" && (t = e, e = t.name, delete t.name), t.deterministic_revs === void 0 && (t.deterministic_revs = !0), this.__opts = t = de(t), n.auto_compaction = t.auto_compaction, n.prefix = H.prefix, typeof e != "string")
     throw new Error("Missing/invalid DB name");
   var r = (t.prefix || "") + e, i = qo(r, t);
-  if (t.name = i.name, t.adapter = t.adapter || i.adapter, n.name = e, n._adapter = t.adapter, W.emit("debug", ["adapter", "Picked adapter: ", t.adapter]), !W.adapters[t.adapter] || !W.adapters[t.adapter].valid())
+  if (t.name = i.name, t.adapter = t.adapter || i.adapter, n.name = e, n._adapter = t.adapter, H.emit("debug", ["adapter", "Picked adapter: ", t.adapter]), !H.adapters[t.adapter] || !H.adapters[t.adapter].valid())
     throw new Error("Invalid Adapter: " + t.adapter);
-  if (t.view_adapter && (!W.adapters[t.view_adapter] || !W.adapters[t.view_adapter].valid()))
+  if (t.view_adapter && (!H.adapters[t.view_adapter] || !H.adapters[t.view_adapter].valid()))
     throw new Error("Invalid View Adapter: " + t.view_adapter);
-  ae.call(n), n.taskqueue = new Nt(), n.adapter = t.adapter, W.adapters[t.adapter].call(n, t, function(a) {
+  ae.call(n), n.taskqueue = new Nt(), n.adapter = t.adapter, H.adapters[t.adapter].call(n, t, function(a) {
     if (a)
       return n.taskqueue.fail(a);
-    Io(n), n.emit("created", n), W.emit("created", n.name), n.taskqueue.ready(n);
+    Io(n), n.emit("created", n), H.emit("created", n.name), n.taskqueue.ready(n);
   });
 }
 var To = typeof AbortController != "undefined" ? AbortController : function() {
@@ -2222,9 +2222,9 @@ var To = typeof AbortController != "undefined" ? AbortController : function() {
     }
   };
 }, ma = fetch, ft = Headers;
-W.adapters = {};
-W.preferredAdapters = [];
-W.prefix = "_pouch_";
+H.adapters = {};
+H.preferredAdapters = [];
+H.prefix = "_pouch_";
 var ii = new ve.exports();
 function Bo(e) {
   Object.keys(ve.exports.prototype).forEach(function(n) {
@@ -2247,33 +2247,33 @@ function Bo(e) {
     }
   });
 }
-Bo(W);
-W.adapter = function(e, t, n) {
-  t.valid() && (W.adapters[e] = t, n && W.preferredAdapters.push(e));
+Bo(H);
+H.adapter = function(e, t, n) {
+  t.valid() && (H.adapters[e] = t, n && H.preferredAdapters.push(e));
 };
-W.plugin = function(e) {
+H.plugin = function(e) {
   if (typeof e == "function")
-    e(W);
+    e(H);
   else {
     if (typeof e != "object" || Object.keys(e).length === 0)
       throw new Error('Invalid plugin: got "' + e + '", expected an object or a function');
     Object.keys(e).forEach(function(t) {
-      W.prototype[t] = e[t];
+      H.prototype[t] = e[t];
     });
   }
-  return this.__defaults && (W.__defaults = Ye({}, this.__defaults)), W;
+  return this.__defaults && (H.__defaults = Ye({}, this.__defaults)), H;
 };
-W.defaults = function(e) {
+H.defaults = function(e) {
   function t(n, r) {
     if (!(this instanceof t))
       return new t(n, r);
-    r = r || {}, n && typeof n == "object" && (r = n, n = r.name, delete r.name), r = Ye({}, t.__defaults, r), W.call(this, n, r);
+    r = r || {}, n && typeof n == "object" && (r = n, n = r.name, delete r.name), r = Ye({}, t.__defaults, r), H.call(this, n, r);
   }
-  return he.exports(t, W), t.preferredAdapters = W.preferredAdapters.slice(), Object.keys(W).forEach(function(n) {
-    n in t || (t[n] = W[n]);
+  return he.exports(t, H), t.preferredAdapters = H.preferredAdapters.slice(), Object.keys(H).forEach(function(n) {
+    n in t || (t[n] = H[n]);
   }), t.__defaults = Ye({}, this.__defaults, e), t;
 };
-W.fetch = function(e, t) {
+H.fetch = function(e, t) {
   return ma(e, t);
 };
 var Ro = "7.3.1";
@@ -2852,8 +2852,8 @@ function ps(e) {
     filter: gs
   };
 }
-W.plugin(ps);
-W.version = Ro;
+H.plugin(ps);
+H.version = Ro;
 function Sa(e) {
   return e.reduce(function(t, n) {
     return t[n] = !0, t;
@@ -3293,8 +3293,8 @@ function qs(e, t, n, r, i, a) {
     C.metadata.winningRev = P, C.metadata.deleted = k;
     var M = C.data;
     M._id = C.metadata.id, M._rev = C.metadata.rev, q && (M._deleted = !0);
-    var H = M._attachments && Object.keys(M._attachments).length;
-    if (H)
+    var W = M._attachments && Object.keys(M._attachments).length;
+    if (W)
       return g(C, P, k, I, D, E);
     s += T, J(), d(C, P, k, I, D, E);
   }
@@ -3307,7 +3307,7 @@ function qs(e, t, n, r, i, a) {
       var Q = Hn(E, P, k), ee = f.put(Q);
       ee.onsuccess = te;
     }
-    function H(N) {
+    function W(N) {
       N.preventDefault(), N.stopPropagation();
       var z = _.index("_doc_id_rev"), Q = z.getKey(D._doc_id_rev);
       Q.onsuccess = function(ee) {
@@ -3323,20 +3323,20 @@ function qs(e, t, n, r, i, a) {
       }, h.set(C.metadata.id, C.metadata), w(C, E.seq, T);
     }
     var F = _.put(D);
-    F.onsuccess = M, F.onerror = H;
+    F.onsuccess = M, F.onerror = W;
   }
   function g(C, P, k, q, I, T) {
     var D = C.data, E = 0, M = Object.keys(D._attachments);
-    function H() {
+    function W() {
       E === M.length && d(C, P, k, q, I, T);
     }
     function te() {
-      E++, H();
+      E++, W();
     }
     M.forEach(function(F) {
       var N = C.data._attachments[F];
       if (N.stub)
-        E++, H();
+        E++, W();
       else {
         var z = N.data;
         delete N.data, N.revpos = parseInt(P, 10);
@@ -3353,9 +3353,9 @@ function qs(e, t, n, r, i, a) {
       ++q === I.length && k();
     }
     function D(M) {
-      var H = C.data._attachments[M].digest, te = c.put({
+      var W = C.data._attachments[M].digest, te = c.put({
         seq: P,
-        digestSeq: H + "::" + P
+        digestSeq: W + "::" + P
       });
       te.onsuccess = T, te.onerror = function(F) {
         F.preventDefault(), F.stopPropagation(), T();
@@ -4867,9 +4867,9 @@ function of(e, t, n, r) {
       });
     }
     function D(E, M) {
-      for (var H = [], te = new dt(), F = 0, N = M.rows.length; F < N; F++) {
+      for (var W = [], te = new dt(), F = 0, N = M.rows.length; F < N; F++) {
         var z = M.rows[F], Q = z.doc;
-        if (!!Q && (H.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
+        if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
         }
@@ -4880,9 +4880,9 @@ function of(e, t, n, r) {
           var xe = {
             _id: ye
           }, wt = k.get(ye);
-          "value" in wt && (xe.value = wt.value), H.push(xe);
+          "value" in wt && (xe.value = wt.value), W.push(xe);
         }
-      }), E.keys = li(X.concat(E.keys)), H.push(E), H;
+      }), E.keys = li(X.concat(E.keys)), W.push(E), W;
     }
     return I().then(function(E) {
       return T(E).then(function(M) {
@@ -4951,7 +4951,7 @@ function of(e, t, n, r) {
       var N = F.results;
       if (!N.length)
         return;
-      var z = H(N);
+      var z = W(N);
       D.add(q(z, k)), I = I + N.length;
       let Q = {
         view: d.name,
@@ -4962,7 +4962,7 @@ function of(e, t, n, r) {
       if (d.sourceDB.emit("indexing", Q), !(N.length < g.changes_batch_size))
         return E();
     }
-    function H(F) {
+    function W(F) {
       for (var N = new be(), z = 0, Q = F.length; z < Q; z++) {
         var ee = F[z];
         if (ee.doc._id[0] !== "_") {
@@ -4991,15 +4991,15 @@ function of(e, t, n, r) {
     w.group_level === 0 && delete w.group_level;
     var S = w.group || w.group_level, C = n(d.reduceFun), P = [], k = isNaN(w.group_level) ? Number.POSITIVE_INFINITY : w.group_level;
     g.forEach(function(E) {
-      var M = P[P.length - 1], H = S ? E.key : null;
-      if (S && Array.isArray(H) && (H = H.slice(0, k)), M && oe(M.groupKey, H) === 0) {
+      var M = P[P.length - 1], W = S ? E.key : null;
+      if (S && Array.isArray(W) && (W = W.slice(0, k)), M && oe(M.groupKey, W) === 0) {
         M.keys.push([E.key, E.id]), M.values.push(E.value);
         return;
       }
       P.push({
         keys: [[E.key, E.id]],
         values: [E.value],
-        groupKey: H
+        groupKey: W
       });
     }), g = [];
     for (var q = 0, I = P.length; q < I; q++) {
@@ -5090,8 +5090,8 @@ function of(e, t, n, r) {
         g.descending && (M = !M), T.endkey = Ee(M ? [E, {}] : [E]);
       }
       if (typeof g.key != "undefined") {
-        var H = Ee([g.key]), te = Ee([g.key, {}]);
-        T.descending ? (T.endkey = H, T.startkey = te) : (T.startkey = H, T.endkey = te);
+        var W = Ee([g.key]), te = Ee([g.key, {}]);
+        T.descending ? (T.endkey = W, T.startkey = te) : (T.startkey = W, T.endkey = te);
       }
       return S || (typeof g.limit == "number" && (T.limit = g.limit), T.skip = C), P(T).then(k);
     }
@@ -5124,9 +5124,9 @@ function of(e, t, n, r) {
           w.get(I.key).forEach(function(D) {
             var E = T + "/" + D;
             g.views[E] || (E = D);
-            var M = Object.keys(g.views[E]), H = I.doc && I.doc.views && I.doc.views[D];
+            var M = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
             M.forEach(function(te) {
-              P[te] = P[te] || H;
+              P[te] = P[te] || W;
             });
           });
         });
@@ -5575,8 +5575,8 @@ function La(e, t, n, r, i) {
           var M = T[E._id];
           if (M) {
             i.errors.push(M);
-            var H = (M.name || "").toLowerCase();
-            if (H === "unauthorized" || H === "forbidden")
+            var W = (M.name || "").toLowerCase();
+            if (W === "unauthorized" || W === "forbidden")
               r.emit("denied", de(M));
             else
               throw M;
@@ -5892,7 +5892,7 @@ function xf(e) {
     return this.constructor.sync(this, t, n, r);
   };
 }
-W.plugin(zs).plugin(Xs).plugin(yf).plugin(xf);
+H.plugin(zs).plugin(Xs).plugin(yf).plugin(xf);
 he.exports(ie, Error);
 function ie(e, t, n) {
   Error.call(this, n), this.status = e, this.name = t, this.message = n, this.error = !0;
@@ -6750,9 +6750,9 @@ function ic(e, t, n, r) {
       });
     }
     function D(E, M) {
-      for (var H = [], te = new Pt(), F = 0, N = M.rows.length; F < N; F++) {
+      for (var W = [], te = new Pt(), F = 0, N = M.rows.length; F < N; F++) {
         var z = M.rows[F], Q = z.doc;
-        if (!!Q && (H.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
+        if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
         }
@@ -6763,9 +6763,9 @@ function ic(e, t, n, r) {
           var xe = {
             _id: ye
           }, wt = k.get(ye);
-          "value" in wt && (xe.value = wt.value), H.push(xe);
+          "value" in wt && (xe.value = wt.value), W.push(xe);
         }
-      }), E.keys = Si(X.concat(E.keys)), H.push(E), H;
+      }), E.keys = Si(X.concat(E.keys)), W.push(E), W;
     }
     return I().then(function(E) {
       return T(E).then(function(M) {
@@ -6834,7 +6834,7 @@ function ic(e, t, n, r) {
       var N = F.results;
       if (!N.length)
         return;
-      var z = H(N);
+      var z = W(N);
       D.add(q(z, k)), I = I + N.length;
       let Q = {
         view: d.name,
@@ -6845,7 +6845,7 @@ function ic(e, t, n, r) {
       if (d.sourceDB.emit("indexing", Q), !(N.length < g.changes_batch_size))
         return E();
     }
-    function H(F) {
+    function W(F) {
       for (var N = new ut(), z = 0, Q = F.length; z < Q; z++) {
         var ee = F[z];
         if (ee.doc._id[0] !== "_") {
@@ -6874,15 +6874,15 @@ function ic(e, t, n, r) {
     w.group_level === 0 && delete w.group_level;
     var S = w.group || w.group_level, C = n(d.reduceFun), P = [], k = isNaN(w.group_level) ? Number.POSITIVE_INFINITY : w.group_level;
     g.forEach(function(E) {
-      var M = P[P.length - 1], H = S ? E.key : null;
-      if (S && Array.isArray(H) && (H = H.slice(0, k)), M && fe(M.groupKey, H) === 0) {
+      var M = P[P.length - 1], W = S ? E.key : null;
+      if (S && Array.isArray(W) && (W = W.slice(0, k)), M && fe(M.groupKey, W) === 0) {
         M.keys.push([E.key, E.id]), M.values.push(E.value);
         return;
       }
       P.push({
         keys: [[E.key, E.id]],
         values: [E.value],
-        groupKey: H
+        groupKey: W
       });
     }), g = [];
     for (var q = 0, I = P.length; q < I; q++) {
@@ -6973,8 +6973,8 @@ function ic(e, t, n, r) {
         g.descending && (M = !M), T.endkey = Ce(M ? [E, {}] : [E]);
       }
       if (typeof g.key != "undefined") {
-        var H = Ce([g.key]), te = Ce([g.key, {}]);
-        T.descending ? (T.endkey = H, T.startkey = te) : (T.startkey = H, T.endkey = te);
+        var W = Ce([g.key]), te = Ce([g.key, {}]);
+        T.descending ? (T.endkey = W, T.startkey = te) : (T.startkey = W, T.endkey = te);
       }
       return S || (typeof g.limit == "number" && (T.limit = g.limit), T.skip = C), P(T).then(k);
     }
@@ -7007,9 +7007,9 @@ function ic(e, t, n, r) {
           w.get(I.key).forEach(function(D) {
             var E = T + "/" + D;
             g.views[E] || (E = D);
-            var M = Object.keys(g.views[E]), H = I.doc && I.doc.views && I.doc.views[D];
+            var M = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
             M.forEach(function(te) {
-              P[te] = P[te] || H;
+              P[te] = P[te] || W;
             });
           });
         });
@@ -8654,10 +8654,10 @@ const Wl = {
     });
   }
 };
-W.plugin(_t);
-W.plugin(ru);
-W.plugin(Wl);
-W.plugin(Hl);
+H.plugin(_t);
+H.plugin(ru);
+H.plugin(Wl);
+H.plugin(Hl);
 let Se;
 function Fe() {
   if (!Se)
@@ -8667,7 +8667,7 @@ function Fe() {
   return !0;
 }
 function ed(e, t) {
-  return console.log(W), Se || (Se = new W(e, t));
+  return Se || (Se = new H(e, t));
 }
 function td() {
   return ue(this, null, function* () {
