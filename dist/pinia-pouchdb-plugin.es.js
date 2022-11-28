@@ -68,7 +68,6 @@ function _u(e, t, n) {
   return Gt(o, {}, { default: () => e });
 }
 function Vl(e, t) {
-  console.log(123);
   const n = hu(_u(e, {
     database: t.database,
     pinia: t.pinia,
@@ -76,7 +75,14 @@ function Vl(e, t) {
     loaded: t.loaded && function() {
       t.loaded(n);
     }
-  }, {}));
+  }, {
+    beforeMount: function() {
+      t.mounted && t.beforeMount(n);
+    },
+    mounted: function() {
+      t.mounted && t.mounted(n);
+    }
+  }));
   return n;
 }
 function Ni(e) {
