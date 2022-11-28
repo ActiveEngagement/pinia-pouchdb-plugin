@@ -9,8 +9,8 @@ import {
     promise,
     remove,
     results,
-    warn,
-} from "./utils";
+    warn
+} from './utils';
 
 /**
  * The PouchConfig plugin provides a simple key/value system with that provides

@@ -1,5 +1,5 @@
-import type { App, Component } from "vue";
-import type { Pinia, StoreDefinition } from "pinia";
+import type { Pinia, StoreDefinition } from 'pinia';
+import type { App, Component } from 'vue';
 interface PouchLoaderParameters {
     pinia: Pinia;
     database: any;

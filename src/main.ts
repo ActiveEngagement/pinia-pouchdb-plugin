@@ -1,7 +1,7 @@
 import { createPinia } from 'pinia';
-import App from './App.vue'
-import { usePouchPlugin } from './PouchPlugin';
+import App from './App.vue';
 import { createPouchApp } from './createPouchApp';
+import { usePouchPlugin } from './PouchPlugin';
 import { init } from './Storage';
 import { useMainStore, useSettingsStore } from './store';
 
@@ -21,5 +21,12 @@ createPouchApp(App, {
         useSettingsStore
     ]
 })
+    .use(app => {
+        app.mixin({
+            mounted() {
+                console.log('mounted');
+            }
+        });
+    })
     .use(pinia)
     .mount('#app');

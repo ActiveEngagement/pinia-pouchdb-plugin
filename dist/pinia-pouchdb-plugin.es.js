@@ -68,6 +68,7 @@ function _u(e, t, n) {
   return Gt(o, {}, { default: () => e });
 }
 function Vl(e, t) {
+  console.log(123);
   const n = hu(_u(e, {
     database: t.database,
     pinia: t.pinia,
@@ -75,14 +76,7 @@ function Vl(e, t) {
     loaded: t.loaded && function() {
       t.loaded(n);
     }
-  }, {
-    beforeMount: t.beforeMount && function() {
-      t.beforeMount(n);
-    },
-    mounted: t.mounted && function() {
-      t.mounted(n);
-    }
-  }));
+  }, {}));
   return n;
 }
 function Ni(e) {
@@ -117,12 +111,12 @@ hr.install = function(e) {
     window.queueMicrotask(e);
   };
 };
-var yr = {}, Mi = window.MutationObserver || window.WebKitMutationObserver;
+var yr = {}, Fi = window.MutationObserver || window.WebKitMutationObserver;
 yr.test = function() {
-  return Mi;
+  return Fi;
 };
 yr.install = function(e) {
-  var t = 0, n = new Mi(e), r = window.document.createTextNode("");
+  var t = 0, n = new Fi(e), r = window.document.createTextNode("");
   return n.observe(r, {
     characterData: !0
   }), function() {
@@ -160,13 +154,13 @@ _r.install = function(e) {
     setTimeout(e, 0);
   };
 };
-var Ot = [bu, hr, yr, gr, pr, _r], ot, Ge, St = -1, Ne = [], Mn = !1;
+var Ot = [bu, hr, yr, gr, pr, _r], ot, Ge, St = -1, Ne = [], Fn = !1;
 function $u() {
-  !ot || !Ge || (ot = !1, Ge.length ? Ne = Ge.concat(Ne) : St = -1, Ne.length && Fi());
+  !ot || !Ge || (ot = !1, Ge.length ? Ne = Ge.concat(Ne) : St = -1, Ne.length && Mi());
 }
-function Fi() {
+function Mi() {
   if (!ot) {
-    Mn = !1, ot = !0;
+    Fn = !1, ot = !0;
     for (var e = Ne.length, t = setTimeout($u); e; ) {
       for (Ge = Ne, Ne = []; Ge && ++St < e; )
         Ge[St].run();
@@ -178,7 +172,7 @@ function Fi() {
 var Ui, bt = -1, Au = Ot.length;
 for (; ++bt < Au; )
   if (Ot[bt] && Ot[bt].test && Ot[bt].test()) {
-    Ui = Ot[bt].install(Fi);
+    Ui = Ot[bt].install(Mi);
     break;
   }
 function zi(e, t) {
@@ -205,7 +199,7 @@ function Ou(e) {
   if (arguments.length > 1)
     for (var n = 1; n < arguments.length; n++)
       t[n - 1] = arguments[n];
-  Ne.push(new zi(e, t)), !Mn && !ot && (Mn = !0, Ui());
+  Ne.push(new zi(e, t)), !Fn && !ot && (Fn = !0, Ui());
 }
 var Wt, Su = new Uint8Array(16);
 function xu() {
@@ -846,19 +840,19 @@ function Nu(e) {
   var t = new ArrayBuffer(e.byteLength), n = new Uint8Array(t), r = new Uint8Array(e);
   return n.set(r), t;
 }
-function Mu(e) {
+function Fu(e) {
   if (e instanceof ArrayBuffer)
     return Nu(e);
   var t = e.size, n = e.type;
   return typeof e.slice == "function" ? e.slice(0, t, n) : e.webkitSlice(0, t, n);
 }
-var ta = Function.prototype.toString, Fu = ta.call(Object);
+var ta = Function.prototype.toString, Mu = ta.call(Object);
 function Uu(e) {
   var t = Object.getPrototypeOf(e);
   if (t === null)
     return !0;
   var n = t.constructor;
-  return typeof n == "function" && n instanceof n && ta.call(n) == Fu;
+  return typeof n == "function" && n instanceof n && ta.call(n) == Mu;
 }
 function de(e) {
   var t, n, r;
@@ -872,7 +866,7 @@ function de(e) {
   if (e instanceof Date && isFinite(e))
     return e.toISOString();
   if (Du(e))
-    return Mu(e);
+    return Fu(e);
   if (!Uu(e))
     return e;
   t = {};
@@ -1010,14 +1004,14 @@ function ia(e, t, n) {
   }
   O();
 }
-var Fn;
+var Mn;
 try {
-  localStorage.setItem("_pouch_check_localstorage", 1), Fn = !!localStorage.getItem("_pouch_check_localstorage");
+  localStorage.setItem("_pouch_check_localstorage", 1), Mn = !!localStorage.getItem("_pouch_check_localstorage");
 } catch (e) {
-  Fn = !1;
+  Mn = !1;
 }
 function hn() {
-  return Fn;
+  return Mn;
 }
 he.exports(gt, ve.exports);
 function Qu(e) {
@@ -2335,9 +2329,9 @@ function Ct(e) {
         Object.keys(a).forEach(function(f) {
           var _ = a[f];
           if (f === "$gt" || f === "$gte")
-            return Mo(f, _, o);
-          if (f === "$lt" || f === "$lte")
             return Fo(f, _, o);
+          if (f === "$lt" || f === "$lte")
+            return Mo(f, _, o);
           if (f === "$ne")
             return Uo(_, o);
           if (f === "$eq")
@@ -2350,10 +2344,10 @@ function Ct(e) {
     });
   }), t;
 }
-function Mo(e, t, n) {
+function Fo(e, t, n) {
   typeof n.$eq == "undefined" && (typeof n.$gte != "undefined" ? e === "$gte" ? t > n.$gte && (n.$gte = t) : t >= n.$gte && (delete n.$gte, n.$gt = t) : typeof n.$gt != "undefined" ? e === "$gte" ? t > n.$gt && (delete n.$gt, n.$gte = t) : t > n.$gt && (n.$gt = t) : n[e] = t);
 }
-function Fo(e, t, n) {
+function Mo(e, t, n) {
   typeof n.$eq == "undefined" && (typeof n.$lte != "undefined" ? e === "$lte" ? t < n.$lte && (n.$lte = t) : t <= n.$lte && (delete n.$lte, n.$lt = t) : typeof n.$lt != "undefined" ? e === "$lte" ? t < n.$lt && (delete n.$lt, n.$lte = t) : t < n.$lt && (n.$lt = t) : n[e] = t);
 }
 function Uo(e, t) {
@@ -3243,8 +3237,8 @@ function qs(e, t, n, r, i, a) {
       ++C === u.length && L();
     }
     function k(E) {
-      var M = He(E.target.result);
-      M && h.set(M.id, M), P();
+      var F = He(E.target.result);
+      F && h.set(F.id, F), P();
     }
     for (var q = 0, I = u.length; q < I; q++) {
       var T = u[q];
@@ -3291,9 +3285,9 @@ function qs(e, t, n, r, i, a) {
   }
   function U(C, P, k, q, I, T, D, E) {
     C.metadata.winningRev = P, C.metadata.deleted = k;
-    var M = C.data;
-    M._id = C.metadata.id, M._rev = C.metadata.rev, q && (M._deleted = !0);
-    var W = M._attachments && Object.keys(M._attachments).length;
+    var F = C.data;
+    F._id = C.metadata.id, F._rev = C.metadata.rev, q && (F._deleted = !0);
+    var W = F._attachments && Object.keys(F._attachments).length;
     if (W)
       return g(C, P, k, I, D, E);
     s += T, J(), d(C, P, k, I, D, E);
@@ -3301,7 +3295,7 @@ function qs(e, t, n, r, i, a) {
   function d(C, P, k, q, I, T) {
     var D = C.data, E = C.metadata;
     D._doc_id_rev = E.id + "::" + E.rev, delete D._id, delete D._rev;
-    function M(N) {
+    function F(N) {
       var z = C.stemmedRevs || [];
       q && r.auto_compaction && (z = z.concat(go(C.metadata))), z && z.length && Ca(z, C.metadata.id, o), E.seq = N.target.result;
       var Q = Hn(E, P, k), ee = f.put(Q);
@@ -3312,7 +3306,7 @@ function qs(e, t, n, r, i, a) {
       var z = _.index("_doc_id_rev"), Q = z.getKey(D._doc_id_rev);
       Q.onsuccess = function(ee) {
         var X = _.put(D, ee.target.result);
-        X.onsuccess = M;
+        X.onsuccess = F;
       };
     }
     function te() {
@@ -3322,19 +3316,19 @@ function qs(e, t, n, r, i, a) {
         rev: E.rev
       }, h.set(C.metadata.id, C.metadata), w(C, E.seq, T);
     }
-    var F = _.put(D);
-    F.onsuccess = M, F.onerror = W;
+    var M = _.put(D);
+    M.onsuccess = F, M.onerror = W;
   }
   function g(C, P, k, q, I, T) {
-    var D = C.data, E = 0, M = Object.keys(D._attachments);
+    var D = C.data, E = 0, F = Object.keys(D._attachments);
     function W() {
-      E === M.length && d(C, P, k, q, I, T);
+      E === F.length && d(C, P, k, q, I, T);
     }
     function te() {
       E++, W();
     }
-    M.forEach(function(F) {
-      var N = C.data._attachments[F];
+    F.forEach(function(M) {
+      var N = C.data._attachments[M];
       if (N.stub)
         E++, W();
       else {
@@ -3352,13 +3346,13 @@ function qs(e, t, n, r, i, a) {
     function T() {
       ++q === I.length && k();
     }
-    function D(M) {
-      var W = C.data._attachments[M].digest, te = c.put({
+    function D(F) {
+      var W = C.data._attachments[F].digest, te = c.put({
         seq: P,
         digestSeq: W + "::" + P
       });
-      te.onsuccess = T, te.onerror = function(F) {
-        F.preventDefault(), F.stopPropagation(), T();
+      te.onsuccess = T, te.onerror = function(M) {
+        M.preventDefault(), M.stopPropagation(), T();
       };
     }
     for (var E = 0; E < I.length; E++)
@@ -3571,7 +3565,7 @@ function Ns(e, t, n, r) {
 function fi() {
   Xn || !Zn.length || (Xn = !0, Zn.shift()());
 }
-function Ms(e, t, n) {
+function Fs(e, t, n) {
   Zn.push(function() {
     e(function(a, u) {
       Ns(t, a, u, n), Xn = !1, me(function() {
@@ -3580,7 +3574,7 @@ function Ms(e, t, n) {
     });
   }), fi();
 }
-function Fs(e, t, n, r) {
+function Ms(e, t, n, r) {
   if (e = de(e), e.continuous) {
     var i = n + ":" + pn();
     return kt.addListener(n, i, t, e), kt.notify(n), {
@@ -3672,7 +3666,7 @@ function Fs(e, t, n, r) {
 var at = new be(), kn, Cn = new be();
 function Pa(e, t) {
   var n = this;
-  Ms(function(r) {
+  Fs(function(r) {
     Us(n, e, r);
   }, t, n.constructor);
 }
@@ -3894,7 +3888,7 @@ function Us(e, t, n) {
   }, e._allDocs = function(y, v) {
     Rs(y, i, u(v));
   }, e._changes = function(y) {
-    return Fs(y, e, r, i);
+    return Ms(y, e, r, i);
   }, e._close = function(A) {
     i.close(), at.delete(r), A();
   }, e._getRevisionTree = function(A, y) {
@@ -4803,9 +4797,9 @@ function of(e, t, n, r) {
       }).then(function(E) {
         if (!k)
           throw E.status = q, ht(E);
-        return E.rows.forEach(function(M) {
-          if (M.value && M.value.error && M.value.error === "builtin_reduce_error")
-            throw new Error(M.reason);
+        return E.rows.forEach(function(F) {
+          if (F.value && F.value.error && F.value.error === "builtin_reduce_error")
+            throw new Error(F.reason);
         }), E;
       }).then(b(w));
     }
@@ -4866,9 +4860,9 @@ function of(e, t, n, r) {
         rows: []
       });
     }
-    function D(E, M) {
-      for (var W = [], te = new dt(), F = 0, N = M.rows.length; F < N; F++) {
-        var z = M.rows[F], Q = z.doc;
+    function D(E, F) {
+      for (var W = [], te = new dt(), M = 0, N = F.rows.length; M < N; M++) {
+        var z = F.rows[M], Q = z.doc;
         if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
@@ -4885,8 +4879,8 @@ function of(e, t, n, r) {
       }), E.keys = li(X.concat(E.keys)), W.push(E), W;
     }
     return I().then(function(E) {
-      return T(E).then(function(M) {
-        return D(E, M);
+      return T(E).then(function(F) {
+        return D(E, F);
       });
     });
   }
@@ -4918,17 +4912,17 @@ function of(e, t, n, r) {
   }
   function R(d, g) {
     var w, S;
-    function C(F, N) {
+    function C(M, N) {
       var z = {
         id: S._id,
-        key: Ve(F)
+        key: Ve(M)
       };
       typeof N != "undefined" && N !== null && (z.value = Ve(N)), w.push(z);
     }
     var P = t(d.mapFun, C), k = d.seq || 0;
-    function q(F, N) {
+    function q(M, N) {
       return function() {
-        return h(d, F, N);
+        return h(d, M, N);
       };
     }
     let I = 0, T = {
@@ -4945,26 +4939,26 @@ function of(e, t, n, r) {
         style: "all_docs",
         since: k,
         limit: g.changes_batch_size
-      }).then(M);
+      }).then(F);
     }
-    function M(F) {
-      var N = F.results;
+    function F(M) {
+      var N = M.results;
       if (!N.length)
         return;
       var z = W(N);
       D.add(q(z, k)), I = I + N.length;
       let Q = {
         view: d.name,
-        last_seq: F.last_seq,
+        last_seq: M.last_seq,
         results_count: N.length,
         indexed_docs: I
       };
       if (d.sourceDB.emit("indexing", Q), !(N.length < g.changes_batch_size))
         return E();
     }
-    function W(F) {
-      for (var N = new be(), z = 0, Q = F.length; z < Q; z++) {
-        var ee = F[z];
+    function W(M) {
+      for (var N = new be(), z = 0, Q = M.length; z < Q; z++) {
+        var ee = M[z];
         if (ee.doc._id[0] !== "_") {
           w = [], S = ee.doc, S._deleted || i(d.sourceDB, P, S), w.sort(u);
           var X = te(w);
@@ -4974,9 +4968,9 @@ function of(e, t, n, r) {
       }
       return N;
     }
-    function te(F) {
-      for (var N = new be(), z, Q = 0, ee = F.length; Q < ee; Q++) {
-        var X = F[Q], ye = [X.key, X.id];
+    function te(M) {
+      for (var N = new be(), z, Q = 0, ee = M.length; Q < ee; Q++) {
+        var X = M[Q], ye = [X.key, X.id];
         Q > 0 && oe(X.key, z) === 0 && ye.push(Q), N.set(Ee(ye), X), z = X.key;
       }
       return N;
@@ -4991,9 +4985,9 @@ function of(e, t, n, r) {
     w.group_level === 0 && delete w.group_level;
     var S = w.group || w.group_level, C = n(d.reduceFun), P = [], k = isNaN(w.group_level) ? Number.POSITIVE_INFINITY : w.group_level;
     g.forEach(function(E) {
-      var M = P[P.length - 1], W = S ? E.key : null;
-      if (S && Array.isArray(W) && (W = W.slice(0, k)), M && oe(M.groupKey, W) === 0) {
-        M.keys.push([E.key, E.id]), M.values.push(E.value);
+      var F = P[P.length - 1], W = S ? E.key : null;
+      if (S && Array.isArray(W) && (W = W.slice(0, k)), F && oe(F.groupKey, W) === 0) {
+        F.keys.push([E.key, E.id]), F.values.push(E.value);
         return;
       }
       P.push({
@@ -5023,8 +5017,8 @@ function of(e, t, n, r) {
   function J(d, g) {
     var w, S = d.reduceFun && g.reduce !== !1, C = g.skip || 0;
     typeof g.keys != "undefined" && !g.keys.length && (g.limit = 0, delete g.keys);
-    function P(F) {
-      return F.include_docs = !0, d.db.allDocs(F).then(function(N) {
+    function P(M) {
+      return M.include_docs = !0, d.db.allDocs(M).then(function(N) {
         return w = N.total_rows, N.rows.map(function(z) {
           if ("value" in z.doc && typeof z.doc.value == "object" && z.doc.value !== null) {
             var Q = Object.keys(z.doc.value).sort(), ee = ["id", "key", "value"];
@@ -5040,18 +5034,18 @@ function of(e, t, n, r) {
         });
       });
     }
-    function k(F) {
+    function k(M) {
       var N;
-      if (S ? N = B(d, F, g) : typeof g.keys == "undefined" ? N = {
+      if (S ? N = B(d, M, g) : typeof g.keys == "undefined" ? N = {
         total_rows: w,
         offset: C,
-        rows: F
+        rows: M
       } : N = {
         total_rows: w,
         offset: C,
-        rows: o(F, g.limit, g.skip)
+        rows: o(M, g.limit, g.skip)
       }, g.update_seq && (N.update_seq = d.seq), g.include_docs) {
-        var z = li(F.map(f));
+        var z = li(M.map(f));
         return d.sourceDB.allDocs({
           keys: z,
           include_docs: !0,
@@ -5062,7 +5056,7 @@ function of(e, t, n, r) {
           var ee = new be();
           return Q.rows.forEach(function(X) {
             ee.set(X.id, X.doc);
-          }), F.forEach(function(X) {
+          }), M.forEach(function(X) {
             var ye = f(X), xe = ee.get(ye);
             xe && (X.doc = xe);
           }), N;
@@ -5071,10 +5065,10 @@ function of(e, t, n, r) {
         return N;
     }
     if (typeof g.keys != "undefined") {
-      var q = g.keys, I = q.map(function(F) {
+      var q = g.keys, I = q.map(function(M) {
         var N = {
-          startkey: Ee([F]),
-          endkey: Ee([F, {}])
+          startkey: Ee([M]),
+          endkey: Ee([M, {}])
         };
         return g.update_seq && (N.update_seq = !0), P(N);
       });
@@ -5086,8 +5080,8 @@ function of(e, t, n, r) {
       g.update_seq && (T.update_seq = !0);
       var D, E;
       if ("start_key" in g && (D = g.start_key), "startkey" in g && (D = g.startkey), "end_key" in g && (E = g.end_key), "endkey" in g && (E = g.endkey), typeof D != "undefined" && (T.startkey = g.descending ? Ee([D, {}]) : Ee([D])), typeof E != "undefined") {
-        var M = g.inclusive_end !== !1;
-        g.descending && (M = !M), T.endkey = Ee(M ? [E, {}] : [E]);
+        var F = g.inclusive_end !== !1;
+        g.descending && (F = !F), T.endkey = Ee(F ? [E, {}] : [E]);
       }
       if (typeof g.key != "undefined") {
         var W = Ee([g.key]), te = Ee([g.key, {}]);
@@ -5124,8 +5118,8 @@ function of(e, t, n, r) {
           w.get(I.key).forEach(function(D) {
             var E = T + "/" + D;
             g.views[E] || (E = D);
-            var M = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
-            M.forEach(function(te) {
+            var F = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
+            F.forEach(function(te) {
               P[te] = P[te] || W;
             });
           });
@@ -5392,19 +5386,19 @@ function Tr(e, t, n, r, i) {
       });
   });
 }
-function Mt(e, t, n, r, i) {
+function Ft(e, t, n, r, i) {
   this.src = e, this.target = t, this.id = n, this.returnValue = r, this.opts = i || {};
 }
-Mt.prototype.writeCheckpoint = function(e, t) {
+Ft.prototype.writeCheckpoint = function(e, t) {
   var n = this;
   return this.updateTarget(e, t).then(function() {
     return n.updateSource(e, t);
   });
 };
-Mt.prototype.updateTarget = function(e, t) {
+Ft.prototype.updateTarget = function(e, t) {
   return this.opts.writeTargetCheckpoint ? Tr(this.target, this.id, e, t, this.returnValue) : Promise.resolve(!0);
 };
-Mt.prototype.updateSource = function(e, t) {
+Ft.prototype.updateSource = function(e, t) {
   if (this.opts.writeSourceCheckpoint) {
     var n = this;
     return Tr(this.src, this.id, e, t, this.returnValue).catch(function(r) {
@@ -5423,7 +5417,7 @@ var $i = {
     return bf(t, e).last_seq;
   }
 };
-Mt.prototype.getCheckpoint = function() {
+Ft.prototype.getCheckpoint = function() {
   var e = this;
   return e.opts && e.opts.writeSourceCheckpoint && !e.opts.writeTargetCheckpoint ? e.src.get(e.id).then(function(t) {
     return t.last_seq || qe;
@@ -5552,7 +5546,7 @@ function La(e, t, n, r, i) {
       } : q = {
         writeSourceCheckpoint: !0,
         writeTargetCheckpoint: !0
-      }, l = new Mt(e, t, s, r, q);
+      }, l = new Ft(e, t, s, r, q);
     });
   }
   function B() {
@@ -5572,14 +5566,14 @@ function La(e, t, n, r, i) {
         });
         var D = Object.keys(T).length;
         i.doc_write_failures += D, i.docs_written += k.length - D, k.forEach(function(E) {
-          var M = T[E._id];
-          if (M) {
-            i.errors.push(M);
-            var W = (M.name || "").toLowerCase();
+          var F = T[E._id];
+          if (F) {
+            i.errors.push(F);
+            var W = (F.name || "").toLowerCase();
             if (W === "unauthorized" || W === "forbidden")
-              r.emit("denied", de(M));
+              r.emit("denied", de(F));
             else
-              throw M;
+              throw F;
           } else
             h.push(E);
         });
@@ -5976,23 +5970,23 @@ Object.defineProperty(De.prototype, "size", {
     return Object.keys(this._store).length;
   }
 });
-function Ft(e) {
+function Mt(e) {
   if (this._store = new De(), e && Array.isArray(e))
     for (var t = 0, n = e.length; t < n; t++)
       this.add(e[t]);
 }
-Ft.prototype.add = function(e) {
+Mt.prototype.add = function(e) {
   return this._store.set(e, !0);
 };
-Ft.prototype.has = function(e) {
+Mt.prototype.has = function(e) {
   return this._store.has(e);
 };
-Ft.prototype.forEach = function(e) {
+Mt.prototype.forEach = function(e) {
   this._store.forEach(function(t, n) {
     e(n);
   });
 };
-Object.defineProperty(Ft.prototype, "size", {
+Object.defineProperty(Mt.prototype, "size", {
   get: function() {
     return this._store.size;
   }
@@ -6004,7 +5998,7 @@ function kf() {
   return e && "get" in e && Map[Symbol.species] === Map;
 }
 var Pt, ut;
-kf() ? (Pt = Set, ut = Map) : (Pt = Ft, ut = De);
+kf() ? (Pt = Set, ut = Map) : (Pt = Mt, ut = De);
 var Cf = function(e) {
   return atob(e);
 };
@@ -6056,9 +6050,9 @@ function fe(e, t) {
     case "boolean":
       return e < t ? -1 : 1;
     case "string":
-      return Ff(e, t);
+      return Mf(e, t);
   }
-  return Array.isArray(e) ? Mf(e, t) : Uf(e, t);
+  return Array.isArray(e) ? Ff(e, t) : Uf(e, t);
 }
 function et(e) {
   switch (typeof e) {
@@ -6199,7 +6193,7 @@ function Nf(e) {
     }
   }
 }
-function Mf(e, t) {
+function Ff(e, t) {
   for (var n = Math.min(e.length, t.length), r = 0; r < n; r++) {
     var i = fe(e[r], t[r]);
     if (i !== 0)
@@ -6207,7 +6201,7 @@ function Mf(e, t) {
   }
   return e.length === t.length ? 0 : e.length > t.length ? 1 : -1;
 }
-function Ff(e, t) {
+function Mf(e, t) {
   return e === t ? 0 : e > t ? 1 : -1;
 }
 function Uf(e, t) {
@@ -6235,7 +6229,7 @@ function zf(e) {
   var f = o.toFixed(20);
   return f = f.replace(/\.?0+$/, ""), i += ar + f, i;
 }
-function Ma(e) {
+function Fa(e) {
   return tn.hash(e);
 }
 function Jf(e) {
@@ -6253,21 +6247,21 @@ function Qf(e) {
   var t = e.size, n = e.type;
   return typeof e.slice == "function" ? e.slice(0, t, n) : e.webkitSlice(0, t, n);
 }
-var Fa = Function.prototype.toString, Gf = Fa.call(Object);
+var Ma = Function.prototype.toString, Gf = Ma.call(Object);
 function Wf(e) {
   var t = Object.getPrototypeOf(e);
   if (t === null)
     return !0;
   var n = t.constructor;
-  return typeof n == "function" && n instanceof n && Fa.call(n) == Gf;
+  return typeof n == "function" && n instanceof n && Ma.call(n) == Gf;
 }
-function Me(e) {
+function Fe(e) {
   var t, n, r;
   if (!e || typeof e != "object")
     return e;
   if (Array.isArray(e)) {
     for (t = [], n = 0, r = e.length; n < r; n++)
-      t[n] = Me(e[n]);
+      t[n] = Fe(e[n]);
     return t;
   }
   if (e instanceof Date && isFinite(e))
@@ -6279,7 +6273,7 @@ function Me(e) {
   t = {};
   for (n in e)
     if (Object.prototype.hasOwnProperty.call(e, n)) {
-      var i = Me(e[n]);
+      var i = Fe(e[n]);
       typeof i != "undefined" && (t[n] = i);
     }
   return t;
@@ -6294,7 +6288,7 @@ function Hf(e) {
 }
 function Ut(e) {
   return Re(function(t) {
-    t = Me(t);
+    t = Fe(t);
     var n = this, r = typeof t[t.length - 1] == "function" ? t.pop() : !1, i = new Promise(function(a, u) {
       var o;
       try {
@@ -6525,7 +6519,7 @@ function Ei(e, t, n, r, i, a) {
   if (!i && (o = e._cachedViews = e._cachedViews || {}, o[u]))
     return o[u];
   var f = e.info().then(function(_) {
-    var b = _.db_name + "-mrview-" + (i ? "temp" : Ma(u));
+    var b = _.db_name + "-mrview-" + (i ? "temp" : Fa(u));
     function c(m) {
       m.views = m.views || {};
       var O = t;
@@ -6686,9 +6680,9 @@ function ic(e, t, n, r) {
       }).then(function(E) {
         if (!k)
           throw E.status = q, rr(E);
-        return E.rows.forEach(function(M) {
-          if (M.value && M.value.error && M.value.error === "builtin_reduce_error")
-            throw new Error(M.reason);
+        return E.rows.forEach(function(F) {
+          if (F.value && F.value.error && F.value.error === "builtin_reduce_error")
+            throw new Error(F.reason);
         }), E;
       }).then(b(w));
     }
@@ -6749,9 +6743,9 @@ function ic(e, t, n, r) {
         rows: []
       });
     }
-    function D(E, M) {
-      for (var W = [], te = new Pt(), F = 0, N = M.rows.length; F < N; F++) {
-        var z = M.rows[F], Q = z.doc;
+    function D(E, F) {
+      for (var W = [], te = new Pt(), M = 0, N = F.rows.length; M < N; M++) {
+        var z = F.rows[M], Q = z.doc;
         if (!!Q && (W.push(Q), te.add(Q._id), Q._deleted = !k.has(Q._id), !Q._deleted)) {
           var ee = k.get(Q._id);
           "value" in ee && (Q.value = ee.value);
@@ -6768,8 +6762,8 @@ function ic(e, t, n, r) {
       }), E.keys = Si(X.concat(E.keys)), W.push(E), W;
     }
     return I().then(function(E) {
-      return T(E).then(function(M) {
-        return D(E, M);
+      return T(E).then(function(F) {
+        return D(E, F);
       });
     });
   }
@@ -6801,17 +6795,17 @@ function ic(e, t, n, r) {
   }
   function R(d, g) {
     var w, S;
-    function C(F, N) {
+    function C(M, N) {
       var z = {
         id: S._id,
-        key: et(F)
+        key: et(M)
       };
       typeof N != "undefined" && N !== null && (z.value = et(N)), w.push(z);
     }
     var P = t(d.mapFun, C), k = d.seq || 0;
-    function q(F, N) {
+    function q(M, N) {
       return function() {
-        return h(d, F, N);
+        return h(d, M, N);
       };
     }
     let I = 0, T = {
@@ -6828,26 +6822,26 @@ function ic(e, t, n, r) {
         style: "all_docs",
         since: k,
         limit: g.changes_batch_size
-      }).then(M);
+      }).then(F);
     }
-    function M(F) {
-      var N = F.results;
+    function F(M) {
+      var N = M.results;
       if (!N.length)
         return;
       var z = W(N);
       D.add(q(z, k)), I = I + N.length;
       let Q = {
         view: d.name,
-        last_seq: F.last_seq,
+        last_seq: M.last_seq,
         results_count: N.length,
         indexed_docs: I
       };
       if (d.sourceDB.emit("indexing", Q), !(N.length < g.changes_batch_size))
         return E();
     }
-    function W(F) {
-      for (var N = new ut(), z = 0, Q = F.length; z < Q; z++) {
-        var ee = F[z];
+    function W(M) {
+      for (var N = new ut(), z = 0, Q = M.length; z < Q; z++) {
+        var ee = M[z];
         if (ee.doc._id[0] !== "_") {
           w = [], S = ee.doc, S._deleted || i(d.sourceDB, P, S), w.sort(u);
           var X = te(w);
@@ -6857,9 +6851,9 @@ function ic(e, t, n, r) {
       }
       return N;
     }
-    function te(F) {
-      for (var N = new ut(), z, Q = 0, ee = F.length; Q < ee; Q++) {
-        var X = F[Q], ye = [X.key, X.id];
+    function te(M) {
+      for (var N = new ut(), z, Q = 0, ee = M.length; Q < ee; Q++) {
+        var X = M[Q], ye = [X.key, X.id];
         Q > 0 && fe(X.key, z) === 0 && ye.push(Q), N.set(Ce(ye), X), z = X.key;
       }
       return N;
@@ -6874,9 +6868,9 @@ function ic(e, t, n, r) {
     w.group_level === 0 && delete w.group_level;
     var S = w.group || w.group_level, C = n(d.reduceFun), P = [], k = isNaN(w.group_level) ? Number.POSITIVE_INFINITY : w.group_level;
     g.forEach(function(E) {
-      var M = P[P.length - 1], W = S ? E.key : null;
-      if (S && Array.isArray(W) && (W = W.slice(0, k)), M && fe(M.groupKey, W) === 0) {
-        M.keys.push([E.key, E.id]), M.values.push(E.value);
+      var F = P[P.length - 1], W = S ? E.key : null;
+      if (S && Array.isArray(W) && (W = W.slice(0, k)), F && fe(F.groupKey, W) === 0) {
+        F.keys.push([E.key, E.id]), F.values.push(E.value);
         return;
       }
       P.push({
@@ -6906,8 +6900,8 @@ function ic(e, t, n, r) {
   function J(d, g) {
     var w, S = d.reduceFun && g.reduce !== !1, C = g.skip || 0;
     typeof g.keys != "undefined" && !g.keys.length && (g.limit = 0, delete g.keys);
-    function P(F) {
-      return F.include_docs = !0, d.db.allDocs(F).then(function(N) {
+    function P(M) {
+      return M.include_docs = !0, d.db.allDocs(M).then(function(N) {
         return w = N.total_rows, N.rows.map(function(z) {
           if ("value" in z.doc && typeof z.doc.value == "object" && z.doc.value !== null) {
             var Q = Object.keys(z.doc.value).sort(), ee = ["id", "key", "value"];
@@ -6923,18 +6917,18 @@ function ic(e, t, n, r) {
         });
       });
     }
-    function k(F) {
+    function k(M) {
       var N;
-      if (S ? N = B(d, F, g) : typeof g.keys == "undefined" ? N = {
+      if (S ? N = B(d, M, g) : typeof g.keys == "undefined" ? N = {
         total_rows: w,
         offset: C,
-        rows: F
+        rows: M
       } : N = {
         total_rows: w,
         offset: C,
-        rows: o(F, g.limit, g.skip)
+        rows: o(M, g.limit, g.skip)
       }, g.update_seq && (N.update_seq = d.seq), g.include_docs) {
-        var z = Si(F.map(f));
+        var z = Si(M.map(f));
         return d.sourceDB.allDocs({
           keys: z,
           include_docs: !0,
@@ -6945,7 +6939,7 @@ function ic(e, t, n, r) {
           var ee = new ut();
           return Q.rows.forEach(function(X) {
             ee.set(X.id, X.doc);
-          }), F.forEach(function(X) {
+          }), M.forEach(function(X) {
             var ye = f(X), xe = ee.get(ye);
             xe && (X.doc = xe);
           }), N;
@@ -6954,10 +6948,10 @@ function ic(e, t, n, r) {
         return N;
     }
     if (typeof g.keys != "undefined") {
-      var q = g.keys, I = q.map(function(F) {
+      var q = g.keys, I = q.map(function(M) {
         var N = {
-          startkey: Ce([F]),
-          endkey: Ce([F, {}])
+          startkey: Ce([M]),
+          endkey: Ce([M, {}])
         };
         return g.update_seq && (N.update_seq = !0), P(N);
       });
@@ -6969,8 +6963,8 @@ function ic(e, t, n, r) {
       g.update_seq && (T.update_seq = !0);
       var D, E;
       if ("start_key" in g && (D = g.start_key), "startkey" in g && (D = g.startkey), "end_key" in g && (E = g.end_key), "endkey" in g && (E = g.endkey), typeof D != "undefined" && (T.startkey = g.descending ? Ce([D, {}]) : Ce([D])), typeof E != "undefined") {
-        var M = g.inclusive_end !== !1;
-        g.descending && (M = !M), T.endkey = Ce(M ? [E, {}] : [E]);
+        var F = g.inclusive_end !== !1;
+        g.descending && (F = !F), T.endkey = Ce(F ? [E, {}] : [E]);
       }
       if (typeof g.key != "undefined") {
         var W = Ce([g.key]), te = Ce([g.key, {}]);
@@ -7007,8 +7001,8 @@ function ic(e, t, n, r) {
           w.get(I.key).forEach(function(D) {
             var E = T + "/" + D;
             g.views[E] || (E = D);
-            var M = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
-            M.forEach(function(te) {
+            var F = Object.keys(g.views[E]), W = I.doc && I.doc.views && I.doc.views[D];
+            F.forEach(function(te) {
               P[te] = P[te] || W;
             });
           });
@@ -7116,7 +7110,7 @@ function Ja(e) {
 function $e(e) {
   return Object.keys(e)[0];
 }
-function Mr(e) {
+function Fr(e) {
   return e[$e(e)];
 }
 function It(e) {
@@ -7198,7 +7192,7 @@ function Qa(e, t) {
   return t;
 }
 function Ga(e) {
-  var t = Me(e), n = !1;
+  var t = Fe(e), n = !1;
   Qa(t, !1) && (t = Ka(t), "$and" in t && (t = It(t.$and)), n = !0), ["$or", "$nor"].forEach(function(o) {
     o in t && t[o].forEach(function(f) {
       for (var _ = Object.keys(f), b = 0; b < _.length; b++) {
@@ -7234,7 +7228,7 @@ function Wa(e, t, n) {
     return lt(u.doc, t.selector, n);
   }), t.sort) {
     var r = dc(t.sort);
-    e = e.sort(r), typeof t.sort[0] != "string" && Mr(t.sort[0]) === "desc" && (e = e.reverse());
+    e = e.sort(r), typeof t.sort[0] != "string" && Fr(t.sort[0]) === "desc" && (e = e.reverse());
   }
   if ("limit" in t || "skip" in t) {
     var i = t.skip || 0, a = ("limit" in t ? t.limit : e.length) + i;
@@ -7395,7 +7389,7 @@ function On(e, t) {
   return r && r.length === 1;
 }
 function Ha(e) {
-  return e = Me(e), e.index || (e.index = {}), ["type", "name", "ddoc"].forEach(function(t) {
+  return e = Fe(e), e.index || (e.index = {}), ["type", "name", "ddoc"].forEach(function(t) {
     e.index[t] && (e[t] = e.index[t], delete e.index[t]);
   }), e.fields && (e.index.fields = e.fields, delete e.fields), e.type || (e.type = "json"), e;
 }
@@ -7505,10 +7499,10 @@ function kc(e, t) {
     });
   }), e;
 }
-var Fr = Ya(function(e) {
+var Mr = Ya(function(e) {
   for (var t = [], n = 0, r = e.length; n < r; n++) {
     var i = e[n];
-    Array.isArray(i) ? t = t.concat(Fr.apply(null, i)) : t.push(i);
+    Array.isArray(i) ? t = t.concat(Mr.apply(null, i)) : t.push(i);
   }
   return t;
 });
@@ -7623,13 +7617,13 @@ function Nc(e) {
   }
   return !0;
 }
-function Mc(e, t, n) {
+function Fc(e, t, n) {
   var r = Nc(e), i = e.length === 1;
   return r ? i ? Lc(e[0], t, n) : Dc(e, t, n) : i ? Rc(e[0], t, n) : Bc(e, t, n);
 }
-function Fc(e, t) {
+function Mc(e, t) {
   const n = Object.keys(e.fields), r = e.partial_filter_selector;
-  return Mc(n, t, r);
+  return Fc(n, t, r);
 }
 function Uc() {
   throw new Error("reduce not supported");
@@ -7639,7 +7633,7 @@ function zc(e, t) {
   if (!n.map || !n.map.fields)
     throw new Error("ddoc " + e._id + " with view " + t + " doesn't have map.fields defined. maybe it wasn't created by this plugin?");
 }
-var Jc = ic("indexes", Fc, Uc, zc);
+var Jc = ic("indexes", Mc, Uc, zc);
 function zr(e) {
   return e._customFindAbstractMapper || Jc;
 }
@@ -7690,12 +7684,12 @@ function Wc(e, t, n) {
   return i > 0 ? e.slice(i) : e;
 }
 function Hc(e) {
-  var t = Me(e);
+  var t = Fe(e);
   return delete t.startkey, delete t.endkey, delete t.inclusive_start, delete t.inclusive_end, "endkey" in e && (t.startkey = e.endkey), "startkey" in e && (t.endkey = e.startkey), "inclusive_start" in e && (t.inclusive_end = e.inclusive_start), "inclusive_end" in e && (t.inclusive_start = e.inclusive_end), t;
 }
 function Yc(e) {
   var t = e.fields.filter(function(n) {
-    return Mr(n) === "asc";
+    return Fr(n) === "asc";
   });
   if (t.length !== 0 && t.length !== e.fields.length)
     throw new Error("unsupported mixed sorting");
@@ -7732,11 +7726,11 @@ function Vc(e, t) {
 }
 function el(e, t) {
   t = Ha(t);
-  var n = Me(t.index);
+  var n = Fe(t.index);
   t.index = Za(t.index), Yc(t.index);
   var r;
   function i() {
-    return r || (r = Ma(JSON.stringify(t)));
+    return r || (r = Fa(JSON.stringify(t)));
   }
   var a = t.name || "idx-" + i(), u = t.ddoc || "idx-" + i(), o = "_design/" + u, f = !1, _ = !1;
   function b(c) {
@@ -7785,7 +7779,7 @@ function Va(e) {
         }
       }]
     };
-    return n.indexes = Fr(n.indexes, t.rows.filter(function(r) {
+    return n.indexes = Mr(n.indexes, t.rows.filter(function(r) {
       return r.doc.language === "query";
     }).map(function(r) {
       var i = r.doc.views !== void 0 ? Object.keys(r.doc.views) : [];
@@ -7853,7 +7847,7 @@ function al(e) {
   }), t;
 }
 function ul(e, t, n, r) {
-  var i = Fr(
+  var i = Mr(
     e,
     il(t, n, r),
     al(n)
@@ -8058,7 +8052,7 @@ function bl(e) {
   return e.ddoc.substring(8) + "/" + e.name;
 }
 function $l(e, t) {
-  var n = Me(t);
+  var n = Fe(t);
   return n.descending ? ("endkey" in n && typeof n.endkey != "string" && (n.endkey = ""), "startkey" in n && typeof n.startkey != "string" && (n.limit = 0)) : ("startkey" in n && typeof n.startkey != "string" && (n.startkey = ""), "endkey" in n && typeof n.endkey != "string" && (n.limit = 0)), "key" in n && typeof n.key != "string" && (n.limit = 0), n.limit > 0 && n.indexes_count && (n.original_limit = n.limit, n.limit += n.indexes_count), e.allDocs(n).then(function(r) {
     return r.rows = r.rows.filter(function(i) {
       return !/^_design\//.test(i.id);
@@ -8081,7 +8075,7 @@ function nu(e, t, n) {
       return {
         docs: []
       };
-    var o = t.sort && typeof t.sort[0] != "string" && Mr(t.sort[0]) === "desc";
+    var o = t.sort && typeof t.sort[0] != "string" && Fr(t.sort[0]) === "desc";
     return o && (u.descending = !0, u = Hc(u)), i.inMemoryFields.length || ("limit" in t && (u.limit = t.limit), "skip" in t && (u.skip = t.skip)), n ? Promise.resolve(i, u) : Promise.resolve().then(function() {
       if (a.name === "_all_docs")
         return $l(e, u);
@@ -8357,11 +8351,11 @@ function Nl(e) {
     });
   }
 }
-var Ml = typeof Promise == "function" ? Promise : Tl;
-const Fl = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+var Fl = typeof Promise == "function" ? Promise : Tl;
+const Ml = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: Ml
-}, Symbol.toStringTag, { value: "Module" })), Ul = /* @__PURE__ */ Ni(Fl);
+  default: Fl
+}, Symbol.toStringTag, { value: "Module" })), Ul = /* @__PURE__ */ Ni(Ml);
 (function(e) {
   var t = Ul;
   function n(i, a, u) {
@@ -8659,7 +8653,7 @@ H.plugin(ru);
 H.plugin(Wl);
 H.plugin(Hl);
 let Se;
-function Fe() {
+function Me() {
   if (!Se)
     throw new Error(
       "You must initialize with init() before accessing the database."
@@ -8671,7 +8665,7 @@ function ed(e, t) {
 }
 function td() {
   return ue(this, null, function* () {
-    return Fe() && {
+    return Me() && {
       cache: yield Se.createCacheIndex(),
       config: yield Se.createConfigIndex()
     };
@@ -8679,37 +8673,37 @@ function td() {
 }
 function nd() {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.createCacheIndex());
+    return Me() && (yield Se.createCacheIndex());
   });
 }
 function rd() {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.createConfigIndex());
+    return Me() && (yield Se.createConfigIndex());
   });
 }
 function id(...e) {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.cache(...e));
+    return Me() && (yield Se.cache(...e));
   });
 }
 function ad(...e) {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.config(...e));
+    return Me() && (yield Se.config(...e));
   });
 }
 function ud(...e) {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.purge(...e));
+    return Me() && (yield Se.purge(...e));
   });
 }
 function od(...e) {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.removeCache(...e));
+    return Me() && (yield Se.removeCache(...e));
   });
 }
 function sd(...e) {
   return ue(this, null, function* () {
-    return Fe() && (yield Se.removeConfig(...e));
+    return Me() && (yield Se.removeConfig(...e));
   });
 }
 export {

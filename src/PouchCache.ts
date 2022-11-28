@@ -2,14 +2,14 @@ import { diff } from 'deep-object-diff';
 
 import {
     array,
-    date, 
+    date,
     extract,
     first,
     isString,
-    map, 
-    promise, 
-    remove, 
-    results, 
+    map,
+    promise,
+    remove,
+    results,
     warn
 } from './utils';
 

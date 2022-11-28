@@ -1,7 +1,7 @@
-import { createApp, defineComponent, h, Suspense } from "vue";
-import type { App, Component } from "vue";
-import type { Pinia, StoreDefinition } from "pinia";
-import { load } from "./PouchPlugin";
+import type { Pinia, StoreDefinition } from 'pinia';
+import type { App, Component } from 'vue';
+import { createApp, defineComponent, h, Suspense } from 'vue';
+import { load } from './PouchPlugin';
 
 interface PouchLoaderParameters {
     pinia: Pinia,
@@ -52,11 +52,11 @@ export function createPouchApp(App: Component, params?: PouchAppParameters) {
             params.loaded(app);
         }
     }, {
-        beforeMount: params.beforeMount && function() {
-            params.beforeMount(app);
+        beforeMount: function() {
+            params.mounted && params.beforeMount(app);
         },
-        mounted: params.mounted && function() {
-            params.mounted(app);
+        mounted: function() {
+            params.mounted && params.mounted(app);
         }
     }));
 
