@@ -19,8 +19,8 @@
     "@types/pouchdb-upsert": "^2.2.6",
     "deep-object-diff": "^1.1.0",
     "events": "^3.3.0",
-    "pouchdb-browser": "^7.3.0",
-    "pouchdb-find": "^7.2.1",
+    "pouchdb-browser": "^8.0",
+    "pouchdb-find": "^8.0",
     "pouchdb-upsert": "^2.2.0"
   },
   "peerDependencies": {
@@ -31,11 +31,11 @@
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@rollup/plugin-babel": "^6.0.0",
     "@typescript-eslint/parser": "^5.45.0",
-    "@vitejs/plugin-vue": "^3.1.0",
+    "@vitejs/plugin-vue": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "babel-preset-vue": "^2.0.2",
     "change-case": "^4.1.2",
-    "vite": "^3.1.0",
+    "vite": "^4.0.0",
     "vite-plugin-dts": "^1.6.6",
     "vue": "^3.2.37"
   }
