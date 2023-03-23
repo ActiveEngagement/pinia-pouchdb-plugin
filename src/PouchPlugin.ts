@@ -8,15 +8,27 @@ interface PouchePluginOptions {
 
 // The db state loader.
 export async function load(database: PouchDB.Database, pinia: Pinia) {
+    const docs = (await database.allDocs({
+        include_docs: true,
+        attachments: true
+    })).rows.reduce((carry, row) => {
+        return Object.assign(carry, {
+            [row.id]: row.doc
+        });
+    }, {});
+
     // Loop through the context.pinia.state keys and get the saved values.
     for(const [key, store] of Object.entries(pinia.state.value)) {
         for(const prop of Object.keys(store)) {    
-            // @ts-ignore        
-            const value = await database.config(`${key}.${prop}`);
-
-            if(value !== undefined) {
-                store[prop] = JSON.parse(JSON.stringify(value));
+            const i = `${key}.${prop}`;
+            
+            if(docs[i] === undefined) {
+                continue;
             }
+
+            store[prop] = docs[i].$value === undefined
+                ? undefined
+                : JSON.parse(JSON.stringify(docs[i].$value));
         }
     }
 }
@@ -51,4 +63,4 @@ export const usePouchPlugin = (options: PouchePluginOptions) => {
             prevState = parsed;
         });
     };
-}
+};

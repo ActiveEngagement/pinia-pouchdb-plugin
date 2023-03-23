@@ -30,10 +30,16 @@ const yn = (e) => e instanceof Date, vo = (e) => Object.keys(e).length === 0, jn
 };
 function po(e, t) {
   return M(this, null, function* () {
-    for (const [n, r] of Object.entries(t.state.value))
-      for (const i of Object.keys(r)) {
-        const a = yield e.config(`${n}.${i}`);
-        a !== void 0 && (r[i] = JSON.parse(JSON.stringify(a)));
+    const n = (yield e.allDocs({
+      include_docs: !0,
+      attachments: !0
+    })).rows.reduce((r, i) => Object.assign(r, {
+      [i.id]: i.doc
+    }), {});
+    for (const [r, i] of Object.entries(t.state.value))
+      for (const a of Object.keys(i)) {
+        const o = `${r}.${a}`;
+        n[o] !== void 0 && (i[a] = n[o].$value === void 0 ? void 0 : JSON.parse(JSON.stringify(n[o].$value)));
       }
   });
 }

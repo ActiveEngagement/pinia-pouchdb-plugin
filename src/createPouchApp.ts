@@ -28,7 +28,7 @@ export function createPouchLoader(App: Component, options?: PouchLoaderParameter
                             store();
                         }
                     }
-
+                    
                     await load(database, pinia);
 
                     loaded && loaded();
